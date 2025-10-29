@@ -1,0 +1,27 @@
+{
+  "slug": "lv-001",
+  "number": 1,
+  "title": "The Awakening",
+  "mode": "form",
+  "kind": "image",
+  "mdx": "prompt.mdx",
+  "asset": "assets/one.png",
+  "saltHex": "b367812ffa0d6f56baa06751414fca68",
+  "userHashHex": "88b12b3557fbb750aa78b04a4c8258d891df9df836120c858ea0a9a94c321def",
+  "passHashHex": "dea527ebfba39e7cc491621d29aa84aed5bf670580e03d2dcb791aecc94c279e",
+  "hintsConsole": [
+    "username fragment: BASALT",
+    "password fragment: RIFT",
+    "Swap the image filename to see the rest."
+  ],
+  "hintsSource": [
+    "comment whispers username=basalt",
+    "normalize before you submit the password=r i f t"
+  ],
+  "theme": {
+    "className": "level-awakening",
+    "cssVars": {
+      "--accent": "#c4a458"
+    }
+  }
+}

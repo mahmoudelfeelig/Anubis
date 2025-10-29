@@ -18,6 +18,8 @@ export async function getHighestCleared(userId: string, index: Record<string, nu
     { userId },
     { projection: { slug: 1 } }
   ).toArray();
-  const nums = rows.map(r => index[r.slug]).filter(Boolean);
+  const nums = rows
+    .map(r => index[r.slug])
+    .filter((n): n is number => typeof n === 'number');
   return nums.length ? Math.max(...nums) : 0;
 }

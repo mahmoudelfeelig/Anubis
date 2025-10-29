@@ -1,0 +1,27 @@
+{
+  "slug": "lv-003",
+  "number": 3,
+  "title": "Watermark",
+  "mode": "url",
+  "kind": "image",
+  "mdx": "prompt.mdx",
+  "asset": "assets/one.png",
+  "hintsConsole": [
+    "Try resizing the viewport. The background reacts.",
+    "Not everything printed on the page is visible at first."
+  ],
+  "hintsSource": [
+    "fold three times to reveal the path",
+    "seek the /crease doorway"
+  ],
+  "theme": {
+    "className": "level-watermark",
+    "cssVars": {
+      "--accent": "#2ba6a4",
+      "--bg": "#041f25"
+    }
+  },
+  "meta": {
+    "unlockPath": "crease"
+  }
+}
