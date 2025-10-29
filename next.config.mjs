@@ -1,6 +1,15 @@
 import createMDX from '@next/mdx';
+
 const withMDX = createMDX({ extension: /\.mdx?$/ });
-export default withMDX({
+
+const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
-  reactStrictMode: true
-});
+  reactStrictMode: true,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
+  },
+};
+
+export default withMDX(nextConfig);

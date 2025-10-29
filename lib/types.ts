@@ -9,6 +9,7 @@ export interface LevelConfig {
   kind: LevelKind;
   mdx?: string;
   asset?: string;
+  audio?: string;
   saltHex?: string;
   userHashHex?: string;
   passHashHex?: string;
@@ -22,6 +23,7 @@ export interface UserDoc {
   username: string;
   pwdHash: string;
   createdAt: Date;
+  pfp?: string | null;
 }
 
 export interface SessionDoc {

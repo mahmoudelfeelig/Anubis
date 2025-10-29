@@ -1,0 +1,27 @@
+{
+  "slug": "lv-002",
+  "number": 2,
+  "title": "Fault Line",
+  "mode": "form",
+  "kind": "image",
+  "mdx": "prompt.mdx",
+  "asset": "assets/one.png",
+  "saltHex": "40fa1c850b21288bb51fdd8369aaee98",
+  "userHashHex": "b2e455b3798a83d8e1e274a17cee0b28563f79f4b20330f92c84f078d767ff81",
+  "passHashHex": "4f300e2fa2d5d3c84ef01722942b9ceba9c17fb1cc60a0e29286d449a1ddb242",
+  "hintsConsole": [
+    "The spectrogram strips away the noise.",
+    "Look for coordinates hidden in the layers."
+  ],
+  "hintsSource": [
+    "stack the strata west to east",
+    "user:gneiss password:grade3 (after decoding)"
+  ],
+  "theme": {
+    "className": "level-fault-line",
+    "cssVars": {
+      "--accent": "#8a5fef",
+      "--bg": "#080813"
+    }
+  }
+}

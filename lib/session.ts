@@ -18,20 +18,23 @@ export async function createSession(userId: string) {
   const tokenHash = sha256(token);
   const expiresAt = new Date(Date.now() + 1000*60*60*24*30);
   await sessions.insertOne({ tokenHash, userId, expiresAt });
-  cookies().set(COOKIE, token, { httpOnly: true, sameSite: 'lax', secure: true, expires: expiresAt, path: '/' });
+  const cookieStore = await cookies();
+  cookieStore.set(COOKIE, token, { httpOnly: true, sameSite: 'lax', secure: true, expires: expiresAt, path: '/' });
 }
 
 export async function destroySession() {
-  const c = cookies().get(COOKIE)?.value;
+  const cookieStore = await cookies();
+  const c = cookieStore.get(COOKIE)?.value;
   if (!c) return;
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
   await sessions.deleteOne({ tokenHash: sha256(c) });
-  cookies().set(COOKIE, '', { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(0), path: '/' });
+  cookieStore.set(COOKIE, '', { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(0), path: '/' });
 }
 
 export async function getSessionUser() {
-  const token = cookies().get(COOKIE)?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE)?.value;
   if (!token) return null;
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
