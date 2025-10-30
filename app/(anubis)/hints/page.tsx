@@ -3,7 +3,7 @@ export const revalidate = 300;
 export default function Page() {
   return (
     <section className="panel">
-      <h1>Hints</h1>
+      <h1 data-echo="Hints">Hints</h1>
       <ul>
         <li>View source. Search for HTML comments.</li>
         <li>Open console. Read messages.</li>

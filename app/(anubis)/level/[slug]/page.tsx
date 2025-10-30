@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { redirect, notFound } from 'next/navigation';
 import { getSessionUser } from '@/lib/session';
 import { getIndex, getLevel, getNextSlug } from '@/lib/levels';
 import { getHighestCleared, markCleared } from '@/lib/progress';
@@ -11,7 +11,15 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const user = await getSessionUser();
   if (!user) redirect('/login');
 
-  const level = await getLevel(slug);
+  let level;
+  try {
+    level = await getLevel(slug);
+  } catch (error) {
+    if (error && typeof error === 'object' && 'code' in error && (error as { code?: string }).code === 'ENOENT') {
+      notFound();
+    }
+    throw error;
+  }
 
   const index = await getIndex();
   const requested = typeof level.number === 'number' ? level.number : index[slug];

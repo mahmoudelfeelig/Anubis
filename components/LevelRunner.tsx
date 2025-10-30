@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, FormEvent, startTransition } from "react";
 import { solveForm } from "@/app/(anubis)/level/[slug]/actions";
 
 type LevelSafe = {
@@ -23,6 +23,8 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
   const [isPaused, setIsPaused] = useState(false);
   const [msg, setMsg] = useState("");
   const wantsPauseRef = useRef(false);
+  const [preferredState, setPreferredState] = useState<"playing" | "paused" | null>(null);
+  const AUDIO_PREF_KEY = "anubis.audio.state";
 
   useEffect(() => {
     (level.hintsConsole || []).forEach((hint) => {
@@ -31,8 +33,58 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
   }, [level]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const saved = window.localStorage.getItem(AUDIO_PREF_KEY);
+    startTransition(() => {
+      if (saved === "paused" || saved === "playing") {
+        setPreferredState(saved);
+        setIsPaused(saved === "paused");
+      } else {
+        setPreferredState("playing");
+        setIsPaused(false);
+      }
+    });
+  }, [AUDIO_PREF_KEY]);
+
+  const persistPreference = useCallback(
+    (state: "playing" | "paused") => {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(AUDIO_PREF_KEY, state);
+      }
+      startTransition(() => {
+        setPreferredState(state);
+        setIsPaused(state === "paused");
+      });
+    },
+    [AUDIO_PREF_KEY],
+  );
+
+  const resumeAudio = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
+    wantsPauseRef.current = false;
+    audio.muted = false;
+    audio
+      .play()
+      .then(() => {
+        startTransition(() => {
+          setNeedsGesture(false);
+          setIsPaused(false);
+        });
+        persistPreference("playing");
+      })
+      .catch(() => {
+        startTransition(() => {
+          setNeedsGesture(true);
+          setIsPaused(true);
+        });
+      });
+  }, [persistPreference]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || preferredState === null) return;
 
     audio.loop = true;
     audio.autoplay = true;
@@ -42,20 +94,56 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
 
     let cancelled = false;
 
+    if (preferredState === "paused") {
+      wantsPauseRef.current = true;
+      audio.pause();
+      audio.muted = true;
+      startTransition(() => {
+        setIsPaused(true);
+        setNeedsGesture(false);
+      });
+
+      const onGesture = () => {
+        window.removeEventListener("pointerdown", onGesture);
+        window.removeEventListener("keydown", onGesture);
+      };
+      window.addEventListener("pointerdown", onGesture);
+      window.addEventListener("keydown", onGesture);
+      return () => {
+        window.removeEventListener("pointerdown", onGesture);
+        window.removeEventListener("keydown", onGesture);
+      };
+    }
+
     const startPlayback = async () => {
       try {
         audio.muted = false;
         wantsPauseRef.current = false;
         await audio.play();
-        if (!cancelled) setNeedsGesture(false);
+        if (!cancelled) {
+          startTransition(() => {
+            setNeedsGesture(false);
+            setIsPaused(false);
+          });
+        }
       } catch {
         try {
           audio.muted = true;
           wantsPauseRef.current = false;
           await audio.play();
-          if (!cancelled) setNeedsGesture(true);
+          if (!cancelled) {
+            startTransition(() => {
+              setNeedsGesture(true);
+              setIsPaused(true);
+            });
+          }
         } catch {
-          if (!cancelled) setNeedsGesture(true);
+          if (!cancelled) {
+            startTransition(() => {
+              setNeedsGesture(true);
+              setIsPaused(true);
+            });
+          }
         }
       }
     };
@@ -63,14 +151,7 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
     void startPlayback();
 
     const onFirstGesture = () => {
-      const player = audioRef.current;
-      if (!player) return;
-      if (needsGesture) {
-        player.muted = false;
-        wantsPauseRef.current = false;
-        player.play().catch(() => {});
-        setNeedsGesture(false);
-      }
+      resumeAudio();
       window.removeEventListener("pointerdown", onFirstGesture);
       window.removeEventListener("keydown", onFirstGesture);
     };
@@ -83,7 +164,7 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
       window.removeEventListener("pointerdown", onFirstGesture);
       window.removeEventListener("keydown", onFirstGesture);
     };
-  }, [level.slug, needsGesture]);
+  }, [level.slug, resumeAudio, preferredState]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -92,27 +173,29 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
     const handleEnded = () => {
       if (wantsPauseRef.current) return;
       audio.currentTime = 0;
-      audio.play().catch(() => {});
+      resumeAudio();
     };
 
     audio.addEventListener("ended", handleEnded);
     return () => audio.removeEventListener("ended", handleEnded);
-  }, []);
+  }, [resumeAudio]);
 
-  const togglePause = () => {
+  const toggleAudio = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     if (audio.paused) {
-      wantsPauseRef.current = false;
-      audio.play().catch(() => {});
-      setIsPaused(false);
+      resumeAudio();
     } else {
       wantsPauseRef.current = true;
       audio.pause();
-      setIsPaused(true);
+      audio.muted = true;
+      startTransition(() => {
+        setIsPaused(true);
+      });
+      persistPreference("paused");
     }
-  };
+  }, [persistPreference, resumeAudio]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -140,19 +223,33 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
         <img id="p" src={`/levels/${level.slug}/${level.asset}`} alt="" />
       )}
 
-      <details style={{ marginTop: 12 }}>
-        <summary>Submit answer</summary>
-        <form onSubmit={onSubmit} className="row">
-          <input name="u" className="input" placeholder="level username" autoComplete="off" />
-          <input name="p" className="input" type="password" placeholder="level password" autoComplete="off" />
-          <button className="btn">Submit</button>
+      <section className="submission">
+        <header>
+          <h2 data-echo="Rite of entry">Rite of entry</h2>
+          <p>
+            The gate keeps two names. Offer them in the order carved on the walls. A wrong whisper echoes back.
+          </p>
+        </header>
+        <form onSubmit={onSubmit} className="submission-form">
+          <label htmlFor="sub-u">Username sigil</label>
+          <input id="sub-u" name="u" className="input submission-input" placeholder="etched in static" autoComplete="off" />
+          <label htmlFor="sub-p">Password sigil</label>
+          <input
+            id="sub-p"
+            name="p"
+            className="input submission-input"
+            type="password"
+            placeholder="whisper in fragments"
+            autoComplete="off"
+          />
+          <button className="btn submission-btn">Transmit</button>
         </form>
         {msg && (
-          <p>
-            <small>{msg}</small>
+          <p className={`submission-result ${msg === "ok" ? "success" : "error"}`}>
+            {msg === "ok" ? "The door shifts." : "The ward rejects you."}
           </p>
         )}
-      </details>
+      </section>
 
       <audio
         ref={audioRef}
@@ -162,29 +259,11 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          position: "fixed",
-          left: 16,
-          bottom: 16,
-          zIndex: 10,
-          display: "flex",
-          gap: 8,
-          background: "rgba(12,16,22,.85)",
-          border: "1px solid var(--line)",
-          borderRadius: 8,
-          padding: "6px 10px",
-        }}
-      >
-        {needsGesture ? (
-          <button className="btn accent" onClick={togglePause}>
-            Enable audio
-          </button>
-        ) : (
-          <button className="btn" onClick={togglePause}>
-            {isPaused ? "Enable audio" : "Pause audio"}
-          </button>
-        )}
+      <div className="audio-controls">
+        <button type="button" className={`audio-btn${needsGesture ? " accent" : ""}`} onClick={toggleAudio}>
+          {needsGesture || isPaused ? "Resume audio" : "Pause audio"}
+        </button>
+        {needsGesture && <span className="audio-hint">tap to awaken the loop</span>}
       </div>
     </div>
   );

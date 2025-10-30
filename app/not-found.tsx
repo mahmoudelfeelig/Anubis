@@ -62,7 +62,7 @@ export default async function NotFound() {
             d="M5 21l5-3 1-5-5-5 2-2 5 4 3-1 3-5 2 1-1 6-3 4 1 5-4 1-4 2z"
           />
         </svg>
-        <h1 style={{ margin: 0 }}>404 - Not Found</h1>
+        <h1 style={{ margin: 0 }} data-echo="404 - Not Found">404 - Not Found</h1>
       </div>
 
       <p style={{ marginTop: 10, color: 'var(--muted)' }}>
@@ -99,4 +99,5 @@ export default async function NotFound() {
     </section>
   );
 }
+
 

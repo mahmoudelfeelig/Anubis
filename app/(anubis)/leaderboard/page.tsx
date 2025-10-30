@@ -72,7 +72,7 @@ export default async function Page({ searchParams }: PageParams) {
   return (
     <div className="grid cols-2">
       <section className="panel">
-        <h1>Leaderboard</h1>
+        <h1 data-echo="Leaderboard">Leaderboard</h1>
         <table className="table">
           <thead>
             <tr>
@@ -112,7 +112,7 @@ export default async function Page({ searchParams }: PageParams) {
       </section>
 
       <section className="panel">
-        <h2>Latest solves</h2>
+        <h2 data-echo="Latest solves">Latest solves</h2>
         <table className="table">
           <thead>
             <tr>
