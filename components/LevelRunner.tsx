@@ -244,7 +244,9 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
             autoComplete="off"
             suppressHydrationWarning
           />
-          <button className="btn submission-btn">Transmit</button>
+          <button className="btn submission-btn" data-echo="Transmit">
+            Transmit
+          </button>
         </form>
         {msg && (
           <p className={`submission-result ${msg === "ok" ? "success" : "error"}`}>

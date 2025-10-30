@@ -96,13 +96,14 @@ export default async function Nav() {
               className="btn nav-last"
               href={`/level/${prog.nextSlug}`}
               title={prog.nextTitle ? `Resume ${prog.nextTitle}` : "Resume your next challenge"}
+              data-echo="Resume Last Level"
             >
               Resume Last Level
             </Link>
           )}
 
           {!user && (
-            <Link className="btn nav-login" href="/login">
+            <Link className="btn nav-login" href="/login" data-echo="Log in">
               Log in
             </Link>
           )}
@@ -143,13 +144,14 @@ export default async function Nav() {
               className="btn nav-last"
               href={`/level/${prog.nextSlug}`}
               title={prog.nextTitle ? `Resume ${prog.nextTitle}` : "Resume your next challenge"}
+              data-echo="Resume Last Level"
             >
               Resume Last Level
             </Link>
           )}
 
           {!user && (
-            <Link className="btn nav-login" href="/login">
+            <Link className="btn nav-login" href="/login" data-echo="Log in">
               Log in
             </Link>
           )}
