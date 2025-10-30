@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState, FormEvent, startTransition } from "react";
 import { solveForm } from "@/app/(anubis)/level/[slug]/actions";
 
+const AUDIO_PREF_KEY = "anubis.audio.state";
+
 type LevelSafe = {
   slug: string;
   number: number;
@@ -24,7 +26,6 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
   const [msg, setMsg] = useState("");
   const wantsPauseRef = useRef(false);
   const [preferredState, setPreferredState] = useState<"playing" | "paused" | null>(null);
-  const AUDIO_PREF_KEY = "anubis.audio.state";
 
   useEffect(() => {
     (level.hintsConsole || []).forEach((hint) => {
@@ -32,32 +33,25 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
     });
   }, [level]);
 
+  const persistPreference = useCallback((state: "playing" | "paused") => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(AUDIO_PREF_KEY, state);
+    }
+    startTransition(() => {
+      setPreferredState(state);
+      setIsPaused(state === "paused");
+    });
+  }, []);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const saved = window.localStorage.getItem(AUDIO_PREF_KEY);
-    startTransition(() => {
-      if (saved === "paused" || saved === "playing") {
-        setPreferredState(saved);
-        setIsPaused(saved === "paused");
-      } else {
-        setPreferredState("playing");
-        setIsPaused(false);
-      }
-    });
-  }, [AUDIO_PREF_KEY]);
-
-  const persistPreference = useCallback(
-    (state: "playing" | "paused") => {
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(AUDIO_PREF_KEY, state);
-      }
-      startTransition(() => {
-        setPreferredState(state);
-        setIsPaused(state === "paused");
-      });
-    },
-    [AUDIO_PREF_KEY],
-  );
+    if (saved === "paused" || saved === "playing") {
+      persistPreference(saved);
+    } else {
+      persistPreference("playing");
+    }
+  }, [persistPreference]);
 
   const resumeAudio = useCallback(() => {
     const audio = audioRef.current;
@@ -230,9 +224,16 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
             The gate keeps two names. Offer them in the order carved on the walls. A wrong whisper echoes back.
           </p>
         </header>
-        <form onSubmit={onSubmit} className="submission-form">
+        <form onSubmit={onSubmit} className="submission-form" suppressHydrationWarning>
           <label htmlFor="sub-u">Username sigil</label>
-          <input id="sub-u" name="u" className="input submission-input" placeholder="etched in static" autoComplete="off" />
+          <input
+            id="sub-u"
+            name="u"
+            className="input submission-input"
+            placeholder="etched in static"
+            autoComplete="off"
+            suppressHydrationWarning
+          />
           <label htmlFor="sub-p">Password sigil</label>
           <input
             id="sub-p"
@@ -241,6 +242,7 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
             type="password"
             placeholder="whisper in fragments"
             autoComplete="off"
+            suppressHydrationWarning
           />
           <button className="btn submission-btn">Transmit</button>
         </form>
@@ -263,7 +265,6 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
         <button type="button" className={`audio-btn${needsGesture ? " accent" : ""}`} onClick={toggleAudio}>
           {needsGesture || isPaused ? "Resume audio" : "Pause audio"}
         </button>
-        {needsGesture && <span className="audio-hint">tap to awaken the loop</span>}
       </div>
     </div>
   );
