@@ -4,8 +4,8 @@ import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type CookieStore = {
   entries: Map<string, { value: string; options?: Record<string, unknown> }>;
   api: {
-    get: (name: string) => { value: string } | undefined;
-    set: (name: string, value: string, options?: Record<string, unknown>) => void;
+    get: (_key: string) => { value: string } | undefined;
+    set: (_key: string, _cookieValue: string, _opts?: Record<string, unknown>) => void;
   };
 };
 
@@ -14,12 +14,12 @@ function createCookieStore(): CookieStore {
   return {
     entries,
     api: {
-      get: (name: string) => {
-        const record = entries.get(name);
+      get: (_key: string) => {
+        const record = entries.get(_key);
         return record ? { value: record.value } : undefined;
       },
-      set: (name: string, value: string, options?: Record<string, unknown>) => {
-        entries.set(name, { value, options });
+      set: (key: string, cookieValue: string, opts?: Record<string, unknown>) => {
+        entries.set(key, { value: cookieValue, options: opts });
       },
     },
   };
@@ -80,7 +80,7 @@ describe('createSession', () => {
   it('stores a hashed session token and sets a secure cookie', async () => {
     const randomBytesSpy = vi
       .spyOn(crypto, 'randomBytes')
-      .mockReturnValue(Buffer.alloc(32, 1));
+      .mockImplementation((size: number) => Buffer.alloc(size ?? 32, 1));
 
     await session.createSession('user-42');
 
@@ -159,4 +159,11 @@ describe('getSessionUser', () => {
     });
   });
 });
+
+
+
+
+
+
+
 

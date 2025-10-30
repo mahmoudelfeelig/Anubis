@@ -4,7 +4,7 @@ import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-async function withTempLevels<T>(fn: (root: string) => Promise<T>) {
+async function withTempLevels<T>(fn: (_directory: string) => Promise<T>) {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'anubis-mdx-'));
   try {
     await fn(root);

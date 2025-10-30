@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState, FormEvent } from 'react';
-import { solveForm } from '@/app/(anubis)/level/[slug]/actions';
+import { useEffect, useRef, useState, FormEvent } from "react";
+import { solveForm } from "@/app/(anubis)/level/[slug]/actions";
 
 type LevelSafe = {
   slug: string;
@@ -10,7 +10,7 @@ type LevelSafe = {
   kind?: string;
   mdx?: string;
   asset?: string;
-  audio?: string;   // optional per-level override
+  audio?: string;
   hintsConsole?: string[];
   hintsSource?: string[];
   theme?: { className?: string; cssVars?: Record<string, string> };
@@ -20,121 +20,126 @@ type LevelSafe = {
 export default function LevelRunner({ level }: { level: LevelSafe }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [needsGesture, setNeedsGesture] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [msg, setMsg] = useState('');
+  const [isPaused, setIsPaused] = useState(false);
+  const [msg, setMsg] = useState("");
+  const wantsPauseRef = useRef(false);
 
-  // Console + source hints
   useEffect(() => {
-    (level.hintsConsole || []).forEach((h) =>
-      console.log('%c' + h, 'font-size:12px;color:#b7c0c8')
-    );
+    (level.hintsConsole || []).forEach((hint) => {
+      console.warn(`%c${hint}`, "font-size:12px;color:#b7c0c8");
+    });
   }, [level]);
 
-  // Audio bootstrap: try audible autoplay; if blocked, fallback to muted autoplay
   useEffect(() => {
-    const a = audioRef.current;
-    if (!a) return;
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    // Configure once
-    a.loop = true;
-    a.autoplay = true;
-    a.preload = 'auto';
-    (a as any).playsInline = true; // iOS
-    a.volume = 0.6;
+    audio.loop = true;
+    audio.autoplay = true;
+    audio.preload = "auto";
+    (audio as HTMLAudioElement & { playsInline?: boolean }).playsInline = true;
+    audio.volume = 0.6;
 
     let cancelled = false;
 
-    const tryAudible = async () => {
+    const startPlayback = async () => {
       try {
-        a.muted = false;
-        await a.play();                 // try audible autoplay
-        if (!cancelled) {
-          setNeedsGesture(false);
-          setIsMuted(false);
-        }
+        audio.muted = false;
+        wantsPauseRef.current = false;
+        await audio.play();
+        if (!cancelled) setNeedsGesture(false);
       } catch {
-        // Fallback: keep it playing muted so unmute is instant later
         try {
-          a.muted = true;
-          await a.play();
-          if (!cancelled) {
-            setNeedsGesture(true);      // show "Enable audio"
-            setIsMuted(true);
-          }
+          audio.muted = true;
+          wantsPauseRef.current = false;
+          await audio.play();
+          if (!cancelled) setNeedsGesture(true);
         } catch {
-          // If even muted autoplay fails, still show enable bar
           if (!cancelled) setNeedsGesture(true);
         }
       }
     };
 
-    const onCanPlay = () => setReady(true);
-    a.addEventListener('canplaythrough', onCanPlay);
-    tryAudible();
+    void startPlayback();
 
-    // If user interacts anywhere, try to unmute if we needed gesture
     const onFirstGesture = () => {
-      if (!audioRef.current) return;
+      const player = audioRef.current;
+      if (!player) return;
       if (needsGesture) {
-        audioRef.current.muted = false;
-        setIsMuted(false);
+        player.muted = false;
+        wantsPauseRef.current = false;
+        player.play().catch(() => {});
         setNeedsGesture(false);
       }
-      window.removeEventListener('pointerdown', onFirstGesture);
-      window.removeEventListener('keydown', onFirstGesture);
+      window.removeEventListener("pointerdown", onFirstGesture);
+      window.removeEventListener("keydown", onFirstGesture);
     };
-    window.addEventListener('pointerdown', onFirstGesture);
-    window.addEventListener('keydown', onFirstGesture);
+
+    window.addEventListener("pointerdown", onFirstGesture);
+    window.addEventListener("keydown", onFirstGesture);
 
     return () => {
       cancelled = true;
-      a.removeEventListener('canplaythrough', onCanPlay);
-      window.removeEventListener('pointerdown', onFirstGesture);
-      window.removeEventListener('keydown', onFirstGesture);
+      window.removeEventListener("pointerdown", onFirstGesture);
+      window.removeEventListener("keydown", onFirstGesture);
     };
-  }, [level.slug]); // re-init per level
+  }, [level.slug, needsGesture]);
 
-  const toggleMute = () => {
-    const a = audioRef.current;
-    if (!a) return;
-    // Do NOT call play() here—keep stream running to avoid lag.
-    a.muted = !a.muted;
-    setIsMuted(a.muted);
-    // If a was blocked and paused for some reason, a single user gesture here
-    // will allow play(); call lightly:
-    if (!a.muted && a.paused) {
-      a.play().catch(() => {});
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleEnded = () => {
+      if (wantsPauseRef.current) return;
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    };
+
+    audio.addEventListener("ended", handleEnded);
+    return () => audio.removeEventListener("ended", handleEnded);
+  }, []);
+
+  const togglePause = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      wantsPauseRef.current = false;
+      audio.play().catch(() => {});
+      setIsPaused(false);
+    } else {
+      wantsPauseRef.current = true;
+      audio.pause();
+      setIsPaused(true);
     }
   };
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const u = String(fd.get('u') || '');
-    const p = String(fd.get('p') || '');
-    const r = await solveForm(level.slug, u, p);
-    setMsg(r.ok ? 'ok' : 'try again');
-    if (r.ok && level.next) window.location.href = `/level/${level.next}`;
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const username = String(form.get("u") || "");
+    const password = String(form.get("p") || "");
+    const result = await solveForm(level.slug, username, password);
+    setMsg(result.ok ? "ok" : "try again");
+    if (result.ok && level.next) {
+      window.location.href = `/level/${level.next}`;
+    }
   };
 
   return (
     <div className={level.theme?.className} style={level.theme?.cssVars}>
-      {/* source hints */}
       <div
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: `<!-- ${(level.hintsSource || []).join(' | ')} -->`,
+          __html: `<!-- ${(level.hintsSource || []).join(" | ")} -->`,
         }}
       />
 
-      {/* primary visual (keep plain <img> so players can swap src in DevTools) */}
       {level.asset && (
         // eslint-disable-next-line @next/next/no-img-element
         <img id="p" src={`/levels/${level.slug}/${level.asset}`} alt="" />
       )}
 
-      {/* answer form (for form-mode levels) */}
       <details style={{ marginTop: 12 }}>
         <summary>Submit answer</summary>
         <form onSubmit={onSubmit} className="row">
@@ -142,41 +147,42 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
           <input name="p" className="input" type="password" placeholder="level password" autoComplete="off" />
           <button className="btn">Submit</button>
         </form>
-        {msg && <p><small>{msg}</small></p>}
+        {msg && (
+          <p>
+            <small>{msg}</small>
+          </p>
+        )}
       </details>
 
-      {/* ambient audio element (default file if no per-level audio) */}
       <audio
         ref={audioRef}
-        src={level.audio ? `/levels/${level.slug}/${level.audio}` : '/media/anubis_loop.mp3'}
+        src={level.audio ? `/levels/${level.slug}/${level.audio}` : "/media/anubis_loop.mp3"}
         preload="auto"
         autoPlay
-        // playsInline handled in effect (TS quirk)
         aria-hidden="true"
       />
 
-      {/* Audio controls */}
       <div
         style={{
-          position: 'fixed',
+          position: "fixed",
           left: 16,
           bottom: 16,
           zIndex: 10,
-          display: 'flex',
+          display: "flex",
           gap: 8,
-          background: 'rgba(12,16,22,.85)',
-          border: '1px solid var(--line)',
+          background: "rgba(12,16,22,.85)",
+          border: "1px solid var(--line)",
           borderRadius: 8,
-          padding: '6px 10px',
+          padding: "6px 10px",
         }}
       >
         {needsGesture ? (
-          <button className="btn accent" onClick={toggleMute}>
+          <button className="btn accent" onClick={togglePause}>
             Enable audio
           </button>
         ) : (
-          <button className="btn" onClick={toggleMute}>
-            {isMuted ? 'Enable audio' : 'Mute audio'}
+          <button className="btn" onClick={togglePause}>
+            {isPaused ? "Enable audio" : "Pause audio"}
           </button>
         )}
       </div>

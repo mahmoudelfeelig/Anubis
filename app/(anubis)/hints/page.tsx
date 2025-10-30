@@ -1,3 +1,5 @@
+export const revalidate = 300;
+
 export default function Page() {
   return (
     <section className="panel">
@@ -14,3 +16,4 @@ export default function Page() {
     </section>
   );
 }
+

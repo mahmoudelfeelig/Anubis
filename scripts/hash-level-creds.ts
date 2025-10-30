@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import crypto from 'node:crypto';
 import { normalize } from '../lib/normalize';
 
@@ -13,3 +14,4 @@ crypto.scrypt(u, salt, 32, (e, uKey) => {
     console.log('passHashHex:', Buffer.from(pKey).toString('hex'));
   });
 });
+
