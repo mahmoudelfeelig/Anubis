@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
-import LevelRunner from '@/components/LevelRunner';
 import { getSessionUser } from '@/lib/session';
 import { getIndex, getLevel, getNextSlug } from '@/lib/levels';
 import { getHighestCleared, markCleared } from '@/lib/progress';
 import { loadLevelPrompt } from '@/lib/mdx';
+
+import LevelRunner from '@/components/LevelRunner';
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -30,11 +31,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   }
 
   if (level.mode === 'url') {
-    await markCleared(user.id, slug); // idempotent
+    await markCleared(user.id, slug);
   }
 
   const next = await getNextSlug(level.number);
-
   const promptContent = level.mdx ? await loadLevelPrompt(slug, level.mdx) : null;
 
   const safe = {
@@ -62,3 +62,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     </section>
   );
 }
+
+
+

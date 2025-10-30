@@ -1,4 +1,5 @@
 import './globals.css';
+import type { ReactNode } from 'react';
 import Nav from '@/components/Nav';
 import { ensureIndexesOnce } from '@/lib/db';
 
@@ -7,7 +8,7 @@ export const metadata = {
   description: 'Inspect. Decode. Advance.',
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   await ensureIndexesOnce();
   return (
     <html lang="en">

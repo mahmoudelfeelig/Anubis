@@ -1,32 +1,36 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { cache } from 'react';
 import type { LevelConfig } from './types';
 
 const ROOT = path.join(process.cwd(), 'levels');
-const shouldCache = process.env.NODE_ENV === 'production';
-let _cacheIdx: Record<string, number> | null = null;
 
-export async function getLevel(slug: string): Promise<LevelConfig> {
-  const p = path.join(ROOT, slug, 'level.json');
-  return JSON.parse(await fs.readFile(p, 'utf8'));
+async function readLevel(slug: string): Promise<LevelConfig> {
+  const filePath = path.join(ROOT, slug, 'level.json');
+  return JSON.parse(await fs.readFile(filePath, 'utf8'));
 }
 
-export async function getIndex(): Promise<Record<string, number>> {
-  if (shouldCache && _cacheIdx) return _cacheIdx;
+async function readIndex(): Promise<Record<string, number>> {
   const dirs = await fs.readdir(ROOT);
-  const entries = await Promise.all(dirs.map(async d => {
-    const cfg = JSON.parse(await fs.readFile(path.join(ROOT, d, 'level.json'), 'utf8')) as LevelConfig;
-    return [cfg.slug, cfg.number] as const;
-  }));
-  const map = Object.fromEntries(entries);
-  if (shouldCache) {
-    _cacheIdx = map;
-  }
-  return map;
+  const entries = await Promise.all(
+    dirs.map(async (dir) => {
+      const config = await readLevel(dir);
+      return [config.slug, config.number] as const;
+    }),
+  );
+  return Object.fromEntries(entries);
 }
 
-export async function getNextSlug(number: number): Promise<string | null> {
-  const idx = await getIndex();
-  const inv = Object.entries(idx).reduce<Record<number,string>>((a,[s,n]) => (a[n]=s,a), {});
-  return inv[number+1] ?? null;
-}
+export const getLevel = cache(readLevel);
+
+export const getIndex = cache(readIndex);
+
+export const getNextSlug = cache(async (number: number): Promise<string | null> => {
+  const index = await getIndex();
+  const inverted = Object.entries(index).reduce<Record<number, string>>((acc, [slug, num]) => {
+    acc[num] = slug;
+    return acc;
+  }, {});
+  return inverted[number + 1] ?? null;
+});
+

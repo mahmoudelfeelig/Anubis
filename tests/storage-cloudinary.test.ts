@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 let configMock: ReturnType<typeof vi.fn>;
 let uploadMock: ReturnType<typeof vi.fn>;
