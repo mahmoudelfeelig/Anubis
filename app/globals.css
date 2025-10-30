@@ -21,6 +21,11 @@ body {
   height: 100%;
 }
 
+html {
+  background: #020203;
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   color: var(--fg);
@@ -38,6 +43,22 @@ body {
 main {
   flex: 1;
   padding: 24px 0;
+}
+
+main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(480px 320px at 20% 10%, rgba(197, 34, 55, 0.2), transparent 70%),
+    radial-gradient(360px 260px at 80% 90%, rgba(28, 162, 164, 0.18), transparent 70%),
+    repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 6px);
+  mix-blend-mode: screen;
+  opacity: 0.18;
+  filter: blur(18px);
+  animation: spectral 18s ease-in-out infinite;
+  z-index: -1;
 }
 
 header,
@@ -149,38 +170,61 @@ a:hover {
 }
 
 .audio-controls {
-  position: fixed;
-  left: 18px;
+  position: sticky;
   bottom: 18px;
-  z-index: 40;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 10px 14px 16px;
+  max-width: min(240px, 70vw);
+  border-radius: 14px;
+  border: 1px solid rgba(197, 34, 55, 0.35);
+  background: linear-gradient(180deg, rgba(6, 8, 12, 0.94), rgba(2, 3, 6, 0.94));
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.55),
+    inset 0 0 24px rgba(197, 34, 55, 0.18);
+  backdrop-filter: blur(6px) saturate(120%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.audio-controls::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
   pointer-events: none;
-  filter: drop-shadow(0 0 14px rgba(197, 34, 55, 0.35));
-  min-height: 64px;
-  padding: 4px 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0 1px,
+    transparent 1px 3px
+  );
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  animation: panel-static 7s steps(4, end) infinite;
+  z-index: -1;
 }
 
 .audio-btn {
+  width: 100%;
   pointer-events: auto;
-  font: 12px/1.1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font: 11px/1.1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  padding: 8px 14px;
-  border-radius: 8px;
+  letter-spacing: 0.28em;
+  padding: 9px 12px;
+  border-radius: 9px;
   border: 1px solid rgba(197, 34, 55, 0.35);
-  background: rgba(8, 10, 14, 0.92);
+  background: linear-gradient(180deg, rgba(10, 12, 18, 0.95), rgba(5, 6, 10, 0.95));
   color: var(--fg);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  box-shadow: 0 8px 24px rgba(3, 5, 8, 0.45);
-  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 18px rgba(3, 5, 8, 0.45);
+  backdrop-filter: blur(6px);
   animation: button-glitch 8s steps(3, end) infinite;
-  width: max(180px, 16vw);
 }
 
 .audio-btn::after {
@@ -189,7 +233,7 @@ a:hover {
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(255, 255, 255, 0.08) 0 1px,
+    rgba(255, 255, 255, 0.06) 0 1px,
     transparent 1px 3px
   );
   opacity: 0;
@@ -201,6 +245,7 @@ a:hover {
   transform: translateX(1px);
   border-color: rgba(197, 34, 55, 0.6);
   color: #fff;
+  box-shadow: 0 12px 28px rgba(3, 5, 8, 0.55);
 }
 
 .audio-btn:hover::after {
@@ -208,7 +253,7 @@ a:hover {
 }
 
 .audio-btn:disabled {
-  opacity: 0.45;
+  opacity: 0.5;
   cursor: not-allowed;
   box-shadow: none;
   border-color: rgba(197, 34, 55, 0.2);
@@ -226,13 +271,12 @@ a:hover {
 }
 
 .audio-hint {
-  pointer-events: none;
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: 10px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: rgba(197, 34, 55, 0.7);
-  margin-left: 4px;
-  min-height: 14px;
+  margin-left: 2px;
+  min-height: 16px;
   text-shadow:
     0 0 6px rgba(197, 34, 55, 0.35),
     0 0 2px rgba(255, 255, 255, 0.2);
@@ -266,6 +310,7 @@ label {
 
 .submission {
   margin-top: 20px;
+  margin-bottom: 120px;
   padding: 20px;
   border: 1px dashed rgba(197, 34, 55, 0.35);
   border-radius: 14px;
@@ -285,6 +330,20 @@ label {
   background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
   opacity: 0.12;
   animation: panel-static 8s steps(2, end) infinite;
+}
+
+.submission::before {
+  content: "INPUT VERIFIED";
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(197, 34, 55, 0.28);
+  transform: rotate(-8deg);
+  opacity: 0.55;
+  animation: header-echo 6s steps(3, end) infinite;
 }
 
 .submission header p {
@@ -399,11 +458,37 @@ label {
 }
 
 .nav-track {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   flex-wrap: wrap;
+  padding: 6px 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(197, 34, 55, 0.18);
+  background: linear-gradient(180deg, rgba(9, 10, 14, 0.92), rgba(5, 6, 10, 0.92));
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    inset 0 0 22px rgba(197, 34, 55, 0.12);
+  backdrop-filter: blur(8px);
+  isolation: isolate;
+}
+
+.nav-track::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0 2px,
+    transparent 2px 6px
+  );
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  animation: panel-static 7s steps(3, end) infinite;
+  z-index: -1;
 }
 
 .nav-brand {
@@ -522,6 +607,34 @@ label {
   text-align: center;
 }
 
+.nav-mobile-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 34, 55, 0.25);
+  background: linear-gradient(180deg, rgba(10, 12, 18, 0.92), rgba(5, 6, 10, 0.92));
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.nav-mobile-brand svg {
+  width: 16px;
+  height: 16px;
+  filter: drop-shadow(0 0 4px rgba(197, 34, 55, 0.35));
+}
+
+.nav-mobile-brand:hover {
+  transform: translateY(-1px);
+  border-color: rgba(197, 34, 55, 0.45);
+  background: rgba(20, 12, 18, 0.95);
+}
+
 .nav-mobile-progress {
   display: flex;
   align-items: center;
@@ -620,8 +733,10 @@ body::after {
 body::before {
   background: var(--noise);
   mix-blend-mode: soft-light;
-  opacity: 0.32;
-  animation: noise-shift 14s steps(3, end) infinite;
+  opacity: 0.38;
+  background-size: 160px 160px;
+  filter: contrast(140%);
+  animation: noise-shift 10s steps(4, end) infinite, hue-warp 48s linear infinite;
 }
 
 body::after {
@@ -741,6 +856,25 @@ body::after {
   }
   50% {
     filter: saturate(60%);
+  }
+}
+
+@keyframes spectral {
+  0% {
+    filter: blur(16px) hue-rotate(0deg);
+    opacity: 0.12;
+  }
+  45% {
+    filter: blur(12px) hue-rotate(-18deg);
+    opacity: 0.2;
+  }
+  65% {
+    filter: blur(20px) hue-rotate(12deg);
+    opacity: 0.16;
+  }
+  100% {
+    filter: blur(16px) hue-rotate(0deg);
+    opacity: 0.12;
   }
 }
 @keyframes panel-static {
