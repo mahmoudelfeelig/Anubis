@@ -1,0 +1,26 @@
+{
+  "slug": "lv-018",
+  "number": 18,
+  "title": "Antikythera Decode",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "0f5a116d6b6ec9f991e9b8a29a73eeac",
+  "userHashHex": "0c19570851a2488a8cad73bd2286e8e6d61b6f272c8f7babe639121f79b4c571",
+  "passHashHex": "8f4612320c204a2726cab3fdde03606f219c7e3c2da16640517a7878446fca6f",
+  "hintsConsole": [
+    "Gear ratios map Greek months to offsets.",
+    "Lua sim outputs Attic numerals."
+  ],
+  "hintsSource": [
+    "merchant-ledger.txt lists the starting month.",
+    "Convert Attic numerals after simulation."
+  ],
+  "theme": {
+    "className": "level-antikythera-decode",
+    "cssVars": {
+      "--accent": "#ffd367",
+      "--bg": "#120b00"
+    }
+  }
+}

@@ -1,27 +1,27 @@
 {
   "slug": "lv-003",
   "number": 3,
-  "title": "Watermark",
-  "mode": "url",
+  "title": "Prism Filter",
+  "mode": "form",
   "kind": "image",
   "mdx": "prompt.mdx",
-  "asset": "assets/one.png",
+  "saltHex": "fdf944e4c00d7e6b0106cc0a55d97859",
+  "userHashHex": "1e32062240b36a831030e6045557d6f3f62c6a64b89a22a0ca51fc658478848b",
+  "passHashHex": "4aeffa33d58e3d45973fc562a706aecf9fa002d10e24f2288dfbc9081b7d97a8",
   "hintsConsole": [
-    "Try resizing the viewport. The background reacts.",
-    "Not everything printed on the page is visible at first."
+    "Every color channel tells a different story- extract them individually.",
+    "Check the diary for EXIF anomalies and palette clues."
   ],
   "hintsSource": [
-    "fold three times to reveal the path",
-    "seek the /crease doorway"
+    "The blue channel encodes a readable grid.",
+    "Once you trace the letters, look inside qr-result.txt."
   ],
   "theme": {
-    "className": "level-watermark",
+    "className": "level-prism-filter",
     "cssVars": {
-      "--accent": "#2ba6a4",
-      "--bg": "#041f25"
+      "--accent": "#3fe0ff",
+      "--bg": "#031a24"
     }
   },
-  "meta": {
-    "unlockPath": "crease"
-  }
+  "asset": "assets/prism-portrait.png"
 }

@@ -1,0 +1,27 @@
+{
+  "slug": "lv-005",
+  "number": 5,
+  "title": "Echo Specter",
+  "mode": "form",
+  "kind": "audio",
+  "mdx": "prompt.mdx",
+  "saltHex": "d4be9cbf95145c1919e31e677043a6ab",
+  "userHashHex": "8166a5c6a01fac659550434aa34cd2c87f594a5e0b102ccddaf9e2dc3659a649",
+  "passHashHex": "6834fe4700a49d0293587e87effda39064d0508eb43b52f62939f46832b66cc4",
+  "hintsConsole": [
+    "Spectrograms shine light on hidden glyphs.",
+    "Intervals between the peaks match chromatic steps."
+  ],
+  "hintsSource": [
+    "Band-pass the 1.6kHz to 2.4kHz window.",
+    "Convert semitone offsets with the lookup in mix-notes.md."
+  ],
+  "theme": {
+    "className": "level-echo-specter",
+    "cssVars": {
+      "--accent": "#ff5d9f",
+      "--bg": "#120410"
+    }
+  },
+  "audio": "assets/specter-loop.wav"
+}

@@ -1,5 +1,10 @@
-# Fault Line
+### Commit to Memory
 
-You found the fracture. Study the strata and piece together the call sign.
+      You inherited an old user service and an equally crusty integration test. There's a cipher taped to the monitor and the console is begging you to run `npm test`.
 
-The console is restless. The source is noisy. Somewhere between them lies the next credential.
+      1. Open `users.service.ts` to study what the senior engineer tried to hide under `LEGACY_MODE`.
+      2. Execute the accompanying spec- `memory.spec.ts`- and use the stack trace to locate the dormant helper.
+      3. Reverse the helper's output before applying the cipher described in `HOWTO-rot47.md`.
+      4. The decoded string reveals both credentials when you split it on the colon.
+
+      Enter the **username** and **password** once you've proven the memory leak wasn't the only secret buried in that test suite.

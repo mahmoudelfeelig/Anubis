@@ -1,0 +1,26 @@
+{
+  "slug": "lv-011",
+  "number": 11,
+  "title": "Satori Sequence",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "7caae908c8da1290e723230ba6749513",
+  "userHashHex": "19f8f93b75c0957497f37acc75a8121b12e7c7b940e0782e0a17bbcf5e164183",
+  "passHashHex": "8baf1922f99e855e91aa0985b23b2fdc1a9ccd96eb1fd2e7d3096ce5ffa2eb5f",
+  "hintsConsole": [
+    "Transaction IDs factor cleanly into large primes.",
+    "Blum-Blum-Shub output needs 7-bit grouping."
+  ],
+  "hintsSource": [
+    "ledger-sim.py replicates the generator.",
+    "Stop once ASCII plain text emerges."
+  ],
+  "theme": {
+    "className": "level-satori-sequence",
+    "cssVars": {
+      "--accent": "#8fb1ff",
+      "--bg": "#060c21"
+    }
+  }
+}

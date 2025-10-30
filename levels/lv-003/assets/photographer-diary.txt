@@ -1,0 +1,9 @@
+Day 133 - Light Study
+
+The prism behaved like a liar under tungsten. The sensor clipped red, green slept, but blue kept whispering in straight lines.
+
+Remember: export each channel solo next time. The gallery's cipher expects you to read the azimuth coordinates row by row.
+
+- R channel -> aesthetic fluff
+- G channel -> noise for misdirection
+- B channel -> the grid that spells the true path

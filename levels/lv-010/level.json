@@ -1,0 +1,26 @@
+{
+  "slug": "lv-010",
+  "number": 10,
+  "title": "Hyperglyph Maze",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "a4a80e48f16fabb54f978079214fb951",
+  "userHashHex": "5ae3f5e9c5559f2b7b3ad5cdd78db002f95b63b56ff74c4d9287cbf92e5b3066",
+  "passHashHex": "fca3b32cd54362e48a3e387f7a6c694964f3e4df2c5835f368faefff35406fb6",
+  "hintsConsole": [
+    "Convert SVG path commands into polar coordinates.",
+    "Grouping angles into quadrants yields grid references."
+  ],
+  "hintsSource": [
+    "glyph-key.txt explains the Polybius mapping.",
+    "Coordinate order follows path sequence."
+  ],
+  "theme": {
+    "className": "level-hyperglyph-maze",
+    "cssVars": {
+      "--accent": "#ff8cf9",
+      "--bg": "#1a0217"
+    }
+  }
+}

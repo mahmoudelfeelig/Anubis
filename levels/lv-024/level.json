@@ -1,0 +1,26 @@
+{
+  "slug": "lv-024",
+  "number": 24,
+  "title": "Obsidian Vault",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "5e9e1b8bd3b79c4c4bfa9c1e2de432f4",
+  "userHashHex": "b1665f646a22a8af6f8b98afb68ad038597fa6d22bc5ce9221fc3abbb831bfba",
+  "passHashHex": "b1f9c3d14b8ae59b1520012e6c3d1ba794183ffdb73b29918b367e62d4bbde67",
+  "hintsConsole": [
+    "Tarball unlock requires Trimethius square.",
+    "Final plaintext needs Playfair decryption."
+  ],
+  "hintsSource": [
+    "vault-schematic.svg hides the passphrase.",
+    "playfair-template.pdf shows the grid layout."
+  ],
+  "theme": {
+    "className": "level-obsidian-vault",
+    "cssVars": {
+      "--accent": "#4048ff",
+      "--bg": "#04051b"
+    }
+  }
+}

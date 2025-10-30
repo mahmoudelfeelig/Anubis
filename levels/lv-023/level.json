@@ -1,0 +1,26 @@
+{
+  "slug": "lv-023",
+  "number": 23,
+  "title": "Lattice Drop",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "859fe689f176dc4387f65ef2dfe37d33",
+  "userHashHex": "1f7fbe4b236cb52c9312c1fb7cfd7f9353a5bfc58dace53d5d70c800d4290d5e",
+  "passHashHex": "97fabc99eb97f8d237771c0806e1eec96f7040acc8af396cd09adfd27d0b78e8",
+  "hintsConsole": [
+    "The graph describes an Eulerian path.",
+    "Node colors correspond to alphabet indices."
+  ],
+  "hintsSource": [
+    "packet-drop.txt logs the traversal order.",
+    "chromatic-key.png maps color to letter."
+  ],
+  "theme": {
+    "className": "level-lattice-drop",
+    "cssVars": {
+      "--accent": "#5af9ff",
+      "--bg": "#041219"
+    }
+  }
+}

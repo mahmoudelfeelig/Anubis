@@ -1,0 +1,6 @@
+Decoded grid:
+
+PRISM CODE
+BLUE CHANNEL
+
+Interpretation: username=prismcode password=bluechannel
