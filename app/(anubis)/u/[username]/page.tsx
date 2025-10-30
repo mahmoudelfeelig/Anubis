@@ -82,13 +82,16 @@ export default async function Page({
         {isSelf && (
           <form
             action={updatePfpAction}
-                        className="row"
+            className="row"
+            suppressHydrationWarning
             style={{ marginTop: 14 }}
           >
             <input type="hidden" name="userId" value={prof.id} />
             <label htmlFor="pfp">Profile image (png/jpg/gif/webp, ~1MB)</label>
-            <input id="pfp" className="input" name="pfp" type="file" accept="image/*" />
-            <button className="btn">Upload</button>
+            <input id="pfp" className="input" name="pfp" type="file" accept="image/*" suppressHydrationWarning />
+            <button className="btn" data-echo="Confirm">
+              Confirm
+            </button>
           </form>
         )}
 
@@ -96,13 +99,14 @@ export default async function Page({
           <form
             action={changePasswordAction}
             className="row"
+            suppressHydrationWarning
             style={{ marginTop: 14 }}
           >
             <input type="hidden" name="userId" value={prof.id} />
             <label htmlFor="old">Current password</label>
-            <input id="old" name="old" type="password" className="input" />
+            <input id="old" name="old" type="password" className="input" suppressHydrationWarning />
             <label htmlFor="nw">New password</label>
-            <input id="nw" name="nw" type="password" className="input" />
+            <input id="nw" name="nw" type="password" className="input" suppressHydrationWarning />
             <button className="btn">Change password</button>
           </form>
         )}

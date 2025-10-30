@@ -1,54 +1,11 @@
 import Link from "next/link";
 import { getSessionUser } from "@/lib/session";
-import { getIndex, getLevel } from "@/lib/levels";
-import { getDb } from "@/lib/db";
-
-async function getProgress(userId: string) {
-  const db = await getDb();
-  const index = await getIndex();
-  const total = Object.keys(index).length;
-  const clearedRows = await db
-    .collection("user_levels")
-    .find({ userId })
-    .project<{ slug: string }>({ slug: 1 })
-    .toArray();
-
-  const inverted = Object.entries(index).reduce<Record<number, string>>((acc, [slug, num]) => {
-    if (typeof num === "number") acc[num] = slug;
-    return acc;
-  }, {});
-
-  const clearedNumbers = new Set(
-    clearedRows
-      .map((row) => index[row.slug])
-      .filter((num): num is number => typeof num === "number"),
-  );
-
-  let nextNumber: number | null = null;
-  for (let i = 1; i <= total; i++) {
-    if (!clearedNumbers.has(i)) {
-      nextNumber = i;
-      break;
-    }
-  }
-
-  let nextSlug: string | null = null;
-  let nextTitle: string | null = null;
-  if (nextNumber !== null) {
-    const slug = inverted[nextNumber];
-    if (slug) {
-      nextSlug = slug;
-      nextTitle = (await getLevel(slug)).title;
-    }
-  }
-
-  return { total, cleared: clearedNumbers.size, nextSlug, nextTitle };
-}
+import { getUserProgressSummary } from "@/lib/progress";
+import ThemeToggle from "./ThemeToggle";
 
 export default async function Nav() {
   const user = await getSessionUser();
-  const prog = user ? await getProgress(user.id) : null;
-  const pct = prog ? Math.round((prog.cleared / Math.max(1, prog.total)) * 100) : 0;
+  const prog = user ? await getUserProgressSummary(user.id) : null;
 
   const baseLinks = [
     { href: "/levels", label: "Levels" },
@@ -77,20 +34,10 @@ export default async function Nav() {
               {item.label}
             </Link>
           ))}
-
-          {user && prog && (
-            <div className="nav-progress" aria-label={`Progress ${prog.cleared} out of ${prog.total}`}>
-              <span className="nav-progress-label">
-                {prog.cleared}/{prog.total}
-              </span>
-              <div className="progress nav-progress-bar">
-                <i style={{ width: `${pct}%` }} />
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="nav-actions">
+          <ThemeToggle />
           {prog?.nextSlug && (
             <Link
               className="btn nav-last"
@@ -122,22 +69,12 @@ export default async function Nav() {
             </svg>
             <span data-echo="Anubis">Anubis</span>
           </Link>
+          <ThemeToggle className="nav-theme--mobile" />
           {baseLinks.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
           ))}
-
-          {user && prog && (
-            <div className="nav-mobile-progress">
-              <span className="nav-progress-label">
-                {prog.cleared}/{prog.total}
-              </span>
-              <div className="progress nav-progress-bar">
-                <i style={{ width: `${pct}%` }} />
-              </div>
-            </div>
-          )}
 
           {prog?.nextSlug && (
             <Link
