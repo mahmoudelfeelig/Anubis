@@ -3,6 +3,35 @@ import type { ReactNode } from 'react';
 import Nav from '@/components/Nav';
 import { ensureIndexesOnce } from '@/lib/db';
 
+const themeInitScript = `
+(function() {
+  try {
+    var storageKey = 'anubis.theme';
+    var doc = document.documentElement;
+    var stored = localStorage.getItem(storageKey);
+    var theme = stored === 'light' || stored === 'dark'
+      ? stored
+      : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    doc.dataset.theme = theme;
+    var applyToBody = function() {
+      if (document.body) {
+        document.body.setAttribute('data-theme', theme);
+      }
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function handler() {
+        applyToBody();
+        document.removeEventListener('DOMContentLoaded', handler);
+      });
+    } else {
+      applyToBody();
+    }
+  } catch (err) {
+    // ignore
+  }
+})();
+`;
+
 export const metadata = {
   title: 'Anubis',
   description: 'Inspect. Decode. Advance.',
@@ -11,8 +40,9 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   await ensureIndexesOnce();
   return (
-    <html lang="en">
-      <body className="crt-root">
+    <html lang="en" data-theme="dark">
+      <body className="crt-root" data-theme="dark">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <div className="crt-overlay" aria-hidden="true">
           <div className="crt-overlay__scanlines" />
           <div className="crt-overlay__noise" />

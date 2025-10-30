@@ -14,6 +14,7 @@ export default function Avatar({
   const url = !src || broken ? '/icon.png' : src;
   return (
     <span
+      suppressHydrationWarning
       className={className}
       style={{
         display: 'inline-flex',
@@ -33,6 +34,7 @@ export default function Avatar({
         width={size}
         height={size}
         onError={() => setBroken(true)}
+        suppressHydrationWarning
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
     </span>
