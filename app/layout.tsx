@@ -12,7 +12,13 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   await ensureIndexesOnce();
   return (
     <html lang="en">
-      <body>
+      <body className="crt-root">
+        <div className="crt-overlay" aria-hidden="true">
+          <div className="crt-overlay__scanlines" />
+          <div className="crt-overlay__noise" />
+          <div className="crt-overlay__vignette" />
+        </div>
+        <div className="signal-burst" aria-hidden="true" />
         <header><div className="container"><Nav /></div></header>
         <main><div className="container">{children}</div></main>
         <footer><div className="container">© Anubis</div></footer>

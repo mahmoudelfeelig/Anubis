@@ -67,7 +67,7 @@ export default async function Nav() {
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path fill="#b0142f" d="M5 21l5-3 1-5-5-5 2-2 5 4 3-1 3-5 2 1-1 6-3 4 1 5-4 1-4 2z" />
             </svg>
-            <b>Anubis</b>
+            <b data-echo="Anubis">Anubis</b>
           </Link>
         </div>
 
@@ -119,7 +119,7 @@ export default async function Nav() {
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path fill="#b0142f" d="M5 21l5-3 1-5-5-5 2-2 5 4 3-1 3-5 2 1-1 6-3 4 1 5-4 1-4 2z" />
             </svg>
-            <span>Anubis</span>
+            <span data-echo="Anubis">Anubis</span>
           </Link>
           {baseLinks.map((item) => (
             <Link key={item.href} href={item.href}>
