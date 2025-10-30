@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { getDb } from '@/lib/db';
 import { getLevel } from '@/lib/levels';
 import { getSessionUser } from '@/lib/session';
-import { updatePfp as doUpdatePfp, changePassword as doChangePassword } from './profile-actions';
+import { updatePfp as doUpdatePfp, changePassword as doChangePassword, logout } from './profile-actions';
 import { avatarUrl } from '@/lib/storage-cloudinary';
 import Avatar from '@/components/Avatar';
 
@@ -82,12 +82,11 @@ export default async function Page({
         {isSelf && (
           <form
             action={updatePfpAction}
-            encType="multipart/form-data"
-            className="row"
+                        className="row"
             style={{ marginTop: 14 }}
           >
             <input type="hidden" name="userId" value={prof.id} />
-            <label htmlFor="pfp">Profile image (png/jpg/gif/webp, ≤1MB)</label>
+            <label htmlFor="pfp">Profile image (png/jpg/gif/webp, ~1MB)</label>
             <input id="pfp" className="input" name="pfp" type="file" accept="image/*" />
             <button className="btn">Upload</button>
           </form>
@@ -105,6 +104,13 @@ export default async function Page({
             <label htmlFor="nw">New password</label>
             <input id="nw" name="nw" type="password" className="input" />
             <button className="btn">Change password</button>
+          </form>
+        )}
+        {isSelf && (
+          <form action={logout} style={{ marginTop: 18 }}>
+            <button className="btn accent" type="submit">
+              Log out
+            </button>
           </form>
         )}
       </section>
@@ -133,3 +139,4 @@ export default async function Page({
     </div>
   );
 }
+
