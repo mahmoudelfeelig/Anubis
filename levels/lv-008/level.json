@@ -1,0 +1,27 @@
+{
+  "slug": "lv-008",
+  "number": 8,
+  "title": "Cicada Chorus",
+  "mode": "form",
+  "kind": "audio",
+  "mdx": "prompt.mdx",
+  "saltHex": "dd1056a194e2e94f76a6d5fa8a2140db",
+  "userHashHex": "9347ccd37d0ef50864f245163f50aaf6fd81454c50f78601c7dfecb847489354",
+  "passHashHex": "ca12b6e1f09c976b70d7c7d344ba51e7f1fcc92521dcef8de4117bb44e5a6179",
+  "hintsConsole": [
+    "Chord roots are primes; map them to letters.",
+    "Clicks spaced by Fibonacci control the final transposition."
+  ],
+  "hintsSource": [
+    "Overlay the conductor score on the spectrogram.",
+    "Transpose back after applying the click-track shift."
+  ],
+  "theme": {
+    "className": "level-cicada-chorus",
+    "cssVars": {
+      "--accent": "#f6ff7a",
+      "--bg": "#0a0b02"
+    }
+  },
+  "audio": "assets/cicada-chorus.flac"
+}

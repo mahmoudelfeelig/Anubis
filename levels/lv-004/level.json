@@ -1,0 +1,26 @@
+{
+  "slug": "lv-004",
+  "number": 4,
+  "title": "Beacon Pulse",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "acf22b89e16ca22f85bddf84cb7b74fb",
+  "userHashHex": "e01bb78f87bc2b750e4836127d041f3f6e632e4f613019cbf3d08e3561815290",
+  "passHashHex": "578578ea64ef3d5a9d8f8860316c856afd976717fe0a2542dfe15505fcddd860",
+  "hintsConsole": [
+    "GIF frame delays translate cleanly into Morse.",
+    "Plot the decoded coordinates over the harbor map."
+  ],
+  "hintsSource": [
+    "Warehouse numbers ring the dock in clockwise order.",
+    "The final word is spelled along the pier markers."
+  ],
+  "theme": {
+    "className": "level-beacon-pulse",
+    "cssVars": {
+      "--accent": "#ffbd4f",
+      "--bg": "#1b0f03"
+    }
+  }
+}

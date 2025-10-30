@@ -1,0 +1,26 @@
+{
+  "slug": "lv-007",
+  "number": 7,
+  "title": "Kryptex Helix",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "3ad54b32a21980f6f3b95f0fa3f2ac87",
+  "userHashHex": "88b3d13a301f2d2e88c339b477fed621aac2b70cb319c94aab3e4cc69c784bc5",
+  "passHashHex": "ddbda3f41f0db23e9fffffa5c327571337e46e6e3911cfe2b57fb9871085f80f",
+  "hintsConsole": [
+    "Order the rings the same way the GPS track unwinds.",
+    "Alphabet shifts differ per ring."
+  ],
+  "hintsSource": [
+    "field-notes.gpx path orientation gives the key order.",
+    "Read outward from the center once aligned."
+  ],
+  "theme": {
+    "className": "level-kryptex-helix",
+    "cssVars": {
+      "--accent": "#6ad1ff",
+      "--bg": "#021520"
+    }
+  }
+}

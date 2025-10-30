@@ -1,0 +1,26 @@
+{
+  "slug": "lv-016",
+  "number": 16,
+  "title": "Liminal Knots",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "bcb895c1000c2851a15c497c54680f4e",
+  "userHashHex": "39749699c62d61e55d35f9e0c564cc4725a316d14bc7d3476ef046e089a385b3",
+  "passHashHex": "66e7b3852837edc6bd151439b8bfabc4c72e350a67124bc3da145f050f439318",
+  "hintsConsole": [
+    "OBJ vertex distances map to quipu knot spacing.",
+    "Triplets index lines in the chant."
+  ],
+  "hintsSource": [
+    "anthropology-notes.txt shows cord color meaning.",
+    "Align verse syllables with knot order."
+  ],
+  "theme": {
+    "className": "level-liminal-knots",
+    "cssVars": {
+      "--accent": "#ffccb5",
+      "--bg": "#150903"
+    }
+  }
+}

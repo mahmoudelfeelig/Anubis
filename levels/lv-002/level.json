@@ -1,27 +1,26 @@
 {
   "slug": "lv-002",
   "number": 2,
-  "title": "Fault Line",
+  "title": "Commit to Memory",
   "mode": "form",
-  "kind": "image",
+  "kind": "custom",
   "mdx": "prompt.mdx",
-  "asset": "assets/one.png",
-  "saltHex": "40fa1c850b21288bb51fdd8369aaee98",
-  "userHashHex": "b2e455b3798a83d8e1e274a17cee0b28563f79f4b20330f92c84f078d767ff81",
-  "passHashHex": "4f300e2fa2d5d3c84ef01722942b9ceba9c17fb1cc60a0e29286d449a1ddb242",
+  "saltHex": "c6f977e831b8a1eb361864b0f1c4abe7",
+  "userHashHex": "7fd668091adb50608f737f589f77a4da6aeb96a1b9ec379ddb10731921f1da2b",
+  "passHashHex": "961dcb86e11ca8db431f24fb53fea37b7c391e8cdc5d9b9a47eb0ec064e575c7",
   "hintsConsole": [
-    "The spectrogram strips away the noise.",
-    "Look for coordinates hidden in the layers."
+    "Run the tests. Let the failing output point at the hidden helper.",
+    "Rot47 unwinds a surprising amount of punctuation."
   ],
   "hintsSource": [
-    "stack the strata west to east",
-    "user:gneiss password:grade3 (after decoding)"
+    "Look for dead code guarded by `LEGACY_MODE`.",
+    "Reverse the helper output before decoding."
   ],
   "theme": {
-    "className": "level-fault-line",
+    "className": "level-commit-memory",
     "cssVars": {
-      "--accent": "#8a5fef",
-      "--bg": "#080813"
+      "--accent": "#b879ff",
+      "--bg": "#0d071b"
     }
   }
 }

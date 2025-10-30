@@ -1,0 +1,8 @@
+Deployment mnemonic - remember every step:
+
+- STACK: Verify the stack user has the keys loaded.
+- ZERO: No lingering zero-delta diffs in git.
+- HOLLOW: Hollow out the cache before new seeds.
+- PORT: Port-forward secrets once the tunnel is up.
+
+Mnemonic letters spell the credential halves in order.

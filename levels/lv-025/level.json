@@ -1,0 +1,27 @@
+{
+  "slug": "lv-025",
+  "number": 25,
+  "title": "Ascendant Chorus",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "80999341a16aee6bd2e6db91ea8d8d9f",
+  "userHashHex": "443e3cb4d5cfcad6bcfd8af1e60bfa0330af97b5b67a90059300cc54c1bb1c8d",
+  "passHashHex": "93cff523ddfa098c1a49c4dcecb4cae82a2c33d59eb8a7711b1135f3aa9ab5ec",
+  "hintsConsole": [
+    "Answers from prior levels index the stems.",
+    "Timestamps spell the final phrase."
+  ],
+  "hintsSource": [
+    "meta-tracker.xlsx links level numbers to audio entries.",
+    "ascendant-console.log documents the alignment rules."
+  ],
+  "theme": {
+    "className": "level-ascendant-chorus",
+    "cssVars": {
+      "--accent": "#f0baff",
+      "--bg": "#140316"
+    }
+  },
+  "audio": "assets/chorus-stems.zip"
+}

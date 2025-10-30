@@ -179,7 +179,6 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
             {isMuted ? 'Enable audio' : 'Mute audio'}
           </button>
         )}
-        {ready ? <small className="badge">audio ready</small> : <small className="badge">loading…</small>}
       </div>
     </div>
   );

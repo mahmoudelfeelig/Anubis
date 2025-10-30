@@ -1,0 +1,26 @@
+{
+  "slug": "lv-021",
+  "number": 21,
+  "title": "Solstice Dial",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "a47f1ca657ea597d3fa5c22430614f0e",
+  "userHashHex": "f0f7579c21f445a34787386c5040f8fd7a9e7b7447c81e4c1b34cc556ca751c9",
+  "passHashHex": "8c2f4eb6484a155c97c395bb06709d99d1fc295460dc12edbef6f7cd61acdac4",
+  "hintsConsole": [
+    "Shadow lengths convert to time of day.",
+    "Architect blueprint gives latitude skew."
+  ],
+  "hintsSource": [
+    "solar-lookup.md holds the length-to-letter table.",
+    "Use winter solstice as the reference."
+  ],
+  "theme": {
+    "className": "level-solstice-dial",
+    "cssVars": {
+      "--accent": "#ffe99a",
+      "--bg": "#100c02"
+    }
+  }
+}
