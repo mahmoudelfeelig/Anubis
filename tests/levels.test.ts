@@ -1,3 +1,5 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import { describe, expect, it, beforeAll } from 'vitest';
 import { getLevel, getIndex, getNextSlug } from '@/lib/levels';
 
@@ -18,10 +20,15 @@ describe('getLevel', () => {
 });
 
 describe('getIndex', () => {
-  it('returns a mapping that includes all known slugs', () => {
-    expect(index).toHaveProperty('lv-001', 1);
-    expect(index).toHaveProperty('lv-025');
-    expect(Object.keys(index).length).toBeGreaterThanOrEqual(25);
+  it('includes every level directory', async () => {
+    const levelsPath = path.join(process.cwd(), 'levels');
+    const slugs = (await fs.readdir(levelsPath)).filter((name) => name.startsWith('lv-'));
+
+    expect(slugs.length).toBeGreaterThan(0);
+    slugs.forEach((slug) => {
+      expect(index).toHaveProperty(slug);
+      expect(typeof index[slug]).toBe('number');
+    });
   });
 });
 
@@ -35,4 +42,3 @@ describe('getNextSlug', () => {
     await expect(getNextSlug(maxLevel)).resolves.toBeNull();
   });
 });
-
