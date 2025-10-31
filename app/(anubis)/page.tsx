@@ -2,53 +2,146 @@ import Link from 'next/link';
 import { getSessionUser } from '@/lib/session';
 import { getDb } from '@/lib/db';
 import { getIndex, getLevel } from '@/lib/levels';
+import { getUserProgressSummary } from '@/lib/progress';
+
+const featureSignals = [
+  {
+    title: 'Signal scrubbing',
+    body: 'Each level hides corrupted prompts, console artifacts, and tampered media assets. Reconstruct the payload before the static settles.',
+  },
+  {
+    title: 'Sequential locks',
+    body: 'Progression is linear. Break one seal to expose the next—no skips, no spoilers, no shortcuts.',
+  },
+  {
+    title: 'Shared intelligence',
+    body: 'Leaderboard pulses update by the minute so every operative can watch fresh clears cascade across the grid.',
+  },
+];
 
 export default async function Page() {
   const user = await getSessionUser();
   const index = await getIndex();
   const total = Object.keys(index).length;
 
-  let c = 0, nextSlug: string | null = null, nextTitle: string | null = null;
-  if (user) {
-    const db = await getDb();
-    c = await db.collection('user_levels').countDocuments({ userId: user.id });
-    const inv = Object.entries(index).reduce<Record<number,string>>((a,[s,n]) => (a[n]=s, a), {});
-    nextSlug = inv[c+1] ?? null;
-    nextTitle = nextSlug ? (await getLevel(nextSlug)).title : null;
+  const db = await getDb();
+  const clearedCount = user ? await db.collection('user_levels').countDocuments({ userId: user.id }) : 0;
+  const progress = user ? await getUserProgressSummary(user.id, index) : null;
+
+  let nextSlug: string | null = null;
+  let nextTitle: string | null = null;
+  if (progress?.nextSlug) {
+    nextSlug = progress.nextSlug;
+    nextTitle = progress.nextTitle ?? (await getLevel(progress.nextSlug)).title;
   }
 
+  const momentum = Math.round((clearedCount / Math.max(1, total)) * 100);
+  const encryptedLeft = Math.max(total - clearedCount, 0);
+
   return (
-    <div className="grid cols-2">
-      <section className="panel">
-        <h1>Anubis</h1>
-        <p>Inspect. Decode. Advance.</p>
-        {!user && (
-          <div style={{display:'flex',gap:10,marginTop:10}}>
-            <Link href="/signup" className="btn primary">Create account</Link>
-            <Link href="/login" className="btn">Log in</Link>
+    <div className="home-grid">
+      <section className="panel hero-panel">
+        <div className="hero-copy">
+          <h1 data-echo="Anubis protocol">Anubis protocol</h1>
+          <p>
+            Inspect corrupted transmissions, decode embedded credentials, and advance through the necropolis of
+            terminals. Each solved anomaly unlocks the next ritual in the stack.
+          </p>
+          {!user ? (
+            <div className="hero-actions">
+              <Link href="/signup" className="btn primary" data-echo="Create account">
+                Create account
+              </Link>
+              <Link href="/login" className="btn" data-echo="Log in">
+                Log in
+              </Link>
+            </div>
+          ) : (
+            <div className="hero-actions">
+              {nextSlug && (
+                <Link className="btn accent" href={`/level/${nextSlug}`} data-echo="Continue">
+                  Resume {nextTitle}
+                </Link>
+              )}
+              <Link className="btn" href="/levels" data-echo="Levels">
+                Levels
+              </Link>
+              <Link className="btn" href={`/u/${user.username}`} data-echo="Profile">
+                Profile
+              </Link>
+            </div>
+          )}
+        </div>
+        <div className="hero-metrics">
+          <div className="hero-metric">
+            <span className="hero-metric__label">Momentum</span>
+            <span className="hero-metric__value">{String(momentum).padStart(2, '0')}%</span>
+            <div className="hero-metric__bar">
+              <i style={{ width: `${momentum}%` }} />
+            </div>
           </div>
-        )}
-        {user && (
-          <div style={{display:'flex',gap:10,marginTop:10,flexWrap:'wrap'}}>
-            {nextSlug && <Link className="btn accent" href={`/level/${nextSlug}`}>Continue → {nextTitle}</Link>}
-            <Link className="btn" href="/levels">Your levels</Link>
-            <Link className="btn" href={`/u/${user.username}`}>Your profile</Link>
+          <div className="hero-metric">
+            <span className="hero-metric__label">Signals decrypted</span>
+            <span className="hero-metric__value">
+              {String(clearedCount).padStart(2, '0')}
+              <small>/{total}</small>
+            </span>
+            <span className="hero-metric__hint">{encryptedLeft} anomalies remain</span>
           </div>
-        )}
-        <div style={{marginTop:14}}>
-          <small>Levels cleared: <b>{c}</b> / {total}</small>
-          <div className="progress" style={{marginTop:8}}><i style={{width:`${Math.round((c/Math.max(1,total))*100)}%`}} /></div>
+          <div className="hero-metric">
+            <span className="hero-metric__label">Next anomaly</span>
+            <span className="hero-metric__value hero-metric__value--pulse">
+              {nextTitle ?? 'All clear'}
+            </span>
+            <span className="hero-metric__hint">
+              {nextSlug ? `Accessible via /level/${nextSlug}` : 'Awaiting new transmissions.'}
+            </span>
+          </div>
         </div>
       </section>
 
-      <section className="panel">
-        <h2>How it works</h2>
-        <ul>
-          <li>Two solve modes: form creds or URL discovery.</li>
-          <li>Hints live in page source and console.</li>
-          <li>Sequential gating. Deep links don’t skip.</li>
-        </ul>
-        <p><small>Tip: open <span className="kbd">DevTools</span> and edit image <span className="kbd">src</span>.</small></p>
+      <section className="panel intel-panel">
+        <h2 data-echo="Operational brief">Operational brief</h2>
+        <div className="intel-cards">
+          {featureSignals.map(({ title, body }) => (
+            <article key={title} className="intel-card">
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+        <p className="intel-note">
+          <small>
+            Tip: open <span className="kbd">DevTools</span>, scrub <span className="kbd">Network</span>, and watch for
+            unguarded redirects. Assets whisper as loud as prompts.
+          </small>
+        </p>
+      </section>
+
+      <section className="panel feed-panel">
+        <h2 data-echo="System status">System status</h2>
+        <div className="feed-grid">
+          <div className="feed-callout">
+            <h3>Activity pulses</h3>
+            <p>
+              Leaderboards refresh every minute so your handle flares the moment you clear an anomaly. Sort, search, and
+              chase every operative in real-time.
+            </p>
+            <Link className="btn" href="/leaderboard" data-echo="Leaderboard">
+              Check the leaderboard
+            </Link>
+          </div>
+          <div className="feed-callout">
+            <h3>Recovered dossiers</h3>
+            <p>
+              Every solved ritual archives its media, hints, and credentials. Revisit past signals, replay them with
+              friends, or audit your deduction trail.
+            </p>
+            <Link className="btn" href="/levels" data-echo="Recovered dossiers">
+              Revisit your clears
+            </Link>
+          </div>
+        </div>
       </section>
     </div>
   );

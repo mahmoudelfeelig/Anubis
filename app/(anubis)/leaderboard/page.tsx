@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getDb } from '@/lib/db';
 import { getLevel } from '@/lib/levels';
 import type { UserDoc, UserLevelDoc } from '@/lib/types';
+import LeaderboardTable, { LeaderboardRow } from '@/components/LeaderboardTable';
 
 const PAGE_SIZE = 10;
 
@@ -14,7 +15,8 @@ type PageParams = {
 };
 
 export default async function Page({ searchParams }: PageParams) {
-  const pg = Math.max(1, Number.parseInt(searchParams.pg || '1', 10) || 1);
+  const params = await searchParams;
+  const pg = Math.max(1, Number.parseInt(params?.pg || '1', 10) || 1);
   const db = await getDb();
   const userLevels = db.collection<UserLevelDoc>('user_levels');
   const usersCol = db.collection<UserDoc>('users');
@@ -69,42 +71,28 @@ export default async function Page({ searchParams }: PageParams) {
     }),
   );
 
+  const topRows: LeaderboardRow[] = top.map((row, index) => ({
+    rank: (pg - 1) * PAGE_SIZE + index + 1,
+    username: row.username,
+    clears: row.clears,
+    lastIso: row.last?.toISOString?.() ?? '',
+  }));
+
   return (
     <div className="grid cols-2">
       <section className="panel">
         <h1 data-echo="Leaderboard">Leaderboard</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>User</th>
-              <th>Clears</th>
-              <th>Last solve</th>
-            </tr>
-          </thead>
-          <tbody>
-            {top.map((row, index) => (
-              <tr key={row.userId}>
-                <td>{(pg - 1) * PAGE_SIZE + index + 1}</td>
-                <td>
-                  <Link href={`/u/${row.username}`}>@{row.username}</Link>
-                </td>
-                <td>{row.clears}</td>
-                <td>
-                  <small>{row.last?.toISOString?.() ?? ''}</small>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-          {pg > 1 && (
-            <Link className="btn" href={`/leaderboard?pg=${pg - 1}`}>
+        <LeaderboardTable rows={topRows} />
+        <div style={{ display: 'flex', gap: 8, marginTop: 10, justifyContent: 'space-between', flexWrap: 'wrap' }}>
+          {pg > 1 ? (
+            <Link className="btn" href={`/leaderboard?pg=${pg - 1}`} data-echo="Previous">
               Previous page
             </Link>
+          ) : (
+            <span />
           )}
           {top.length === PAGE_SIZE && (
-            <Link className="btn" href={`/leaderboard?pg=${pg + 1}`}>
+            <Link className="btn" href={`/leaderboard?pg=${pg + 1}`} data-echo="Next">
               Next page
             </Link>
           )}
