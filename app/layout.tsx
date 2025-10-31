@@ -2,7 +2,6 @@ import "./globals.css";
 import type { ReactNode } from "react";
 import Nav from "@/components/Nav";
 import HorrorFX from "@/components/HorrorFX";
-import { ensureIndexesOnce } from "@/lib/db";
 
 export const metadata = {
   title: "Anubis",
@@ -10,7 +9,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  await ensureIndexesOnce();
   const year = new Date().getFullYear();
   return (
     <html lang="en" data-theme="dark">
