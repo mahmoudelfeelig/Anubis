@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import crypto from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';

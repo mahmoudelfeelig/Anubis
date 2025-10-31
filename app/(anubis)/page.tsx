@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import Link from 'next/link';
 import { getSessionUser } from '@/lib/session';
 import { getIndex, getLevel } from '@/lib/levels';

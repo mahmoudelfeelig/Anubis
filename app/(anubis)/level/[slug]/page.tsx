@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { redirect, notFound } from 'next/navigation';
 import { getSessionUser } from '@/lib/session';
 import { getIndex, getLevel, getNextSlug } from '@/lib/levels';

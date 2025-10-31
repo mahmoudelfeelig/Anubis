@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
