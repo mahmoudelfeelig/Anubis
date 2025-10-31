@@ -9,12 +9,12 @@
   "userHashHex": "5aac8a67b403e31f3e72ff37a617f135cc037d24a754d991bfac89d715bc05e6",
   "passHashHex": "7b1a50e6e58fa85cf51e6aa047d36e78bb783ddd0554d90f207d70e1718a966a",
   "hintsConsole": [
-    "Hidden bytes ride between prompts; strip the silence to hear them.",
-    "Zero-width glyphs survive pasting into xxd."
+    "Pair the telemetry into hex bytes before you translate anything.",
+    "The lone vertical bar is not decoration—it splits the two call signs."
   ],
   "hintsSource": [
-    "ops checklist env names = mnemonic for the decoded phrase",
-    "base64 is the final gate once you rebuild the bytes"
+    "ASCII decoding is enough; no second cipher waits underneath.",
+    "Report the handle to the left of `|` as the username and the right as the password."
   ],
   "theme": {
     "className": "level-terminal-whisper",

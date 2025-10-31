@@ -9,12 +9,12 @@
   "userHashHex": "e01bb78f87bc2b750e4836127d041f3f6e632e4f613019cbf3d08e3561815290",
   "passHashHex": "578578ea64ef3d5a9d8f8860316c856afd976717fe0a2542dfe15505fcddd860",
   "hintsConsole": [
-    "GIF frame delays translate cleanly into Morse.",
-    "Plot the decoded coordinates over the harbor map."
+    "The flashing cadence is plain Morse; the spaces already separate letters.",
+    "The NATO words give you one letter apiece when you take their initials."
   ],
   "hintsSource": [
-    "Warehouse numbers ring the dock in clockwise order.",
-    "The final word is spelled along the pier markers."
+    "Decode the Morse to get the username in full.",
+    "Read the phonetic alphabet initials straight through for the password."
   ],
   "theme": {
     "className": "level-beacon-pulse",

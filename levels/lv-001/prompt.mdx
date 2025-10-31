@@ -1,10 +1,9 @@
 ### Terminal Whisper
 
-      The deployment console captured in `terminal-whisper.log` looks routine, but the ops lead swore the feed was "haunted."
+The console buffer coughed up one final telemetry stream before it died:
 
-      1. Inspect the log and note the echoed prompts- there's too much space between them.
-      2. Extract the silent glyphs hiding in those gaps, rebuild the binary they represent, and convert to bytes.
-      3. Decode the resulting base64 and reconcile it with the mnemonic in `ops-checklist.txt`.
-      4. Cross-check the fingerprint in `checksum.md` once you're convinced nothing got mangled.
+```
+73 74 61 63 6b 7a 65 72 6f 7c 68 6f 6c 6c 6f 77 70 6f 72 74
+```
 
-      Present the recovered **username** and **password** when you can explain why the Anubis ops team remembered "STACK ZERO HOLLOW PORT."
+Ops noted the feed only fractured once—at the solitary vertical bar where two call signs brush past each other. Strip the chatter back to plain speech and report both names in the order the console intended.

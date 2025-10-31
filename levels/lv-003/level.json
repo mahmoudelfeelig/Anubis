@@ -3,18 +3,18 @@
   "number": 3,
   "title": "Prism Filter",
   "mode": "form",
-  "kind": "image",
+  "kind": "custom",
   "mdx": "prompt.mdx",
   "saltHex": "fdf944e4c00d7e6b0106cc0a55d97859",
   "userHashHex": "1e32062240b36a831030e6045557d6f3f62c6a64b89a22a0ca51fc658478848b",
   "passHashHex": "4aeffa33d58e3d45973fc562a706aecf9fa002d10e24f2288dfbc9081b7d97a8",
   "hintsConsole": [
-    "Every color channel tells a different story- extract them individually.",
-    "Check the diary for EXIF anomalies and palette clues."
+    "Ignore everything outside the brackets—only those letters matter.",
+    "Read each set straight through; no reordering is required."
   ],
   "hintsSource": [
-    "The blue channel encodes a readable grid.",
-    "Once you trace the letters, look inside qr-result.txt."
+    "The red line spells the username, the blue line spells the password.",
+    "Combine the bracketed letters exactly as they appear."
   ],
   "theme": {
     "className": "level-prism-filter",
@@ -22,6 +22,5 @@
       "--accent": "#3fe0ff",
       "--bg": "#031a24"
     }
-  },
-  "asset": "assets/prism-portrait.png"
+  }
 }

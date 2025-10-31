@@ -21,7 +21,7 @@ Anubis is a Next.js application for building and hosting alternate reality game 
 - **Storage**: Cloudinary for user avatars; static puzzle assets under `/levels`.
 - **Sessions/Auth**: Custom session token system with hashed cookies.
 - **ARG Levels**: Stored as JSON + MDX + assets in `levels/lv-XXX`. Each level includes metadata, hints, and associated files.
-- **Generator**: `scripts/generate-levels.js` is the single source of truth for all level definitions. Running it regenerates level folders and placeholder assets.
+- **Curation**: Ten hand-authored levels ship with the repository (`lv-001` → `lv-010`). They are maintained manually to keep the workflow lightweight.
 
 ## Tech Stack
 
@@ -96,7 +96,6 @@ The project uses Vitest across server and client code.
   - `lib/normalize`, `lib/mongo-ids`, `lib/progress`, `lib/db`, `lib/mdx`.
   - Cloudinary storage helpers via mocked SDK.
   - Level actions (`solveForm`) with crypto hashing.
-  - Level generator script via temporary directories.
 - **Component tests**:
   - `components/LevelRunner` rendered in jsdom using React Testing Library.
 
@@ -104,10 +103,11 @@ Run `npm test` to execute everything. Use `npm run test:watch` during developmen
 
 ## Level Authoring Workflow
 
-1. Modify level definitions within `scripts/generate-levels.js`.
-2. Run `node scripts/generate-levels.js` to regenerate the `levels/` directory.
-3. Check the generated `assets/manifest.md` inside each level for required media, and replace TODO placeholders with final assets.
-4. Update checksums or hashed credential hints as needed.
+1. Pick a level folder under `levels/lv-XXX` (the repository currently includes ten ready-to-run examples).
+2. Edit the `level.json` metadata and the accompanying `prompt.mdx` file directly—no generator steps are required.
+3. Document any supporting files in `assets/manifest.md`. If a puzzle is entirely self-contained, note that no external assets are needed.
+4. Keep walkthrough notes out of version control—store them under `solutions/lv-XXX.md`. The `solutions/` directory is ignored by Git, so feel free to capture detailed solving steps there.
+5. When adding or removing puzzle assets, update manifests and any relevant hashes in the level metadata.
 
 The generator is idempotent and can safely rebuild all levels anytime.
 

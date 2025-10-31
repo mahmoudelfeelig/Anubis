@@ -9,12 +9,12 @@
   "userHashHex": "106bac9489d9d8860da70bcb4de5628e1f97bab971f623d75265862b16b3b5d9",
   "passHashHex": "1180e52b68c4c532ecf78c6237f84cd2b9c4d5c8342e6575b0fe86f1cbad6b63",
   "hintsConsole": [
-    "Subtract the red layer to reveal the column markers.",
-    "The Vigenere key is hiding in plain Latin."
+    "Treat the slate line as Vigenere ciphertext.",
+    "PALIMPSEST is the key the curator keeps repeating."
   ],
   "hintsSource": [
-    "Ledger transcript lines align with the revealed columns.",
-    "Read the acrostic vertically once decrypted."
+    "Preserve the punctuation bar while you decrypt.",
+    "Left of the bar is the username, right is the password."
   ],
   "theme": {
     "className": "level-palimpsest-ledger",
