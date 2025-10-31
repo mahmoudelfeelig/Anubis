@@ -9,12 +9,12 @@
   "userHashHex": "18e391bc8309c4f7454f6803a99f91a83debc755840e871c2441d6ad4500be22",
   "passHashHex": "d532e513047b15c09598bfac722e82e2c15222c04aab2e0f1b58a7c85e03efdd",
   "hintsConsole": [
-    "TXT records hide XOR masks.",
-    "Align packet timestamps before XORing streams."
+    "Convert both streams from hex and XOR them byte for byte.",
+    "The recovered ASCII begins with an HTTP method."
   ],
   "hintsSource": [
-    "Look for phantom HTTP request once streams merge.",
-    "Request path spells the answer when normalized."
+    "You should see a path of the form `/username/password`.",
+    "Split the path by the slash to separate username and password."
   ],
   "theme": {
     "className": "level-null-proxy",

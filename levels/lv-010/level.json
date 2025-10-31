@@ -9,12 +9,12 @@
   "userHashHex": "5ae3f5e9c5559f2b7b3ad5cdd78db002f95b63b56ff74c4d9287cbf92e5b3066",
   "passHashHex": "fca3b32cd54362e48a3e387f7a6c694964f3e4df2c5835f368faefff35406fb6",
   "hintsConsole": [
-    "Convert SVG path commands into polar coordinates.",
-    "Grouping angles into quadrants yields grid references."
+    "Use a standard Polybius square (row/column) to interpret the pairs.",
+    "Treat I/J as the same cell if you keep a 5×5 square."
   ],
   "hintsSource": [
-    "glyph-key.txt explains the Polybius mapping.",
-    "Coordinate order follows path sequence."
+    "The outer sweep coordinates spell the username.",
+    "The inner sweep coordinates spell the password."
   ],
   "theme": {
     "className": "level-hyperglyph-maze",

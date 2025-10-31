@@ -9,12 +9,12 @@
   "userHashHex": "7fd668091adb50608f737f589f77a4da6aeb96a1b9ec379ddb10731921f1da2b",
   "passHashHex": "961dcb86e11ca8db431f24fb53fea37b7c391e8cdc5d9b9a47eb0ec064e575c7",
   "hintsConsole": [
-    "Run the tests. Let the failing output point at the hidden helper.",
-    "Rot47 unwinds a surprising amount of punctuation."
+    "Treat the whisper with ROT47; the legacy helper is its own inverse.",
+    "The colon stays put after decoding—split the line there."
   ],
   "hintsSource": [
-    "Look for dead code guarded by `LEGACY_MODE`.",
-    "Reverse the helper output before decoding."
+    "No tests required anymore: apply ROT47 to the entire string and stop.",
+    "Username lives before the colon, password after."
   ],
   "theme": {
     "className": "level-commit-memory",

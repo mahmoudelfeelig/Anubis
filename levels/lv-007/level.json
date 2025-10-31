@@ -9,12 +9,12 @@
   "userHashHex": "88b3d13a301f2d2e88c339b477fed621aac2b70cb319c94aab3e4cc69c784bc5",
   "passHashHex": "ddbda3f41f0db23e9fffffa5c327571337e46e6e3911cfe2b57fb9871085f80f",
   "hintsConsole": [
-    "Order the rings the same way the GPS track unwinds.",
-    "Alphabet shifts differ per ring."
+    "Start at the top-left of the outer grid and walk clockwise along the spiral.",
+    "Once you reach the center, drop to the lattice and read each row from left to right."
   ],
   "hintsSource": [
-    "field-notes.gpx path orientation gives the key order.",
-    "Read outward from the center once aligned."
+    "Spiral traversal of the outer casing spells the username.",
+    "The inner lattice rows, read top to bottom, reveal the password."
   ],
   "theme": {
     "className": "level-kryptex-helix",
