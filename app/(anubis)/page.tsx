@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { getSessionUser } from '@/lib/session';
-import { getDb } from '@/lib/db';
 import { getIndex, getLevel } from '@/lib/levels';
 import { getUserProgressSummary } from '@/lib/progress';
 
@@ -22,10 +21,6 @@ const featureSignals = [
 export default async function Page() {
   const user = await getSessionUser();
   const index = await getIndex();
-  const total = Object.keys(index).length;
-
-  const db = await getDb();
-  const clearedCount = user ? await db.collection('user_levels').countDocuments({ userId: user.id }) : 0;
   const progress = user ? await getUserProgressSummary(user.id, index) : null;
 
   let nextSlug: string | null = null;
@@ -34,9 +29,6 @@ export default async function Page() {
     nextSlug = progress.nextSlug;
     nextTitle = progress.nextTitle ?? (await getLevel(progress.nextSlug)).title;
   }
-
-  const momentum = Math.round((clearedCount / Math.max(1, total)) * 100);
-  const encryptedLeft = Math.max(total - clearedCount, 0);
 
   return (
     <div className="home-grid">
@@ -63,40 +55,8 @@ export default async function Page() {
                   Resume {nextTitle}
                 </Link>
               )}
-              <Link className="btn" href="/levels" data-echo="Levels">
-                Levels
-              </Link>
-              <Link className="btn" href={`/u/${user.username}`} data-echo="Profile">
-                Profile
-              </Link>
             </div>
           )}
-        </div>
-        <div className="hero-metrics">
-          <div className="hero-metric">
-            <span className="hero-metric__label">Momentum</span>
-            <span className="hero-metric__value">{String(momentum).padStart(2, '0')}%</span>
-            <div className="hero-metric__bar">
-              <i style={{ width: `${momentum}%` }} />
-            </div>
-          </div>
-          <div className="hero-metric">
-            <span className="hero-metric__label">Signals decrypted</span>
-            <span className="hero-metric__value">
-              {String(clearedCount).padStart(2, '0')}
-              <small>/{total}</small>
-            </span>
-            <span className="hero-metric__hint">{encryptedLeft} anomalies remain</span>
-          </div>
-          <div className="hero-metric">
-            <span className="hero-metric__label">Next anomaly</span>
-            <span className="hero-metric__value hero-metric__value--pulse">
-              {nextTitle ?? 'All clear'}
-            </span>
-            <span className="hero-metric__hint">
-              {nextSlug ? `Accessible via /level/${nextSlug}` : 'Awaiting new transmissions.'}
-            </span>
-          </div>
         </div>
       </section>
 

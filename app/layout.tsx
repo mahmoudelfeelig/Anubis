@@ -11,6 +11,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   await ensureIndexesOnce();
+  const year = new Date().getFullYear();
   return (
     <html lang="en" data-theme="dark">
       <body className="crt-root" data-theme="dark">
@@ -30,7 +31,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <div className="container">{children}</div>
         </main>
         <footer>
-          <div className="container">Ac Anubis</div>
+          <div className="container footer-bar">
+            <small>© {year} Anubis</small>
+          </div>
         </footer>
       </body>
     </html>

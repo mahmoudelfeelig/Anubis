@@ -80,7 +80,7 @@ export default async function Page({ searchParams }: PageParams) {
 
   return (
     <div className="grid cols-2">
-      <section className="panel">
+      <section className="panel leaderboard-panel">
         <h1 data-echo="Leaderboard">Leaderboard</h1>
         <LeaderboardTable rows={topRows} />
         <div style={{ display: 'flex', gap: 8, marginTop: 10, justifyContent: 'space-between', flexWrap: 'wrap' }}>
@@ -99,7 +99,7 @@ export default async function Page({ searchParams }: PageParams) {
         </div>
       </section>
 
-      <section className="panel">
+      <section className="panel leaderboard-recent">
         <h2 data-echo="Latest solves">Latest solves</h2>
         <table className="table">
           <thead>
