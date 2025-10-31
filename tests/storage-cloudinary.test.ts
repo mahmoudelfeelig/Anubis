@@ -1,15 +1,20 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, type Mock } from 'vitest';
 
-let configMock: ReturnType<typeof vi.fn>;
-let uploadMock: ReturnType<typeof vi.fn>;
-let destroyMock: ReturnType<typeof vi.fn>;
+type AnyObj = Record<string, unknown>;
+
+let configMock: Mock<[AnyObj], void>;
+let uploadMock: Mock<[string, AnyObj?], Promise<{ public_id: string }>>;
+let destroyMock: Mock<[string, AnyObj?], Promise<AnyObj>>;
 
 async function loadModule() {
+  // make sure every test starts from a clean module graph
   vi.resetModules();
+
   configMock = vi.fn();
   uploadMock = vi.fn(async () => ({ public_id: 'mocked/id' }));
   destroyMock = vi.fn(async () => ({}));
 
+  // mock cloudinary before importing the module under test
   vi.doMock('cloudinary', () => ({
     v2: {
       config: configMock,
@@ -20,6 +25,7 @@ async function loadModule() {
     },
   }));
 
+  // now import the real code
   return import('@/lib/storage-cloudinary');
 }
 
@@ -38,9 +44,12 @@ describe('cloudinary configuration', () => {
 describe('saveUserAvatarCloudinary', () => {
   it('uploads sanitized avatar data and returns public id', async () => {
     const storageCloudinary = await loadModule();
+
+    // stable timestamp so the public_id is deterministic
     vi.spyOn(Date, 'now').mockReturnValue(1700000000000);
 
     const buffer = Buffer.from('avatar-bytes');
+
     const result = await storageCloudinary.saveUserAvatarCloudinary('user123', {
       name: 'evil<>avatar!!.png',
       data: buffer,
@@ -48,9 +57,14 @@ describe('saveUserAvatarCloudinary', () => {
     });
 
     expect(uploadMock).toHaveBeenCalledTimes(1);
+
     const [dataUri, options] = uploadMock.mock.calls[0];
+
+    // sent as data URI
     expect(typeof dataUri).toBe('string');
     expect(dataUri).toMatch(/^data:image\/png;base64,/);
+
+    // cloudinary options
     expect(options).toMatchObject({
       folder: 'anubis/users/user123',
       resource_type: 'image',
@@ -58,13 +72,20 @@ describe('saveUserAvatarCloudinary', () => {
       unique_filename: false,
       invalidate: true,
     });
-    expect(options.public_id).toBe('1700000000000-evil__avatar__');
+
+    // sanitized public id
+    expect(options?.public_id).toBe('1700000000000-evil__avatar__');
+
+    // function should return cloudinary's public_id
     expect(result).toBe('mocked/id');
   });
 
   it('throws when file is too large', async () => {
     const storageCloudinary = await loadModule();
+
+    // 6MB + 1 byte
     const bigBuffer = Buffer.alloc(6 * 1024 * 1024 + 1);
+
     await expect(
       storageCloudinary.saveUserAvatarCloudinary('user123', {
         name: 'big.png',
@@ -78,23 +99,39 @@ describe('saveUserAvatarCloudinary', () => {
 describe('avatarUrl', () => {
   it('builds a transformation url with provided size', async () => {
     const { avatarUrl } = await loadModule();
+
     const url = avatarUrl('anubis/users/user123/avatar', 128);
-    expect(url).toMatch(
-      /^https:\/\/res\.cloudinary\.com\/demo-cloud\/image\/upload\/f_auto,q_auto,c_fill,g_face,r_max,w_128,h_128\/anubis\/users\/user123\/avatar$/,
+
+    // use the cloud name that is actually in the env in CI
+    const cloudName =
+      process.env.CLD_CLOUD_NAME ??
+      process.env.CLOUDINARY_CLOUD_NAME ??
+      'demo-cloud';
+
+    const pattern = new RegExp(
+      `^https:\\/\\/res\\.cloudinary\\.com\\/${cloudName}\\/image\\/upload\\/f_auto,q_auto,c_fill,g_face,r_max,w_128,h_128\\/anubis\\/users\\/user123\\/avatar$`,
     );
+
+    expect(url).toMatch(pattern);
   });
 });
 
 describe('destroyAsset', () => {
   it('invokes cloudinary destroy for provided public id', async () => {
     const storageCloudinary = await loadModule();
+
     await storageCloudinary.destroyAsset('mocked/id');
-    expect(destroyMock).toHaveBeenCalledWith('mocked/id', { invalidate: true });
+
+    expect(destroyMock).toHaveBeenCalledWith('mocked/id', {
+      invalidate: true,
+    });
   });
 
   it('skips destroy when no public id supplied', async () => {
     const storageCloudinary = await loadModule();
+
     await storageCloudinary.destroyAsset('');
+
     expect(destroyMock).not.toHaveBeenCalled();
   });
 });

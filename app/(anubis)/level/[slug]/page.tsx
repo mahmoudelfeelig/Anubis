@@ -60,11 +60,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   };
 
   return (
-    <section className="panel">
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-        <h1>{level.title}</h1>
-        <small>Level {level.number}</small>
-      </header>
+    <section className="panel level-shell">
+      <div className="level-meta" aria-label={`Level ${level.number}`}>
+        <span className="level-meta__tag">LVL {String(level.number ?? '').padStart(2, '0')}</span>
+        <span className="level-meta__title" data-echo={level.title}>
+          {level.title}
+        </span>
+      </div>
       {promptContent && <article className="level-mdx">{promptContent}</article>}
       <LevelRunner level={safe} />
     </section>
