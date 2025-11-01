@@ -1,21 +1,39 @@
-import crypto from 'node:crypto';
 import { cookies } from 'next/headers';
 import { getDb } from './db';
 import type { SessionDoc, UserDoc } from './types';
 
 const COOKIE = 'sid';
-const SECRET = process.env.SESSION_SECRET!;
-if (!SECRET) throw new Error('SESSION_SECRET missing');
+if (!process.env.SESSION_SECRET) throw new Error('SESSION_SECRET missing');
 
-function sha256(b: Buffer | string) {
-  return crypto.createHash('sha256').update(b).digest('hex');
+const encoder = new TextEncoder();
+
+function toHex(bytes: Uint8Array) {
+  return Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+async function sha256(input: Uint8Array | string): Promise<string> {
+  const data = typeof input === 'string' ? encoder.encode(input) : input;
+  const source =
+    data.byteOffset === 0 && data.byteLength === data.buffer.byteLength
+      ? (data.buffer as ArrayBuffer)
+      : (data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength) as ArrayBuffer);
+  const digest = await crypto.subtle.digest('SHA-256', source);
+  return toHex(new Uint8Array(digest));
+}
+
+function randomHex(bytes: number): string {
+  const array = new Uint8Array(bytes);
+  crypto.getRandomValues(array);
+  return toHex(array);
 }
 
 export async function createSession(userId: string) {
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
-  const token = crypto.randomBytes(32).toString('hex');
-  const tokenHash = sha256(token);
+  const token = randomHex(32);
+  const tokenHash = await sha256(token);
   const expiresAt = new Date(Date.now() + 1000*60*60*24*30);
   await sessions.insertOne({ tokenHash, userId, expiresAt });
   const cookieStore = await cookies();
@@ -28,7 +46,8 @@ export async function destroySession() {
   if (!c) return;
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
-  await sessions.deleteOne({ tokenHash: sha256(c) });
+  const tokenHash = await sha256(c);
+  await sessions.deleteOne({ tokenHash });
   cookieStore.set(COOKIE, '', { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(0), path: '/' });
 }
 
@@ -38,7 +57,8 @@ export async function getSessionUser() {
   if (!token) return null;
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
-  const s = await sessions.findOne({ tokenHash: sha256(token), expiresAt: { $gt: new Date() } });
+  const tokenHash = await sha256(token);
+  const s = await sessions.findOne({ tokenHash, expiresAt: { $gt: new Date() } });
   if (!s) return null;
   const users = db.collection<UserDoc>('users');
   const user = await users.findOne({ _id: s.userId });

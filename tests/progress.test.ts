@@ -5,6 +5,17 @@ const controls = {
   find: vi.fn(),
 };
 
+function createCursor(rows: unknown[] = []) {
+  const cursor = {
+    project: vi.fn(() => cursor),
+    sort: vi.fn(() => cursor),
+    limit: vi.fn(() => cursor),
+    skip: vi.fn(() => cursor),
+    toArray: vi.fn().mockResolvedValue(rows),
+  };
+  return cursor;
+}
+
 vi.mock('@/lib/db', () => ({
   getDb: vi.fn(async () => ({
     collection: (name: string) => {
@@ -27,8 +38,7 @@ beforeAll(async () => {
 
 beforeEach(() => {
   controls.updateOne = vi.fn();
-  const toArray = vi.fn().mockResolvedValue([]);
-  controls.find = vi.fn(() => ({ toArray }));
+  controls.find = vi.fn(() => createCursor());
 });
 
 describe('markCleared', () => {
@@ -53,8 +63,7 @@ describe('getHighestCleared', () => {
       { slug: 'lv-005' },
       { slug: 'unknown' },
     ];
-    const toArray = vi.fn().mockResolvedValue(rows);
-    controls.find = vi.fn(() => ({ toArray }));
+    controls.find = vi.fn(() => createCursor(rows));
 
     const index = { 'lv-001': 1, 'lv-005': 5 };
     const result = await progress.getHighestCleared('user-1', index);
@@ -67,8 +76,7 @@ describe('getHighestCleared', () => {
   });
 
   it('returns 0 when user has no cleared levels', async () => {
-    const toArray = vi.fn().mockResolvedValue([]);
-    controls.find = vi.fn(() => ({ toArray }));
+    controls.find = vi.fn(() => createCursor([]));
     const result = await progress.getHighestCleared('user-1', {});
     expect(result).toBe(0);
   });

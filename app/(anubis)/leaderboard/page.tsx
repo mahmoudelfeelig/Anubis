@@ -41,23 +41,24 @@ export default async function Page({ searchParams }: PageParams) {
     { $limit: PAGE_SIZE },
   ];
 
-  const top = await userLevels
-    .aggregate<{ userId: string; username: string; clears: number; last: Date }>(pipeline)
-    .toArray();
+  const topCursor = userLevels.aggregate<{ userId: string; username: string; clears: number; last: Date }>(pipeline);
+  const top = await topCursor.toArray();
 
-  const recent = await userLevels
-    .find({})
-    .project<{ userId: string; slug: string; clearedAt: Date }>({ userId: 1, slug: 1, clearedAt: 1 })
-    .sort({ clearedAt: -1 })
-    .limit(20)
-    .toArray();
+  const recentCursor = userLevels.find({});
+  const projectedRecent = recentCursor.project<{ userId: string; slug: string; clearedAt: Date }>({
+    userId: 1,
+    slug: 1,
+    clearedAt: 1,
+  });
+  projectedRecent.sort({ clearedAt: -1 });
+  projectedRecent.limit(20);
+  const recent = await projectedRecent.toArray();
 
   const usersMap = new Map<string, string>();
   const userIds = Array.from(new Set(recent.map((r) => r.userId)));
-  const users = await usersCol
-    .find({ _id: { $in: userIds } })
-    .project<{ _id: string; username: string }>({ _id: 1, username: 1 })
-    .toArray();
+  const usersCursor = usersCol.find({ _id: { $in: userIds } });
+  const projectedUsers = usersCursor.project<{ _id: string; username: string }>({ _id: 1, username: 1 });
+  const users = await projectedUsers.toArray();
   users.forEach((u) => usersMap.set(u._id, u.username));
 
   const recentRows = await Promise.all(

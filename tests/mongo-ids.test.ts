@@ -15,4 +15,3 @@ describe('toUserId', () => {
     expect(toUserId(input)).toBe(input);
   });
 });
-

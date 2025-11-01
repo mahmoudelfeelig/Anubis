@@ -1,4 +1,3 @@
-import crypto from 'node:crypto';
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 type CookieStore = {
@@ -64,6 +63,16 @@ vi.mock('next/headers', () => ({
 
 let session: typeof import('@/lib/session');
 
+const encoder = new TextEncoder();
+
+async function sha256Hex(input: string) {
+  const data = encoder.encode(input);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 beforeAll(async () => {
   session = await import('@/lib/session');
 });
@@ -78,13 +87,16 @@ beforeEach(() => {
 
 describe('createSession', () => {
   it('stores a hashed session token and sets a secure cookie', async () => {
-    const randomBytesSpy = vi
-      .spyOn(crypto, 'randomBytes')
-      .mockImplementation((size: number) => Buffer.alloc(size ?? 32, 1));
+    const getRandomValuesSpy = vi
+      .spyOn(crypto, 'getRandomValues')
+      .mockImplementation((array: Uint8Array) => {
+        array.fill(1);
+        return array;
+      });
 
     await session.createSession('user-42');
 
-    expect(randomBytesSpy).toHaveBeenCalledWith(32);
+    expect(getRandomValuesSpy).toHaveBeenCalledTimes(1);
     expect(dbControls.sessions.insertOne).toHaveBeenCalledTimes(1);
     const [doc] = dbControls.sessions.insertOne.mock.calls[0];
     expect(doc).toMatchObject({
@@ -104,7 +116,7 @@ describe('createSession', () => {
     });
     expect(cookie!.options?.expires).toBeInstanceOf(Date);
 
-    const expectedHash = crypto.createHash('sha256').update(cookie!.value).digest('hex');
+    const expectedHash = await sha256Hex(cookie!.value);
     expect(doc.tokenHash).toBe(expectedHash);
   });
 });
@@ -115,7 +127,7 @@ describe('destroySession', () => {
     cookieStoreState.entries.set('sid', { value: token });
     await session.destroySession();
 
-    const expectedHash = crypto.createHash('sha256').update(token).digest('hex');
+    const expectedHash = await sha256Hex(token);
     expect(dbControls.sessions.deleteOne).toHaveBeenCalledWith({ tokenHash: expectedHash });
 
     const cleared = cookieStoreState.entries.get('sid');
@@ -145,7 +157,7 @@ describe('getSessionUser', () => {
   it('returns basic user info when session and user exist', async () => {
     const tokenValue = 'session';
     cookieStoreState.entries.set('sid', { value: tokenValue });
-    const tokenHash = crypto.createHash('sha256').update(tokenValue).digest('hex');
+    const tokenHash = await sha256Hex(tokenValue);
     dbControls.sessions.findOne.mockResolvedValue({
       tokenHash,
       userId: 'u-1',

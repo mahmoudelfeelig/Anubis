@@ -18,7 +18,7 @@ export interface LevelConfig {
   theme?: { className?: string; cssVars?: Record<string,string>; bgImage?: string };
 }
 
-export interface UserDoc {
+export interface UserDoc extends Record<string, unknown> {
   _id: string;
   username: string;
   pwdHash: string;
@@ -26,13 +26,13 @@ export interface UserDoc {
   pfp?: string | null;
 }
 
-export interface SessionDoc {
+export interface SessionDoc extends Record<string, unknown> {
   tokenHash: string;
   userId: string;
   expiresAt: Date;
 }
 
-export interface UserLevelDoc {
+export interface UserLevelDoc extends Record<string, unknown> {
   userId: string;
   slug: string;
   clearedAt: Date;

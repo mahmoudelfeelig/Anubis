@@ -49,7 +49,7 @@ The app runs on `http://localhost:3000`.
 Create an `.env.local` file in the project root. Required variables:
 
 ```ini
-MONGODB_URI=mongodb://localhost:27017/anubis
+MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>/<db>?retryWrites=true&w=majority
 SESSION_SECRET=dev-session-secret
 PWD_PEPPER=dev-pepper
 
