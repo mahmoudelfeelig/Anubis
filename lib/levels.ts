@@ -47,7 +47,7 @@ export const getLevel = cache(async (slug: string): Promise<LevelConfig> => {
   const level = bySlug.get(slug);
   if (!level) {
     const error = new Error(`Level ${slug} not found`);
-    (error as NodeJS.ErrnoException).code = 'ENOENT';
+    (error as { code?: string }).code = 'ENOENT';
     throw error;
   }
   return JSON.parse(JSON.stringify(level)) as LevelConfig;

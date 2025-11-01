@@ -8,6 +8,7 @@ const config = [
   {
     ignores: [
       '.next/**',
+      '.open-next/**',
       'node_modules/**',
       'levels/**/assets/**',
       'public/**',

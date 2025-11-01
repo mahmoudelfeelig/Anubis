@@ -9,7 +9,7 @@ export const loadLevelPrompt = cache(async (slug: string, fileName: string): Pro
     const source = await fs.readFile(full, 'utf8');
     const { content } = await compileMDX({ source, options: { parseFrontmatter: false } });
     return content;
-  } catch (error) {
+  } catch {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(`Failed to compile MDX for level ${slug}/${fileName}`);
     }

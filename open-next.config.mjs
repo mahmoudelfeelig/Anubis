@@ -1,1 +1,2 @@
-export default {};
+const openNextConfig = {};
+export default openNextConfig;
