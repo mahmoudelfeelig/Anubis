@@ -1,0 +1,24 @@
+{
+  "slug": "lv-015",
+  "number": 15,
+  "title": "Graph Braid Loom",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "b526955f8147bba02bbb264f584519b4",
+  "userHashHex": "8f5fc74f42e7248e722acc0856fd88c279067711226a8ad40d05a38bbafd1953",
+  "passHashHex": "3756c08d57e05aa61730ca9be0b072054c6e6f57770ac3f4f57c02f82796d97e",
+  "hintsConsole": [
+    "Resolve the braiding order strictly by prerequisites; no spool frees itself early."
+  ],
+  "hintsSource": [
+    "Each warp cell contributes the parity of its two counts."
+  ],
+  "theme": {
+    "className": "level-graph-braid-loom",
+    "cssVars": {
+      "--accent": "#8cffae",
+      "--bg": "#04140a"
+    }
+  }
+}

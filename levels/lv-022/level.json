@@ -1,0 +1,24 @@
+{
+  "slug": "lv-022",
+  "number": 22,
+  "title": "Algorithm Forge",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "2c591022879e63717a8ad559f8c0cd20",
+  "userHashHex": "78e7139a9927a7bf8e305ab12ef481b496d2eb208d413bd92312ee531b2e963e",
+  "passHashHex": "899917ad1d9f0ce24a8f36efdfd494669afaa5ec7a674301b2bc6217714cdff7",
+  "hintsConsole": [
+    "Mind the modulus at every step; the recurrence is 0-indexed."
+  ],
+  "hintsSource": [
+    "Reuse the computed dp table when mixing the taps."
+  ],
+  "theme": {
+    "className": "level-algorithm-forge",
+    "cssVars": {
+      "--accent": "#ffc1ff",
+      "--bg": "#140010"
+    }
+  }
+}

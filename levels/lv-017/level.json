@@ -1,0 +1,24 @@
+{
+  "slug": "lv-017",
+  "number": 17,
+  "title": "Sequence Mirror",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "2655e132dbb222589fd3e374aa502e70",
+  "userHashHex": "8c625298136591d106e258e4775fcb6b8f46c8af10655e1a7d8387bf3d00e82d",
+  "passHashHex": "83f4e7a78f4dea907f01805695f0daee569ec1599d6cfa9509be7e4adddaa41f",
+  "hintsConsole": [
+    "Pair each line from the outside in; sum the absolute mirror gaps."
+  ],
+  "hintsSource": [
+    "Palindromic triples give you twice the flank minus the root."
+  ],
+  "theme": {
+    "className": "level-sequence-mirror",
+    "cssVars": {
+      "--accent": "#ffa6e8",
+      "--bg": "#1b0214"
+    }
+  }
+}

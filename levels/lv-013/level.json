@@ -1,0 +1,24 @@
+{
+  "slug": "lv-013",
+  "number": 13,
+  "title": "Flux Gallery",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "951cfd43b21fd88f2c07985f38fa4320",
+  "userHashHex": "097b94e1007c57e6cbb943754c5f0a1b004af0ba6d0b011b869ea35f7d47ac5f",
+  "passHashHex": "17b330c4189f435cc4fe27f8d329b102fbd8944ce4854f596047d5ff1d1a5556",
+  "hintsConsole": [
+    "Each block is a closed rectangular volume—think Divergence Theorem."
+  ],
+  "hintsSource": [
+    "Integrate the divergence to get the scalars, then map 0→a."
+  ],
+  "theme": {
+    "className": "level-flux-gallery",
+    "cssVars": {
+      "--accent": "#6effc3",
+      "--bg": "#02130e"
+    }
+  }
+}

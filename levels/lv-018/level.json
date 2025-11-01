@@ -1,0 +1,24 @@
+{
+  "slug": "lv-018",
+  "number": 18,
+  "title": "Entropy Loom",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "f0d995a9ecd098080955a0d4aba81845",
+  "userHashHex": "fc5042fb40bfda2963464aa15bae0f9fd293bd67bca87412b0a168f7722213bd",
+  "passHashHex": "9d28eb0b9641b096417b5c9ca4773857139288f6ea4d9a2f29e3850a53f63528",
+  "hintsConsole": [
+    "Run-length collapse counts how many symbols vanish."
+  ],
+  "hintsSource": [
+    "For the second log, keep the first sighting of each character only once."
+  ],
+  "theme": {
+    "className": "level-entropy-loom",
+    "cssVars": {
+      "--accent": "#ffc56f",
+      "--bg": "#1a0e03"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "lv-019",
+  "number": 19,
+  "title": "Geodesic Trace",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "754c5ad96fcbbb17e82710ad18e5dca4",
+  "userHashHex": "58caad8f93d50a98e591268d551a8886fbaba4442272a8dab4ab373466681150",
+  "passHashHex": "d4d2b0b73b7c16f0c88e230095900f0d36751387c5409d6c7d6b75b96acee700",
+  "hintsConsole": [
+    "Chord lengths use straight Euclidean distance."
+  ],
+  "hintsSource": [
+    "Angle in degrees = (arc / radius) × 180 / π."
+  ],
+  "theme": {
+    "className": "level-geodesic-trace",
+    "cssVars": {
+      "--accent": "#7cffd7",
+      "--bg": "#001510"
+    }
+  }
+}

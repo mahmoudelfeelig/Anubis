@@ -1,0 +1,24 @@
+{
+  "slug": "lv-012",
+  "number": 12,
+  "title": "Eigen Lattice",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "2b09ead86174658b236428a53c978eba",
+  "userHashHex": "1a5fc7c5f5ef98442688a3999d94bdf7e39f3fb781d5dcb617f146efe05e2583",
+  "passHashHex": "dd922ada70b86bd79cbee181ed3352a02b9dfbbfa4149df316af9ded03e46ea1",
+  "hintsConsole": [
+    "Solve each column in isolation; the lattice core is 3×3."
+  ],
+  "hintsSource": [
+    "Flatten the solutions column by column and map 0→a."
+  ],
+  "theme": {
+    "className": "level-eigen-lattice",
+    "cssVars": {
+      "--accent": "#9bddff",
+      "--bg": "#05020f"
+    }
+  }
+}

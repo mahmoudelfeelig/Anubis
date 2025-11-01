@@ -1,0 +1,24 @@
+{
+  "slug": "lv-014",
+  "number": 14,
+  "title": "Residue Cartography",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "837748e4dde30cb40d166f51c02f16b1",
+  "userHashHex": "3debbefad8e7b985e0d87c805304b381e7ada36db1604df678c6efed5585744f",
+  "passHashHex": "763459ec895420f2348780338b212f434b3015a782346dd3f24cedd681f268a2",
+  "hintsConsole": [
+    "Find the least non-negative waypoint that satisfies both congruences."
+  ],
+  "hintsSource": [
+    "Totient pulses fold back after you add the raw sample count."
+  ],
+  "theme": {
+    "className": "level-residue-cartography",
+    "cssVars": {
+      "--accent": "#ff9c7b",
+      "--bg": "#170602"
+    }
+  }
+}

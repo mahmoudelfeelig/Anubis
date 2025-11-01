@@ -1,0 +1,24 @@
+{
+  "slug": "lv-020",
+  "number": 20,
+  "title": "Automata Flux",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "f0e1f98b046464e940846678116d2734",
+  "userHashHex": "f79a3f21b93b0a9061c51b041f0040fc61ded345c88846f3ec4914263892deef",
+  "passHashHex": "ce3ae9ba4be09f829713fcf27de0db9144670c87ef547ced7c7eab6e3d91516e",
+  "hintsConsole": [
+    "Treat the table as a deterministic automaton: one start state, binary alphabet."
+  ],
+  "hintsSource": [
+    "Record the edge emissions along the given bitstream."
+  ],
+  "theme": {
+    "className": "level-automata-flux",
+    "cssVars": {
+      "--accent": "#8fb5ff",
+      "--bg": "#030814"
+    }
+  }
+}

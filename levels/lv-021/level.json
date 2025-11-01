@@ -1,0 +1,24 @@
+{
+  "slug": "lv-021",
+  "number": 21,
+  "title": "Phase Vector",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "6cd7a96d4b101a2f1ab09a84ace99d5f",
+  "userHashHex": "7ad6dd80386e768ffdd5c7ae3a334f709605cf9ef9a8bac619f27e84f6794531",
+  "passHashHex": "81e487008b0ea2825c17890c037ba94888867b568f7980d142047f3ed6cf55f4",
+  "hintsConsole": [
+    "Treat each angle as a unit phasor; sum in the complex plane."
+  ],
+  "hintsSource": [
+    "Use the provided intensities as scalar weights before extracting the argument."
+  ],
+  "theme": {
+    "className": "level-phase-vector",
+    "cssVars": {
+      "--accent": "#94fffa",
+      "--bg": "#00131e"
+    }
+  }
+}

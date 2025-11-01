@@ -1,0 +1,24 @@
+### Algorithm Forge
+
+The forge compiler left a recurrence trace. Replicate it exactly using unsigned 32-bit arithmetic with modulo 26 at every assignment. Arrays are 0-indexed.
+
+```
+bias = [11, 3, 4, 23, 2, 25, 25, 13, 17, 1, 3, 11, 12]
+dp[0] = 0
+
+for i in range(1, 14):
+    coeff = i + 3
+    dp[i] = (coeff * dp[i - 1] + bias[i - 1]) % 26
+```
+
+Translate the completed `dp` array into letters with `0 → a`, `1 → b`, etc. to recover the username.
+
+The forge then mixed a second set of taps against the same table:
+
+```
+taps = [21, 20, 2, 20, 7, 11, 16, 21, 15, 13]
+for j in range(10):
+    code[j] = (dp[j + 2] + taps[j]) % 26
+```
+
+Map `code` to letters the same way to obtain the password.

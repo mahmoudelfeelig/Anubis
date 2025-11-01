@@ -1,0 +1,31 @@
+### Graph Braid Loom
+
+The loom log lists ten spools, each unlocking only after its prerequisites have latched. Process the spools one at a time—whenever all dependencies of a spool are satisfied, wind it immediately before moving on. Record the initials in order.
+
+| Spool | Prerequisites |
+| ----- | ------------- |
+| Glyph Node | — |
+| Ravel Span | Glyph Node |
+| Anchor Gate | Ravel Span |
+| Pylon Brace | Anchor Gate |
+| Helix Courier | Pylon Brace |
+| Brace Array | Helix Courier |
+| Relay Strand | Brace Array |
+| Aerie Pivot | Relay Strand |
+| Inlet Cradle | Aerie Pivot |
+| Drift Verge | Inlet Cradle |
+
+The second half of the ledger notes five warp channels. For every row, add the two counts shown for each warp, reduce modulo 2 (even → 0, odd → 1), and interpret the resulting five-bit word with `0 → a`, `1 → b`, etc.
+
+| Row | Warp α | Warp β | Warp γ | Warp δ | Warp ε |
+| --- | ------ | ------ | ------ | ------ | ------ |
+| 1 | 12, 6 | 3, 4 | 5, 8 | 9, 2 | 6, 5 |
+| 2 | 4, 2 | 6, 6 | 8, 0 | 12, 4 | 10, 2 |
+| 3 | 11, 4 | 8, 8 | 10, 2 | 6, 6 | 5, 8 |
+| 4 | 12, 8 | 7, 6 | 4, 4 | 10, 4 | 2, 2 |
+| 5 | 13, 4 | 6, 2 | 10, 4 | 9, 8 | 3, 4 |
+| 6 | 5, 6 | 9, 2 | 8, 8 | 12, 4 | 14, 6 |
+| 7 | 6, 10 | 7, 4 | 10, 6 | 5, 2 | 9, 6 |
+| 8 | 8, 8 | 11, 2 | 5, 6 | 3, 4 | 12, 2 |
+| 9 | 4, 4 | 9, 0 | 7, 2 | 11, 4 | 10, 6 |
+| 10 | 6, 6 | 5, 4 | 9, 4 | 8, 8 | 12, 4 |
