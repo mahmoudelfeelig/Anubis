@@ -1,6 +1,3 @@
-# open-next
-.open-next/
-
 # Logs
 logs
 *.log
@@ -79,6 +76,7 @@ web_modules/
 
 # Next.js build output
 .next
+.open-next/
 out
 
 # Nuxt.js build / generate output
@@ -141,6 +139,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-# Local level walkthroughs
-solutions/*
-!solutions/.gitkeep
+# Public level solution notes
+!solutions/
+!solutions/*.md
+
+# Local profile uploads
+uploads/
+.data/
