@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, FormEvent, startTransition } from "react";
 import { solveForm } from "@/app/(anubis)/level/[slug]/actions";
 
-const AUDIO_PREF_KEY = "anubis.audio.state";
+const AUDIO_PREF_KEY = "elfeel.archive.audio.state";
 
 type LevelSafe = {
   slug: string;
@@ -219,45 +219,45 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
 
       <section className="submission">
         <header>
-          <h2 data-echo="Rite of entry">Rite of entry</h2>
+          <h2 data-echo="Submit answer">Submit answer</h2>
           <p>
-            The gate keeps two names. Offer them in the order carved on the walls. A wrong whisper echoes back.
+            Each level resolves to two plain values. Enter the account first, then the key.
           </p>
         </header>
         <form onSubmit={onSubmit} className="submission-form" suppressHydrationWarning>
-          <label htmlFor="sub-u">Username sigil</label>
+          <label htmlFor="sub-u">Account</label>
           <input
             id="sub-u"
             name="u"
             className="input submission-input"
-            placeholder="etched in static"
+            placeholder="first answer"
             autoComplete="off"
             suppressHydrationWarning
           />
-          <label htmlFor="sub-p">Password sigil</label>
+          <label htmlFor="sub-p">Key</label>
           <input
             id="sub-p"
             name="p"
             className="input submission-input"
             type="password"
-            placeholder="whisper in fragments"
+            placeholder="second answer"
             autoComplete="off"
             suppressHydrationWarning
           />
-          <button className="btn submission-btn" data-echo="Transmit">
-            Transmit
+          <button className="btn submission-btn" data-echo="Submit">
+            Submit
           </button>
         </form>
         {msg && (
           <p className={`submission-result ${msg === "ok" ? "success" : "error"}`}>
-            {msg === "ok" ? "The door shifts." : "The ward rejects you."}
+            {msg === "ok" ? "Accepted." : "Not quite."}
           </p>
         )}
       </section>
 
       <audio
         ref={audioRef}
-        src={level.audio ? `/levels/${level.slug}/${level.audio}` : "/media/anubis_loop.mp3"}
+        src={level.audio ? `/levels/${level.slug}/${level.audio}` : "/media/archive_loop.mp3"}
         preload="auto"
         autoPlay
         aria-hidden="true"

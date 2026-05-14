@@ -6,7 +6,7 @@ import { getDb } from '@/lib/db';
 import { getLevel } from '@/lib/levels';
 import { getSessionUser } from '@/lib/session';
 import { updatePfp as doUpdatePfp, changePassword as doChangePassword, logout } from './profile-actions';
-import { avatarUrl } from '@/lib/storage-cloudinary';
+import { avatarUrl } from '@/lib/storage';
 import Avatar from '@/components/Avatar';
 
 async function getProfile(username: string) {
@@ -63,7 +63,7 @@ export default async function Page({
     <div className="grid cols-2">
       <section className="panel">
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <Avatar src={prof.pfp ? avatarUrl(prof.pfp, 72) : undefined} size={72} />
+          <Avatar src={prof.pfp ? avatarUrl(prof.pfp) : undefined} size={72} />
           <div>
             <h1>@{prof.username}</h1>
             <small>{prof.levels.length} clears</small>
@@ -87,10 +87,14 @@ export default async function Page({
             style={{ marginTop: 14 }}
           >
             <input type="hidden" name="userId" value={prof.id} />
-            <label htmlFor="pfp">Profile image (png/jpg/gif/webp, ~1MB)</label>
-            <input id="pfp" className="input" name="pfp" type="file" accept="image/*" suppressHydrationWarning />
-            <button className="btn" data-echo="Confirm">
-              Confirm
+            <label className="file-drop" htmlFor="pfp">
+              <span className="file-drop__kicker">Profile image</span>
+              <span className="file-drop__main">Select PNG, JPG, WEBP, or GIF</span>
+              <span className="file-drop__meta">Stored on the Hetzner server. Max 4 MB.</span>
+            </label>
+            <input id="pfp" className="sr-only-file" name="pfp" type="file" accept="image/png,image/jpeg,image/gif,image/webp" suppressHydrationWarning />
+            <button className="btn" data-echo="Upload">
+              Upload
             </button>
           </form>
         )}

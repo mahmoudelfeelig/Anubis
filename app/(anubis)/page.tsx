@@ -7,16 +7,16 @@ import { getUserProgressSummary } from '@/lib/progress';
 
 const featureSignals = [
   {
-    title: 'Signal scrubbing',
-    body: 'Each level hides corrupted prompts, console artifacts, and tampered media assets. Reconstruct the payload before the static settles.',
+    title: 'Recovered media',
+    body: 'Every level is a damaged page, label, manifest, transcript, or recording. The answer is in how the evidence behaves.',
   },
   {
-    title: 'Sequential locks',
-    body: 'Progression is linear. Break one seal to expose the next—no skips, no spoilers, no shortcuts.',
+    title: 'Linear archive',
+    body: 'Progression is locked to the tape order. Clear the current file before the archive releases the next one.',
   },
   {
-    title: 'Shared intelligence',
-    body: 'Leaderboard pulses update by the minute so every operative can watch fresh clears cascade across the grid.',
+    title: 'Quiet records',
+    body: 'The scoreboard is only a record of clears. The site keeps the route out of view.',
   },
 ];
 
@@ -36,10 +36,10 @@ export default async function Page() {
     <div className="home-grid">
       <section className="panel hero-panel">
         <div className="hero-copy">
-          <h1 data-echo="Anubis protocol">Anubis protocol</h1>
+          <h1 data-echo="Elfeel archive">Elfeel archive</h1>
           <p>
-            Inspect corrupted transmissions, decode embedded credentials, and advance through the necropolis of
-            terminals. Each solved anomaly unlocks the next ritual in the stack.
+            A browser riddle built from recovered analog media. Read the page, question the file, and advance only when
+            the evidence gives you two plain words.
           </p>
           {!user ? (
             <div className="hero-actions">
@@ -63,7 +63,7 @@ export default async function Page() {
       </section>
 
       <section className="panel intel-panel">
-        <h2 data-echo="Operational brief">Operational brief</h2>
+        <h2 data-echo="Viewing notes">Viewing notes</h2>
         <div className="intel-cards">
           {featureSignals.map(({ title, body }) => (
             <article key={title} className="intel-card">
@@ -74,30 +74,30 @@ export default async function Page() {
         </div>
         <p className="intel-note">
           <small>
-            Tip: open <span className="kbd">DevTools</span>, scrub <span className="kbd">Network</span>, and watch for
-            unguarded redirects. Assets whisper as loud as prompts.
+            Not every clue is visible at first glance. Titles, source, attachments, rhythm, wording, and layout can all
+            matter.
           </small>
         </p>
       </section>
 
       <section className="panel feed-panel">
-        <h2 data-echo="System status">System status</h2>
+        <h2 data-echo="Archive status">Archive status</h2>
         <div className="feed-grid">
           <div className="feed-callout">
-            <h3>Activity pulses</h3>
+            <h3>Clear log</h3>
             <p>
-              Leaderboards refresh every minute so your handle flares the moment you clear an anomaly. Sort, search, and
-              chase every operative in real-time.
+              The leaderboard tracks cleared files without exposing the route. Sort the record, then get back to the
+              tape.
             </p>
             <Link className="btn" href="/leaderboard" data-echo="Leaderboard">
               Check the leaderboard
             </Link>
           </div>
           <div className="feed-callout">
-            <h3>Recovered dossiers</h3>
+            <h3>File shelf</h3>
             <p>
-              Every solved ritual archives its media, hints, and credentials. Revisit past signals, replay them with
-              friends, or audit your deduction trail.
+              Revisit unlocked files as evidence, not tutorials. The archive keeps the objects; the deductions stay
+              yours.
             </p>
             <Link className="btn" href="/levels" data-echo="Recovered dossiers">
               Revisit your clears

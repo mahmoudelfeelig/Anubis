@@ -4,12 +4,16 @@ import Nav from "@/components/Nav";
 import HorrorFX from "@/components/HorrorFX";
 
 export const metadata = {
-  title: "Anubis",
+  title: "Elfeel Archive",
   description: "Inspect. Decode. Advance.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/elephant-logo.png",
+  },
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const year = new Date().getFullYear();
   return (
     <html lang="en" data-theme="dark">
       <body className="crt-root" data-theme="dark">
@@ -30,7 +34,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </main>
         <footer>
           <div className="container footer-bar">
-            <small>© {year} Anubis</small>
+            <small>© mahmoud elfeel 2026</small>
           </div>
         </footer>
       </body>

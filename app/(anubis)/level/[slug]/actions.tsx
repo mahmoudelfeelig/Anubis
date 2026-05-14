@@ -1,25 +1,13 @@
 'use server';
 
-import { scrypt } from '@noble/hashes/scrypt';
-import { hexToBytes, utf8ToBytes } from '@noble/hashes/utils';
+import { scryptSync, timingSafeEqual } from 'node:crypto';
 import { getLevel } from '@/lib/levels';
 import { normalize } from '@/lib/normalize';
 import { markCleared } from '@/lib/progress';
 import { getSessionUser } from '@/lib/session';
 
 function deriveKey(input: string, saltHex: string) {
-  const password = utf8ToBytes(input);
-  const salt = hexToBytes(saltHex);
-  return scrypt(password, salt, { N: 2 ** 14, r: 8, p: 1, dkLen: 32 });
-}
-
-function constantTimeEquals(a: Uint8Array, b: Uint8Array) {
-  if (a.length !== b.length) return false;
-  let diff = 0;
-  for (let i = 0; i < a.length; i += 1) {
-    diff |= a[i]! ^ b[i]!;
-  }
-  return diff === 0;
+  return scryptSync(input, Buffer.from(saltHex, 'hex'), 32);
 }
 
 export async function solveForm(slug: string, uRaw: string, pRaw: string) {
@@ -32,9 +20,13 @@ export async function solveForm(slug: string, uRaw: string, pRaw: string) {
   const nP = normalize(pRaw);
   const uKey = deriveKey(nU, lvl.saltHex);
   const pKey = deriveKey(nP, lvl.saltHex);
+  const expectedUser = Buffer.from(lvl.userHashHex ?? '', 'hex');
+  const expectedPass = Buffer.from(lvl.passHashHex ?? '', 'hex');
   const ok =
-    constantTimeEquals(uKey, hexToBytes(lvl.userHashHex ?? '')) &&
-    constantTimeEquals(pKey, hexToBytes(lvl.passHashHex ?? ''));
+    expectedUser.length === uKey.length &&
+    expectedPass.length === pKey.length &&
+    timingSafeEqual(uKey, expectedUser) &&
+    timingSafeEqual(pKey, expectedPass);
   if (ok) await markCleared(user.id, slug);
   return { ok };
 }

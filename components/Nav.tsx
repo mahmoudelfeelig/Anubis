@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getSessionUser } from "@/lib/session";
 import { getUserProgressSummary } from "@/lib/progress";
-import ThemeToggle from "./ThemeToggle";
 
 export default async function Nav() {
   const user = await getSessionUser();
@@ -21,10 +21,8 @@ export default async function Nav() {
       <div className="nav-track">
         <div className="nav-brand">
           <Link href="/" className="brand" title="Home">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#b0142f" d="M5 21l5-3 1-5-5-5 2-2 5 4 3-1 3-5 2 1-1 6-3 4 1 5-4 1-4 2z" />
-            </svg>
-            <b data-echo="Anubis">Anubis</b>
+            <Image src="/elephant-logo.png" alt="" width={32} height={32} priority />
+            <b data-echo="Elfeel Archive">Elfeel Archive</b>
           </Link>
         </div>
 
@@ -37,7 +35,6 @@ export default async function Nav() {
         </div>
 
         <div className="nav-actions">
-          <ThemeToggle />
           {prog?.nextSlug && (
             <Link
               className="btn nav-last"
@@ -64,12 +61,9 @@ export default async function Nav() {
         </summary>
         <div className="nav-mobile-body">
           <Link href="/" className="nav-mobile-brand" title="Home">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#b0142f" d="M5 21l5-3 1-5-5-5 2-2 5 4 3-1 3-5 2 1-1 6-3 4 1 5-4 1-4 2z" />
-            </svg>
-            <span data-echo="Anubis">Anubis</span>
+            <Image src="/elephant-logo.png" alt="" width={28} height={28} priority />
+            <span data-echo="Elfeel Archive">Elfeel Archive</span>
           </Link>
-          <ThemeToggle className="nav-theme--mobile" />
           {baseLinks.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
