@@ -163,11 +163,11 @@ describe('getSessionUser', () => {
       userId: 'u-1',
       expiresAt: new Date(Date.now() + 1000),
     });
-    dbControls.users.findOne.mockResolvedValue({ _id: 'u-1', username: 'scarab' });
+    dbControls.users.findOne.mockResolvedValue({ _id: 'u-1', username: 'archivist' });
 
     await expect(session.getSessionUser()).resolves.toEqual({
       id: 'u-1',
-      username: 'scarab',
+      username: 'archivist',
     });
   });
 });

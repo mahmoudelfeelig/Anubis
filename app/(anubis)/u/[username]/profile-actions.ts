@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { getDb } from '@/lib/db';
 import { verifyPwd, hashPwd } from '@/lib/auth';
 import { getSessionUser, destroySession } from '@/lib/session';
-import { saveUserAvatarCloudinary, destroyAsset } from '@/lib/storage-cloudinary';
+import { destroyAsset, saveUserAvatar } from '@/lib/storage';
 import { toUserId } from '@/lib/mongo-ids';
 import type { UserDoc } from '@/lib/models';
 
@@ -29,7 +29,7 @@ export async function updatePfp(form: FormData) {
     const current = await users.findOne({ _id: toUserId(userId) }, { projection: { pfp: 1 } });
     const prevPublicId = current?.pfp || '';
 
-    const newPublicId = await saveUserAvatarCloudinary(userId, {
+    const newPublicId = await saveUserAvatar(userId, {
       name: uploadName,
       data: buffer,
       type: file.type || 'application/octet-stream',
@@ -79,4 +79,3 @@ export async function logout() {
   await destroySession();
   redirect('/');
 }
-

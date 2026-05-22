@@ -22,9 +22,9 @@ export interface SessionDoc {
 
 export interface FileDoc {
   _id?: any;
-  userId: string;         // or ObjectId
-  key: string;            // Cloudinary public_id
-  url: string;            // can be empty; we build at runtime
+  userId: string;
+  key: string;
+  url: string;
   size: number;
   type: 'avatar'|'other';
   createdAt: Date;

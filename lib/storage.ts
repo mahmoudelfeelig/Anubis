@@ -1,1 +1,1 @@
-export * from './storage-cloudinary';
+export * from './storage-local';
