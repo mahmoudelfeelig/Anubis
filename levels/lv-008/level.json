@@ -1,26 +1,20 @@
 {
   "slug": "lv-008",
   "number": 8,
-  "title": "Cicada Chorus",
+  "title": "County Crawl",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "dd1056a194e2e94f76a6d5fa8a2140db",
-  "userHashHex": "9347ccd37d0ef50864f245163f50aaf6fd81454c50f78601c7dfecb847489354",
-  "passHashHex": "ca12b6e1f09c976b70d7c7d344ba51e7f1fcc92521dcef8de4117bb44e5a6179",
-  "hintsConsole": [
-    "Ignore the numbers—they simply keep the measures in order.",
-    "Read the quoted note initials straight through."
-  ],
-  "hintsSource": [
-    "The prime line spells the username once you collect the initials.",
-    "The Fibonacci line, read in order, spells the password."
-  ],
+  "saltHex": "163939c44e0439d8c268f20d4474c60c",
+  "userHashHex": "a43632598e2fce0a1e1e3b27e373124917a7ccdc033ceeebf8746a9ea7a476d3",
+  "passHashHex": "d3510109e3ca08c6da89d1d8ffd54461123e2aa677c75424d573a0ba8d62c0e6",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-cicada-chorus",
+    "className": "level-county-crawl",
     "cssVars": {
-      "--accent": "#f6ff7a",
-      "--bg": "#0a0b02"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

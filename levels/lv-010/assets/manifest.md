@@ -1,5 +1,5 @@
-# Asset Manifest - Hyperglyph Maze
+# Asset Manifest - Tower Block
 
-All coordinate data required for decoding is printed inside the prompt. No SVGs or notebooks are necessary.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `polargrid`, password: `polybiuscode`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-010.md.

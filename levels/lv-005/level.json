@@ -1,26 +1,20 @@
 {
   "slug": "lv-005",
   "number": 5,
-  "title": "Echo Specter",
+  "title": "After-Hours Drawer",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "d4be9cbf95145c1919e31e677043a6ab",
-  "userHashHex": "8166a5c6a01fac659550434aa34cd2c87f594a5e0b102ccddaf9e2dc3659a649",
-  "passHashHex": "6834fe4700a49d0293587e87effda39064d0508eb43b52f62939f46832b66cc4",
-  "hintsConsole": [
-    "Treat each offset as A1Z26 starting from concert A.",
-    "Both lists resolve directly to letters—no extra maths needed."
-  ],
-  "hintsSource": [
-    "Translate the first column to reach the username.",
-    "Translate the second column, in order, for the password."
-  ],
+  "saltHex": "7761940d3bf04f779ae494bcb1f76d13",
+  "userHashHex": "e1f153352c3e30edebda2ed04fc6bc410d3c665bbafeb13e819062a2d94e4efb",
+  "passHashHex": "cdf56b8136591611ce5bba5e2eadf8a02344247ebd2e39e34c0e23814367c7c7",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-echo-specter",
+    "className": "level-after-hours-drawer",
     "cssVars": {
-      "--accent": "#ff5d9f",
-      "--bg": "#120410"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

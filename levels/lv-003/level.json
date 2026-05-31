@@ -1,26 +1,20 @@
 {
   "slug": "lv-003",
   "number": 3,
-  "title": "Prism Filter",
+  "title": "Rejected Track",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "fdf944e4c00d7e6b0106cc0a55d97859",
-  "userHashHex": "1e32062240b36a831030e6045557d6f3f62c6a64b89a22a0ca51fc658478848b",
-  "passHashHex": "4aeffa33d58e3d45973fc562a706aecf9fa002d10e24f2288dfbc9081b7d97a8",
-  "hintsConsole": [
-    "Ignore everything outside the brackets—only those letters matter.",
-    "Read each set straight through; no reordering is required."
-  ],
-  "hintsSource": [
-    "The red line spells the username, the blue line spells the password.",
-    "Combine the bracketed letters exactly as they appear."
-  ],
+  "saltHex": "dbfe5a1fdc714c1ef71e707d62755835",
+  "userHashHex": "2a7e052b72a4529f2b12b4467694c186aa26fca0bed5216005833ecd3b84b4a5",
+  "passHashHex": "4a1667ffd932a53539f7b224e0239ada4ab85de92b5633d7195193537560f107",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-prism-filter",
+    "className": "level-rejected-track",
     "cssVars": {
-      "--accent": "#3fe0ff",
-      "--bg": "#031a24"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

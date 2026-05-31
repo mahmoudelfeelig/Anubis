@@ -1,26 +1,20 @@
 {
   "slug": "lv-006",
   "number": 6,
-  "title": "Palimpsest Ledger",
+  "title": "Carrier Room",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "943fac6cf8752792ed892fab72311a0b",
-  "userHashHex": "106bac9489d9d8860da70bcb4de5628e1f97bab971f623d75265862b16b3b5d9",
-  "passHashHex": "1180e52b68c4c532ecf78c6237f84cd2b9c4d5c8342e6575b0fe86f1cbad6b63",
-  "hintsConsole": [
-    "Treat the slate line as Vigenere ciphertext.",
-    "PALIMPSEST is the key the curator keeps repeating."
-  ],
-  "hintsSource": [
-    "Preserve the punctuation bar while you decrypt.",
-    "Left of the bar is the username, right is the password."
-  ],
+  "saltHex": "49db334fd8fabd2e1dd3b8daabacac1e",
+  "userHashHex": "9408cfa0de7d725c3ab0ee8a41bd13d471f52f433b754d9e6db1ed9ad5e72def",
+  "passHashHex": "72fcf3b56d7d4d48b077a4536a1d222bef0271c122382ceeec361cb037a639e0",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-palimpsest-ledger",
+    "className": "level-carrier-room",
     "cssVars": {
-      "--accent": "#d4a55d",
-      "--bg": "#111006"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

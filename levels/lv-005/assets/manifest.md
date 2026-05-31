@@ -1,5 +1,5 @@
-# Asset Manifest - Echo Specter
+# Asset Manifest - After-Hours Drawer
 
-The numerical offsets in the prompt supply the complete solving path; no separate audio or reference assets are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `timbrefinder`, password: `harmoniclock`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-005.md.

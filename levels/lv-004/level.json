@@ -1,26 +1,20 @@
 {
   "slug": "lv-004",
   "number": 4,
-  "title": "Beacon Pulse",
+  "title": "Lobby Splice",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "acf22b89e16ca22f85bddf84cb7b74fb",
-  "userHashHex": "e01bb78f87bc2b750e4836127d041f3f6e632e4f613019cbf3d08e3561815290",
-  "passHashHex": "578578ea64ef3d5a9d8f8860316c856afd976717fe0a2542dfe15505fcddd860",
-  "hintsConsole": [
-    "The flashing cadence is plain Morse; the spaces already separate letters.",
-    "The NATO words give you one letter apiece when you take their initials."
-  ],
-  "hintsSource": [
-    "Decode the Morse to get the username in full.",
-    "Read the phonetic alphabet initials straight through for the password."
-  ],
+  "saltHex": "f487375653daed7a2eda7b6350b0ebde",
+  "userHashHex": "7b6099d8bc8fa50da19b67d355b9e3492b8b821ac49334fa8e41c87fd4263f8f",
+  "passHashHex": "de57650163a9d2ef2e6b325da5be68561c783c2b273a0490c4763e3d007506cc",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-beacon-pulse",
+    "className": "level-lobby-cut",
     "cssVars": {
-      "--accent": "#ffbd4f",
-      "--bg": "#1b0f03"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

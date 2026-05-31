@@ -1,26 +1,20 @@
 {
   "slug": "lv-009",
   "number": 9,
-  "title": "Null Proxy",
+  "title": "Duplicate Book",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "73e0aa494db6459aaa9fda0ef131cc15",
-  "userHashHex": "18e391bc8309c4f7454f6803a99f91a83debc755840e871c2441d6ad4500be22",
-  "passHashHex": "d532e513047b15c09598bfac722e82e2c15222c04aab2e0f1b58a7c85e03efdd",
-  "hintsConsole": [
-    "Convert both streams from hex and XOR them byte for byte.",
-    "The recovered ASCII begins with an HTTP method."
-  ],
-  "hintsSource": [
-    "You should see a path of the form `/username/password`.",
-    "Split the path by the slash to separate username and password."
-  ],
+  "saltHex": "bd51e2e8ea3e68f4eae6cac2fb4cc697",
+  "userHashHex": "4f40cf505ffe1ffb0825c478a1fa78d52acc9c27fd319a2f0643a63be7d17f6c",
+  "passHashHex": "49e938655dd2c90c9f4fad73e12a95df84689ec180f9e9e004e5bf106cc365c2",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-null-proxy",
+    "className": "level-duplicate-book",
     "cssVars": {
-      "--accent": "#9effc7",
-      "--bg": "#03180d"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

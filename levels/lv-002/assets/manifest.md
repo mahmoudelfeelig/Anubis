@@ -1,5 +1,5 @@
-# Asset Manifest - Commit to Memory
+# Asset Manifest - Contact Omission
 
-All necessary bytes are shown in the level prompt; no supplemental assets are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `rotglyph`, password: `tracevector`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-002.md.

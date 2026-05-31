@@ -1,5 +1,5 @@
-# Asset Manifest - Prism Filter
+# Asset Manifest - Rejected Track
 
-All calibration clues are delivered inside the prompt; no external assets are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `prismcode`, password: `bluechannel`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-003.md.

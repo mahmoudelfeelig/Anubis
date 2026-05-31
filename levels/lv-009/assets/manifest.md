@@ -1,5 +1,5 @@
-# Asset Manifest - Null Proxy
+# Asset Manifest - Duplicate Book
 
-Both packet fragments are embedded in the prompt; no external captures are necessary.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `dnsghost`, password: `xorpath`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-009.md.

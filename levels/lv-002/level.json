@@ -1,26 +1,20 @@
 {
   "slug": "lv-002",
   "number": 2,
-  "title": "Commit to Memory",
+  "title": "Contact Omission",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "c6f977e831b8a1eb361864b0f1c4abe7",
-  "userHashHex": "7fd668091adb50608f737f589f77a4da6aeb96a1b9ec379ddb10731921f1da2b",
-  "passHashHex": "961dcb86e11ca8db431f24fb53fea37b7c391e8cdc5d9b9a47eb0ec064e575c7",
-  "hintsConsole": [
-    "Treat the whisper with ROT47; the legacy helper is its own inverse.",
-    "The colon stays put after decoding—split the line there."
-  ],
-  "hintsSource": [
-    "No tests required anymore: apply ROT47 to the entire string and stop.",
-    "Username lives before the colon, password after."
-  ],
+  "saltHex": "79f4d38e0a58d918b65218d1844d3b96",
+  "userHashHex": "dc449575b8e288ba709c6aa13aa1d731df572fc3e8446fe4f47255e837ea9d2b",
+  "passHashHex": "9a31c66bdae97d32769572e1db18a7717fe8790faaa0e90f3cbff27ab0cd9ca2",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-commit-memory",
+    "className": "level-contact-omission",
     "cssVars": {
-      "--accent": "#b879ff",
-      "--bg": "#0d071b"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

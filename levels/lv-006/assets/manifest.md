@@ -1,5 +1,5 @@
-# Asset Manifest - Palimpsest Ledger
+# Asset Manifest - Carrier Room
 
-All cipher material is embedded in the prompt; no supplementary scans are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `vellumcipher`, password: `acrostickey`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-006.md.

@@ -1,26 +1,20 @@
 {
   "slug": "lv-007",
   "number": 7,
-  "title": "Kryptex Helix",
+  "title": "Routing Slip",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "3ad54b32a21980f6f3b95f0fa3f2ac87",
-  "userHashHex": "88b3d13a301f2d2e88c339b477fed621aac2b70cb319c94aab3e4cc69c784bc5",
-  "passHashHex": "ddbda3f41f0db23e9fffffa5c327571337e46e6e3911cfe2b57fb9871085f80f",
-  "hintsConsole": [
-    "Start at the top-left of the outer grid and walk clockwise along the spiral.",
-    "Once you reach the center, drop to the lattice and read each row from left to right."
-  ],
-  "hintsSource": [
-    "Spiral traversal of the outer casing spells the username.",
-    "The inner lattice rows, read top to bottom, reveal the password."
-  ],
+  "saltHex": "1f39a309820c492dadc22091173d7838",
+  "userHashHex": "1d8d012c44845f8ae98df47a030f45dcd8bf93ae6d78f23db472d0d2a27eeff8",
+  "passHashHex": "9b90511fa9f540f32b13b7d3e655d0880a8b99e3ec0210e60ee14a3baa6678cc",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-kryptex-helix",
+    "className": "level-routing-slip",
     "cssVars": {
-      "--accent": "#6ad1ff",
-      "--bg": "#021520"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

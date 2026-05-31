@@ -1,5 +1,5 @@
-# Asset Manifest - Terminal Whisper
+# Asset Manifest - Sign-Off Copy
 
-No external assets are required. The telemetry needed to recover the credentials is embedded directly in the level prompt.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `stackzero`, password: `hollowport`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-001.md.

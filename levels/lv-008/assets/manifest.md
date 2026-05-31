@@ -1,5 +1,5 @@
-# Asset Manifest - Cicada Chorus
+# Asset Manifest - County Crawl
 
-The conductor’s annotations in the prompt are all you need; no audio stems or charts are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `primechorus`, password: `fibonacciclock`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-008.md.

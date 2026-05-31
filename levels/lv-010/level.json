@@ -1,26 +1,20 @@
 {
   "slug": "lv-010",
   "number": 10,
-  "title": "Hyperglyph Maze",
+  "title": "Tower Block",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "a4a80e48f16fabb54f978079214fb951",
-  "userHashHex": "5ae3f5e9c5559f2b7b3ad5cdd78db002f95b63b56ff74c4d9287cbf92e5b3066",
-  "passHashHex": "fca3b32cd54362e48a3e387f7a6c694964f3e4df2c5835f368faefff35406fb6",
-  "hintsConsole": [
-    "Use a standard Polybius square (row/column) to interpret the pairs.",
-    "Treat I/J as the same cell if you keep a 5×5 square."
-  ],
-  "hintsSource": [
-    "The outer sweep coordinates spell the username.",
-    "The inner sweep coordinates spell the password."
-  ],
+  "saltHex": "a2d50cf3f7cd87f16e7a85b47348328a",
+  "userHashHex": "8a8ef65a2789602436d4841ed88f79af5f5dd9d6d74569a850e23282f969b5cc",
+  "passHashHex": "bc3b95ef982b22de8f5c79f256ef29399535ca7ffc86c09411695999c4212525",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-hyperglyph-maze",
+    "className": "level-tower-block",
     "cssVars": {
-      "--accent": "#ff8cf9",
-      "--bg": "#1a0217"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

@@ -1,5 +1,5 @@
-# Asset Manifest - Beacon Pulse
+# Asset Manifest - Lobby Cut
 
-Every clue required to decode the credentials is embedded directly in the prompt. No supplemental assets are needed.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `signalflare`, password: `harborbay`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-004.md.

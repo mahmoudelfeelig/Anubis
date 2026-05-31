@@ -1,5 +1,5 @@
-# Asset Manifest - Kryptex Helix
+# Asset Manifest - Routing Slip
 
-The coil sketches in the prompt contain everything required. No additional references are necessary.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `spiralkey`, password: `ringcipher`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-007.md.
