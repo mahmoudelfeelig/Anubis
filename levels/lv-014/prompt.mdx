@@ -1,33 +1,14 @@
-### Residue Cartography
+### Parking Still
 
-The surveyor encoded the username as a chain of waypoint constraints. Each row names a lattice slice; recover the smallest non-negative coordinate that obeys both congruences, then map `0 → a`, `1 → b`, and so on.
+camera 2 / barrier arm / wet frame
 
-| Slice | mod α | ≡ | mod β | ≡ |
-| ----- | ----- | - | ----- | - |
-| A | 7 | 17 | 5 | 32 |
-| B | 8 | 4 | 7 | 11 |
-| C | 9 | 36 | 4 | 26 |
-| D | 11 | 30 | 5 | 23 |
-| E | 13 | 3 | 7 | 17 |
-| F | 7 | 27 | 9 | 38 |
-| G | 8 | 28 | 5 | 9 |
-| H | 9 | 30 | 5 | 22 |
-| I | 10 | 30 | 3 | 0 |
-| J | 11 | 26 | 6 | 33 |
+~~~txt
+N  north gate
+U  upper bay
+M  meter cabinet
+B  blue sedan
+E  empty space
+R  rear lamp
 
-The companion password hides inside a totient pulse log. Each sample lists the raw cycle count `n`. Compute its Euler totient φ(n), add the original `n`, reduce the sum modulo 26, and map the result with the same alphabet.
-
-| Sample | n |
-| ------ | - |
-| 1 | 23 |
-| 2 | 10 |
-| 3 | 23 |
-| 4 | 6 |
-| 5 | 38 |
-| 6 | 7 |
-| 7 | 23 |
-| 8 | 9 |
-| 9 | 14 |
-| 10 | 19 |
-| 11 | 50 |
-| 12 | 38 |
+16 12 01 20 05
+~~~

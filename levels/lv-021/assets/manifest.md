@@ -1,5 +1,5 @@
-# Asset Manifest - Phase Vector
+# Asset Manifest - Camp Transcript
 
-All phase and intensity data are embedded above; no additional files are provided.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `phasevector`, password: `interferencekey`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-021.md.

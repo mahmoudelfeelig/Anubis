@@ -1,5 +1,5 @@
-# Asset Manifest - Automata Flux
+# Asset Manifest - Closing Sheet
 
-Transition table and bitstream are provided inline. No other assets exist.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `automataflux`, password: `statecipher`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-020.md.

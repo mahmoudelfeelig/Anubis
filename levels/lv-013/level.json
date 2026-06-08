@@ -1,24 +1,20 @@
 {
   "slug": "lv-013",
   "number": 13,
-  "title": "Flux Gallery",
+  "title": "Overlay Sheet",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "951cfd43b21fd88f2c07985f38fa4320",
-  "userHashHex": "097b94e1007c57e6cbb943754c5f0a1b004af0ba6d0b011b869ea35f7d47ac5f",
-  "passHashHex": "7ece0b7e1883b494b0f940007562f7b470841dcfc738b5bd4a1ff57ae1ec7a2a",
-  "hintsConsole": [
-    "Each block is a closed rectangular volume—think Divergence Theorem."
-  ],
-  "hintsSource": [
-    "Integrate the divergence to get the scalars, then map 0→a."
-  ],
+  "saltHex": "6b652c6e5a7e7bc21441dd4c260b815f",
+  "userHashHex": "fe8d561fbca257ed25586c4e75543f4335f4ae1e595c07b5f9ddb3693b3e7a50",
+  "passHashHex": "a633f95f2f4d3c4f31a3464f6ec4f2d01012db87ad141ea817ce117443eb4768",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-flux-gallery",
+    "className": "level-overlay-sheet",
     "cssVars": {
-      "--accent": "#6effc3",
-      "--bg": "#02130e"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

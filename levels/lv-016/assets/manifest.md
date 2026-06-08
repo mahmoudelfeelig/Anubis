@@ -1,5 +1,5 @@
-# Asset Manifest - Qubit Ledger
+# Asset Manifest - Harbor Worksheet
 
-Gate words and counter readings appear inline. No additional media accompanies this ledger.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `qubitledger`, password: `logicphoton`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-016.md.

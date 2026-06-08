@@ -1,5 +1,5 @@
-# Asset Manifest - Eigen Lattice
+# Asset Manifest - Sewing Tin
 
-All tensors and vectors appear directly inside the prompt. No external attachments exist.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `eigengrid`, password: `spectralnorm`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-012.md.

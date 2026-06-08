@@ -1,24 +1,20 @@
 {
   "slug": "lv-021",
   "number": 21,
-  "title": "Phase Vector",
+  "title": "Camp Transcript",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "6cd7a96d4b101a2f1ab09a84ace99d5f",
-  "userHashHex": "7ad6dd80386e768ffdd5c7ae3a334f709605cf9ef9a8bac619f27e84f6794531",
-  "passHashHex": "81e487008b0ea2825c17890c037ba94888867b568f7980d142047f3ed6cf55f4",
-  "hintsConsole": [
-    "Treat each angle as a unit phasor; sum in the complex plane."
-  ],
-  "hintsSource": [
-    "Use the provided intensities as scalar weights before extracting the argument."
-  ],
+  "saltHex": "ad176a56d95fe62a753096d983b032b0",
+  "userHashHex": "1d38ae7d88274bd2f78550d3e23b466a349600ff7f62a1a61037b3cc1c435828",
+  "passHashHex": "7db45a173c0f09b4383f97b50c999d980ea6ade68f845cf47768c3107d6e4099",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-phase-vector",
+    "className": "level-camp-transcript",
     "cssVars": {
-      "--accent": "#94fffa",
-      "--bg": "#00131e"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

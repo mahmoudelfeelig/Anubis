@@ -1,5 +1,5 @@
-# Asset Manifest - Graph Braid Loom
+# Asset Manifest - Directory Tear
 
-All prerequisite data and warp counts are present in the prompt. No supplementary diagrams accompany this level.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `graphbraid`, password: `parityloom`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-015.md.

@@ -1,24 +1,20 @@
 {
   "slug": "lv-020",
   "number": 20,
-  "title": "Automata Flux",
+  "title": "Closing Sheet",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "f0e1f98b046464e940846678116d2734",
-  "userHashHex": "f79a3f21b93b0a9061c51b041f0040fc61ded345c88846f3ec4914263892deef",
-  "passHashHex": "ce3ae9ba4be09f829713fcf27de0db9144670c87ef547ced7c7eab6e3d91516e",
-  "hintsConsole": [
-    "Treat the table as a deterministic automaton: one start state, binary alphabet."
-  ],
-  "hintsSource": [
-    "Record the edge emissions along the given bitstream."
-  ],
+  "saltHex": "4a2247bb617652a364851b40c2dd289b",
+  "userHashHex": "2adfa3b11ccb1839ac5d12eea6f32e65d68aa8b3c861ecfdc762dead2a02ff96",
+  "passHashHex": "65a0c3a5cfd865388f9d87a9669442569b96cabb3efe6f685a3952d3115138d8",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-automata-flux",
+    "className": "level-closing-sheet",
     "cssVars": {
-      "--accent": "#8fb5ff",
-      "--bg": "#030814"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

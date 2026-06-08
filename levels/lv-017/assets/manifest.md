@@ -1,5 +1,5 @@
-# Asset Manifest - Sequence Mirror
+# Asset Manifest - Receiver Log
 
-All numeric sequences are embedded above; no auxiliary files accompany this level.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `sequencemirror`, password: `palindromeroot`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-017.md.

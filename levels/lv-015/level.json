@@ -1,24 +1,20 @@
 {
   "slug": "lv-015",
   "number": 15,
-  "title": "Graph Braid Loom",
+  "title": "Directory Tear",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "b526955f8147bba02bbb264f584519b4",
-  "userHashHex": "8f5fc74f42e7248e722acc0856fd88c279067711226a8ad40d05a38bbafd1953",
-  "passHashHex": "3756c08d57e05aa61730ca9be0b072054c6e6f57770ac3f4f57c02f82796d97e",
-  "hintsConsole": [
-    "Resolve the braiding order strictly by prerequisites; no spool frees itself early."
-  ],
-  "hintsSource": [
-    "Each warp cell contributes the parity of its two counts."
-  ],
+  "saltHex": "d6a6dff673ada58ab5786aa08de2e347",
+  "userHashHex": "cccaca6f2bff1ef06fd12355c5176162441af7177f19ae5fcf7e9fb69e9d7c96",
+  "passHashHex": "784fdee8d913728da040c12ff5d1e33f4d6bb2d5b26e752f51366f817b089de0",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-graph-braid-loom",
+    "className": "level-directory-tear",
     "cssVars": {
-      "--accent": "#8cffae",
-      "--bg": "#04140a"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

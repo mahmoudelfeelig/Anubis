@@ -1,24 +1,20 @@
 {
   "slug": "lv-019",
   "number": 19,
-  "title": "Geodesic Trace",
+  "title": "Miniature Contact",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "754c5ad96fcbbb17e82710ad18e5dca4",
-  "userHashHex": "58caad8f93d50a98e591268d551a8886fbaba4442272a8dab4ab373466681150",
-  "passHashHex": "d4d2b0b73b7c16f0c88e230095900f0d36751387c5409d6c7d6b75b96acee700",
-  "hintsConsole": [
-    "Chord lengths use straight Euclidean distance."
-  ],
-  "hintsSource": [
-    "Angle in degrees = (arc / radius) × 180 / π."
-  ],
+  "saltHex": "798c13a028828c325734de2d26bed3db",
+  "userHashHex": "af61e319357a9f175bd0521a73a04b68779cde0fca83be14c889814ac86d74ab",
+  "passHashHex": "f6a131e09c03e8460f997ac2bf008c9c57d5ab678cdb33a46abda9c859d6ea29",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-geodesic-trace",
+    "className": "level-miniature-proof",
     "cssVars": {
-      "--accent": "#7cffd7",
-      "--bg": "#001510"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

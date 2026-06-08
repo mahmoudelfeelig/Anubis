@@ -1,5 +1,5 @@
-# Asset Manifest - Geodesic Trace
+# Asset Manifest - Miniature Proof
 
-Coordinate pairs and curvature data are embedded inline. No external geodesic maps are provided.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `geodesictrace`, password: `curvaturelock`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-019.md.

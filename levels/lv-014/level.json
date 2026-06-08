@@ -1,24 +1,20 @@
 {
   "slug": "lv-014",
   "number": 14,
-  "title": "Residue Cartography",
+  "title": "Parking Still",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "837748e4dde30cb40d166f51c02f16b1",
-  "userHashHex": "3debbefad8e7b985e0d87c805304b381e7ada36db1604df678c6efed5585744f",
-  "passHashHex": "763459ec895420f2348780338b212f434b3015a782346dd3f24cedd681f268a2",
-  "hintsConsole": [
-    "Find the least non-negative waypoint that satisfies both congruences."
-  ],
-  "hintsSource": [
-    "Totient pulses fold back after you add the raw sample count."
-  ],
+  "saltHex": "0f3935c6b8bf11704d54a2670c362f6b",
+  "userHashHex": "526539f37f76a320cbb7c71e2660648f8423c0ed3e609d37b5fc237b0ba39377",
+  "passHashHex": "761a1f31f5491df7b78600307575763804124fe87ae4a860c637b813a2256792",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-residue-cartography",
+    "className": "level-parking-still",
     "cssVars": {
-      "--accent": "#ff9c7b",
-      "--bg": "#170602"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

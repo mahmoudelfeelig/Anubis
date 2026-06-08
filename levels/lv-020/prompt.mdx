@@ -1,26 +1,17 @@
-### Automata Flux
+### Closing Sheet
 
-A maintenance script exported the transition table of a deterministic binary automaton used inside the flux analyzer. Each state carries a label, and every transition emits a character. The analyzer always starts at state `S0`, consumes bits left to right, and after each bit moves to the referenced state while emitting the listed symbol.
+security desk / gallery close
 
-| State | Label | on 0 → (state, emit) | on 1 → (state, emit) |
-| ----- | ----- | -------------------- | -------------------- |
-| S0 | a | (S0, `?`) | (S1, `s`) |
-| S1 | u | (S2, `t`) | (S1, `?`) |
-| S2 | t | (S2, `?`) | (S3, `a`) |
-| S3 | o | (S3, `?`) | (S4, `t`) |
-| S4 | m | (S5, `e`) | (S4, `?`) |
-| S5 | a | (S6, `c`) | (S5, `?`) |
-| S6 | t | (S6, `?`) | (S7, `i`) |
-| S7 | a | (S7, `?`) | (S8, `p`) |
-| S8 | f | (S8, `?`) | (S9, `h`) |
-| S9 | l | (S10, `e`) | (S9, `?`) |
-| S10 | u | (S10, `?`) | (S11, `r`) |
-| S11 | x | (S11, `?`) | (S11, `?`) |
+~~~txt
+M  main hall clear
+U  upper room dark
+S  south case locked
+E  east wing sealed
+U  utility closet checked
+M  motion alarm armed
 
-Feed the flux bitstream
-
-```
-10110011101
-```
-
-Simulate exactly. Record the label of the state you occupy **before** each transition (including the initial state) to recover the username. Record every emitted character along the path to obtain the password.
+01:06  alarm
+06:20  front door
+20:05  exit camera
+05:18  rear hall
+~~~

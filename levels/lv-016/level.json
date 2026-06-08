@@ -1,24 +1,20 @@
 {
   "slug": "lv-016",
   "number": 16,
-  "title": "Qubit Ledger",
+  "title": "Harbor Worksheet",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "ef7de278b25753fbc7130326606a1fe5",
-  "userHashHex": "1e0153aae11961565d298ed05d078b0ae30734d3a02feec9481efdc16ccbd877",
-  "passHashHex": "7ad004b84148fe8f45cc0878d66b0ded079c50fc3eb659a1fa72f8d20cfc0648",
-  "hintsConsole": [
-    "Treat H, S, X as base-3 digits, left to right."
-  ],
-  "hintsSource": [
-    "Photon differentials decode after one subtraction."
-  ],
+  "saltHex": "5b7948d43d5368712ab8843adc44f3a1",
+  "userHashHex": "5483533c88708faeef314ae29331f063c83fc0b3adc99483ec8b47106a715a6e",
+  "passHashHex": "dca9c9bc10b021aeec41d2274ee32ca0c6f12940ebf6d72ae788edf9c32cac71",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-qubit-ledger",
+    "className": "level-harbor-worksheet",
     "cssVars": {
-      "--accent": "#73f7ff",
-      "--bg": "#02192a"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

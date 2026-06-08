@@ -1,24 +1,20 @@
 {
   "slug": "lv-022",
   "number": 22,
-  "title": "Algorithm Forge",
+  "title": "Old Bookmark",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "2c591022879e63717a8ad559f8c0cd20",
-  "userHashHex": "78e7139a9927a7bf8e305ab12ef481b496d2eb208d413bd92312ee531b2e963e",
-  "passHashHex": "899917ad1d9f0ce24a8f36efdfd494669afaa5ec7a674301b2bc6217714cdff7",
-  "hintsConsole": [
-    "Mind the modulus at every step; the recurrence is 0-indexed."
-  ],
-  "hintsSource": [
-    "Reuse the computed dp table when mixing the taps."
-  ],
+  "saltHex": "ce2829afeeedd8fdf915eaf6c86aba73",
+  "userHashHex": "10a523c96de76c5fab1319cef129f6cc13eb71b07882021fd224fac78ae73fa4",
+  "passHashHex": "5d5cbdb5f5fd5200bcae8b93ba7469df4f83bd0f8b844f35109fa1a5915ce66e",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-algorithm-forge",
+    "className": "level-old-bookmark",
     "cssVars": {
-      "--accent": "#ffc1ff",
-      "--bg": "#140010"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

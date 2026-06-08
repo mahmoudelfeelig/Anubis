@@ -1,5 +1,5 @@
-# Asset Manifest - Algorithm Forge
+# Asset Manifest - Old Bookmark
 
-All recurrence coefficients are provided in the prompt. No external files are necessary.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `algorithmforge`, password: `bitcascade`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-022.md.

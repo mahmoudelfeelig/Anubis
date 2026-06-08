@@ -1,24 +1,20 @@
 {
   "slug": "lv-012",
   "number": 12,
-  "title": "Eigen Lattice",
+  "title": "Sewing Tin",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "2b09ead86174658b236428a53c978eba",
-  "userHashHex": "1a5fc7c5f5ef98442688a3999d94bdf7e39f3fb781d5dcb617f146efe05e2583",
-  "passHashHex": "dd922ada70b86bd79cbee181ed3352a02b9dfbbfa4149df316af9ded03e46ea1",
-  "hintsConsole": [
-    "Solve each column in isolation; the lattice core is 3×3."
-  ],
-  "hintsSource": [
-    "Flatten the solutions column by column and map 0→a."
-  ],
+  "saltHex": "dfa5cc31f54a843fabd2f95966bc265e",
+  "userHashHex": "c820d5b6a0b3f8e3aa7ef5c11284a7254978fb0629d978dca822d713d4a9c7c4",
+  "passHashHex": "eb783efa6ec6ebce07dd01bd0a03e7192abccebf4b71785bd0cbf18685997575",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-eigen-lattice",
+    "className": "level-sewing-tin",
     "cssVars": {
-      "--accent": "#9bddff",
-      "--bg": "#05020f"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

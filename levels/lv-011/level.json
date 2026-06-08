@@ -1,24 +1,20 @@
 {
   "slug": "lv-011",
   "number": 11,
-  "title": "Chronometric Vector",
+  "title": "Utility Canteen",
   "mode": "form",
   "kind": "custom",
   "mdx": "prompt.mdx",
-  "saltHex": "16c0f198a1d2956f8665371a3857e29c",
-  "userHashHex": "8cb9f506130b587718d4446fcb3373c7bec039a7ee82d7835cb7daa3031235f8",
-  "passHashHex": "3fe42d7fbd81af9481776f82504577c5a86f3a7978e45c7d3159a466744d72e5",
-  "hintsConsole": [
-    "Sort by the UTC-aligned tick, not the printed order."
-  ],
-  "hintsSource": [
-    "Offset hours become letters once you shift them twelve steps from UTC zero."
-  ],
+  "saltHex": "21ec07756487391b1cb92cc0e8bdf446",
+  "userHashHex": "08b7c07955ea59dbc14068cf5e4b90c2eea55bd7bfbcde6000af54279eb24224",
+  "passHashHex": "4a54582c6ed85739905e37a6bab3f3995376319c4e3beebe8ec3c03abf5cf4d7",
+  "hintsConsole": [],
+  "hintsSource": [],
   "theme": {
-    "className": "level-chronometric-vector",
+    "className": "level-utility-kitchen",
     "cssVars": {
-      "--accent": "#7bd7ff",
-      "--bg": "#040b17"
+      "--accent": "#c52237",
+      "--bg": "#050505"
     }
   }
 }

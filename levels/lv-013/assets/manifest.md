@@ -1,5 +1,5 @@
-# Asset Manifest - Flux Gallery
+# Asset Manifest - Overlay Sheet
 
-No supplementary diagrams or meshes were preserved. The prompt contains every field and region specification needed.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `fluxintegral`, password: `curlanchor`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-013.md.

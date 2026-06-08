@@ -1,5 +1,5 @@
-# Asset Manifest - Chronometric Vector
+# Asset Manifest - Utility Kitchen
 
-Every datum needed is embedded in the prompt. No external charts or media are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `chronokey`, password: `utcvector`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-011.md.

@@ -1,5 +1,5 @@
-# Asset Manifest - Residue Cartography
+# Asset Manifest - Parking Still
 
-All congruence data and pulse samples are embedded in the prompt. No auxiliary assets are required.
+This level is fully self-contained in prompt.mdx. No external binary assets are required.
 
-> Credential outcome -> username: `residuemap`, password: `totientpulse`
+The repository walkthrough for this level lives in ../../walkthroughs/lv-014.md.
