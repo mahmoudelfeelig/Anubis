@@ -1,0 +1,20 @@
+{
+  "slug": "lv-026",
+  "number": 26,
+  "title": "Release Copy",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "945b58bf8152bde58638900804fa84dd",
+  "userHashHex": "4fc28a5844d3a993373a493b527fbe009e82c3272aba47704af280edf7e7828f",
+  "passHashHex": "c0baf97565d059dd1f48d2a20c78ae3f16fa405fb7077df7ada4ee4e5b4e982d",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-release-copy",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

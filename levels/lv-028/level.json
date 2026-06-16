@@ -1,0 +1,20 @@
+{
+  "slug": "lv-028",
+  "number": 28,
+  "title": "Silent Carrier",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "cc3dd888a40a10629d9d8b250b59f516",
+  "userHashHex": "9b273931b60199410ccfe89fa8107e16cf079de72daab3a1712925c427960b72",
+  "passHashHex": "d3a880361dea8910ee1fcbdb5060676a4d5f69715c8084f83e5eb3537cbd53d5",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-silent-carrier",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

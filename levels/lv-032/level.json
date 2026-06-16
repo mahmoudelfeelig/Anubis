@@ -1,0 +1,20 @@
+{
+  "slug": "lv-032",
+  "number": 32,
+  "title": "Checkout Insert",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "6b59eb49975aac03f9d397be5a072af5",
+  "userHashHex": "f11080948bd786bbe22fe18347446e43ea7078110da3eabc8ab829d4d5199f1c",
+  "passHashHex": "9d35b87b0035cd6ca1ac2f10c076f19fc4119554ee87adcefb4144a1d11e4347",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-checkout-insert",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

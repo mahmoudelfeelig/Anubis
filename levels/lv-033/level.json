@@ -1,0 +1,20 @@
+{
+  "slug": "lv-033",
+  "number": 33,
+  "title": "Menu Cassette",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "9df22c1fa702980a9b366fe9adac4f58",
+  "userHashHex": "db000cefe445bdc4bae43028a9ca94417e3ca5f8054e7e314a2d80ad873f78c3",
+  "passHashHex": "2c789062a73e991d4fa30f797704ff3164fbef9ed9f788703af6c35e3a6497ee",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-menu-cassette",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

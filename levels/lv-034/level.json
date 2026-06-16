@@ -1,0 +1,20 @@
+{
+  "slug": "lv-034",
+  "number": 34,
+  "title": "Fifth Generation",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "0dcb95919fec541dd3e3ff3f23ad5ebd",
+  "userHashHex": "e946b216b55b761528a13b0d5c6e1032015110f732007f0e16a39858342e7ea5",
+  "passHashHex": "922952dbc8ccf05e73c7bac3df65dd4cdc19e3f70852ae12254c0078930170e6",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-fifth-generation",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

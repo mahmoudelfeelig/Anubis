@@ -1,0 +1,20 @@
+{
+  "slug": "lv-031",
+  "number": 31,
+  "title": "Take Seven",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "22f560a214e33d0b111bbf8ac0fe4fa1",
+  "userHashHex": "975f11a2d7bccfdab577c71ee3643240afe801f435e6bced672c984e5b73e33f",
+  "passHashHex": "3fcb10c66c46a8556c6744aaa6065bf89c0fd5a69106c813da3376cc219e1b5c",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-take-seven",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

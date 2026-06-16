@@ -1,0 +1,20 @@
+{
+  "slug": "lv-030",
+  "number": 30,
+  "title": "Load Sheet",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "a0ab22ec509297a28f10b2f0b3d7b3e9",
+  "userHashHex": "338de1b03dcbbad4643f090cb1bd4563d29c2169501ba45f4ab712e38916b37f",
+  "passHashHex": "e8a4e3bf66c8e40942ae77d713a0220e03f1ddfd7623433aaae50d91812fda72",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-load-ledger",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "lv-029",
+  "number": 29,
+  "title": "Envelope Proofs",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "bf57f60506a2dc1f63bd7df41cdd829b",
+  "userHashHex": "d58e24a46a062779a6fe2813974cc7f84da1c5ac4bcf4f4a5dc0ac25c87cf0a3",
+  "passHashHex": "061734336fb04342a5017caf4669279202b6f1e0905ebc849da5dd4e626e2bd5",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-envelope-proofs",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

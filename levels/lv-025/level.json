@@ -1,0 +1,20 @@
+{
+  "slug": "lv-025",
+  "number": 25,
+  "title": "Basement Plan",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "c37b954655cea60a881f8b3cdbb5c89d",
+  "userHashHex": "fd333bb389ceeac115fff1432a2d8e11c63fd3bb8e88fe01d277d8e0baf78bc7",
+  "passHashHex": "d2818d33bfa8356fa898854a12e3b86770bae635720ccf74f89c0159abf8b875",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-basement-plan",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

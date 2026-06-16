@@ -1,0 +1,20 @@
+{
+  "slug": "lv-027",
+  "number": 27,
+  "title": "Tower Plate",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "a409462785419173036efda9770b4099",
+  "userHashHex": "9087cfaa5a9969fc3a4565c93e9890240d1fa768ccd8c789111e282659cd5fbf",
+  "passHashHex": "e0cabf1c5263647e5bff11ee46400c9393e38880f73c4c26798bce393513e054",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-tower-plate",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

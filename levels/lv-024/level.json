@@ -1,0 +1,20 @@
+{
+  "slug": "lv-024",
+  "number": 24,
+  "title": "Burned Track",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "d536f263e31125e9d895da5aeebc9e7e",
+  "userHashHex": "7c5a8b45250d40e0bcdabc61c3d11d1319cd731462537ff0f60cb76b4f3838c1",
+  "passHashHex": "a5ca02aea245b6dc65fc99de78d4d293b5a98fa1c1ad9921d336911d8f0ff87a",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-burned-track",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

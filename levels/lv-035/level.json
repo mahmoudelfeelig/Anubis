@@ -1,0 +1,20 @@
+{
+  "slug": "lv-035",
+  "number": 35,
+  "title": "Before Dawn",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "903bfa7b598ac2da28359d2d3d1cd227",
+  "userHashHex": "cfeccd4b0d536c55704713cac642400f4b08bba70cc7e64c12f90b51a83fdd4f",
+  "passHashHex": "753e6ebed5eefb4d901408dd4ab2a8e1a392573d11d5b45b729f95b080a8d59b",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-bars-before-dawn",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

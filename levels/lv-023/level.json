@@ -1,0 +1,20 @@
+{
+  "slug": "lv-023",
+  "number": 23,
+  "title": "Deck Slip",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "6d9040132961628bed859f91582ce21d",
+  "userHashHex": "2aa6e430e997a8ac25da5e0e567227b65bf6649dceb86238e1d395667db1e6ef",
+  "passHashHex": "8f7f8184ab107bf53c1a02cb15e7daaf4ef7ebcf5ff7cad47af8457bb5bbbc09",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-counter-slip",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}
