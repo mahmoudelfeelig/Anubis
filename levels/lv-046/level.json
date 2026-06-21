@@ -1,0 +1,20 @@
+{
+  "slug": "lv-046",
+  "number": 46,
+  "title": "Reader Tray",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "572dfbc8e2c93c67610978ff1a245ed6",
+  "userHashHex": "c5265859a78ab8376c8a61115a62426392cfb7ff6e98cfcdbdf6f2a243e02fe7",
+  "passHashHex": "ef138a7f6fba796fdba294db00c45e58a2def80d1dde02e6d449e3cdc58ee74e",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-reader-tray",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

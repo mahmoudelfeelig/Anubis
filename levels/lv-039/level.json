@@ -1,0 +1,20 @@
+{
+  "slug": "lv-039",
+  "number": 39,
+  "title": "Glass Kiosk",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "50cba155cd8c367aa04afb75ade923c0",
+  "userHashHex": "eed81e58f3a17ca4f84a62e478fd0eb30fa62e5dd11ab9cd5e993c04682cfb5c",
+  "passHashHex": "7816b8b881daaa7ac57542730ab66722e1427e7c0dd58c7c36ff14f0b5671e54",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-glass-kiosk",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

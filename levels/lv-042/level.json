@@ -1,0 +1,20 @@
+{
+  "slug": "lv-042",
+  "number": 42,
+  "title": "Lower Margin",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "ccd2115a5277d8a31135624a874432c8",
+  "userHashHex": "a92d62c7814a010f74bbf5b555c4cb6d39ff4e4eb43930bb0fafba59e99dce4b",
+  "passHashHex": "25d2ec5b3a4c17d6f6911118ffbfaad3395bfee15874d6431013e4182d5759e1",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-lower-margin",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

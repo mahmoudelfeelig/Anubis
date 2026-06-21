@@ -1,0 +1,20 @@
+{
+  "slug": "lv-049",
+  "number": 49,
+  "title": "Utility Carbon",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "dcf2e16a9aa4bab6c71a87e0464b0b7b",
+  "userHashHex": "a7519f9dccacb2e6a5b1ddaf0eff730ae9eeeef22a2c9bff306ad36e12b663c7",
+  "passHashHex": "e746383440e26603a6126f913031cb6653f4afc6c50726b0bee9b12ebdf0c080",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-utility-carbon",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

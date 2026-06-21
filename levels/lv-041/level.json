@@ -1,0 +1,20 @@
+{
+  "slug": "lv-041",
+  "number": 41,
+  "title": "Morning Card",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "6085622681a529dddcb1eaef11d81634",
+  "userHashHex": "0c6f802332b76ac6fc0368dcb8cb2461479e98ee2765e13ebae8502869077c19",
+  "passHashHex": "7809daf074a6d81e6e4b90f31a473f424d6d1b04999c7df91f99deb2dc110e29",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-morning-pattern",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

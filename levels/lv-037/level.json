@@ -1,0 +1,20 @@
+{
+  "slug": "lv-037",
+  "number": 37,
+  "title": "Case Placard",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "e340460221908c8c557939a997c6c247",
+  "userHashHex": "ac52cdbeddb5254e1def5a26646726e1979dc44cf75eab90c4d83f0999e0b95c",
+  "passHashHex": "63692f157e9275051187479c2b74f27796859890bacf68b6aad8548502eefca0",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-case-placard",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

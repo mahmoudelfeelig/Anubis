@@ -1,0 +1,20 @@
+{
+  "slug": "lv-036",
+  "number": 36,
+  "title": "County Break",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "801cec47134281f4376f336bffb269d5",
+  "userHashHex": "0e5f078cfa4ebefa07eeae1f9e701aba7972e2578fb26cf9f2ecc6f7d9760d43",
+  "passHashHex": "67bba524c9aa9bd387196fc18b7fa9ec3906624be51b9c018f5d8c3eb624b1b1",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-county-alert",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

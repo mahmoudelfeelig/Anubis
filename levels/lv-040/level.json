@@ -1,0 +1,20 @@
+{
+  "slug": "lv-040",
+  "number": 40,
+  "title": "Operator Wall",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "7d6ce07b785efaf08ee845535e58823b",
+  "userHashHex": "4cc72f545d378d723f1095cece194d54243e75c2c58bb916af2c66b77bda95a8",
+  "passHashHex": "0b6c17b32c90d0b65f9131d6b4e30d5c39097256a3fbe98eb595861423de84b2",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-operator-wall",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

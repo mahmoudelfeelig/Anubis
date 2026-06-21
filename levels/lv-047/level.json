@@ -1,0 +1,20 @@
+{
+  "slug": "lv-047",
+  "number": 47,
+  "title": "Countertop Tape",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "2efa5acfcddd5964cadb514bfa2d5087",
+  "userHashHex": "8679d5388fab3a753b90c8472d7488559ac68c1e0fbc39c9506e46f16f1f90e5",
+  "passHashHex": "9fa5a5e949e39793701c007bd50786aac62f3c522f07c8e142470d39e223edac",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-countertop-tape",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "lv-048",
+  "number": 48,
+  "title": "Cork Board",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "f9069415b891b46adf2d372ee7e18d28",
+  "userHashHex": "48b140aaf5087344ac3d671119040e2a2df4d0d3268efaa864a7a846b3c11816",
+  "passHashHex": "3a9e1d6f824732ffa957cd9a6c75e53590685aaf616afedf197fc48f4686b8c3",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-cork-board",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "lv-050",
+  "number": 50,
+  "title": "Last Accession",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "0a1ad2f83e0b66913412939f6ab5f900",
+  "userHashHex": "9a0870c2d9940df7079fbe249084332906acbc975e624ad58c99540fe0a47a7f",
+  "passHashHex": "df77afaf762dd23dd89906c19b80bac26082aa22f763af3ba653cd75c72e80b3",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-last-accession",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

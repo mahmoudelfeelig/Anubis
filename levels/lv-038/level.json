@@ -1,0 +1,20 @@
+{
+  "slug": "lv-038",
+  "number": 38,
+  "title": "July Page",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "2d06cdbd644248a75f212d0b230c8d50",
+  "userHashHex": "afdb23ffdba3bc381174ea8c28b166f4fbf221c97e92b26ec1316862c468ca4c",
+  "passHashHex": "51186ff097d579fcc4a1a575226d5491bcacc171a435aebb47e854da81364634",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-july-page",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

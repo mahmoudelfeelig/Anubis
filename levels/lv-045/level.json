@@ -1,0 +1,20 @@
+{
+  "slug": "lv-045",
+  "number": 45,
+  "title": "Escape Fold",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "09cdde3bb3326aa682965ff1196205ab",
+  "userHashHex": "7e4fb4421e2d5c08ea84c5e42e80090b56f8f64e52fb3bf6151add1382d6f5de",
+  "passHashHex": "1d2ddbf074cccb035487fe233430067eb08775eb2f9db2dce934e0919dfdcace",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-escape-fold",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}

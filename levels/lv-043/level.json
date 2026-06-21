@@ -1,0 +1,20 @@
+{
+  "slug": "lv-043",
+  "number": 43,
+  "title": "Thermal Drawer",
+  "mode": "form",
+  "kind": "custom",
+  "mdx": "prompt.mdx",
+  "saltHex": "6a0b4329e1b7814229489bff256e59ab",
+  "userHashHex": "87d8f33f59f59319b2dee0460607ecebfe3c60b466040d0dc21a3f7b764cada6",
+  "passHashHex": "43b5308b80cfe78632f6dfffa8bcfe768dde346a4bccba6054d5db5bde4517de",
+  "hintsConsole": [],
+  "hintsSource": [],
+  "theme": {
+    "className": "level-thermal-stack",
+    "cssVars": {
+      "--accent": "#c52237",
+      "--bg": "#050505"
+    }
+  }
+}
