@@ -1,0 +1,54 @@
+# Level Solution Index
+
+These walkthroughs are intentionally committed so repository readers can audit every answer. The live level metadata stores only salted hashes.
+
+- lv-001 - Sign-Off Copy: user `drift`, pass `hour`
+- lv-002 - Contact Omission: user `missing`, pass `frame`
+- lv-003 - Rejected Track: user `caption`, pass `error`
+- lv-004 - Lobby Splice: user `clock`, pass `cut`
+- lv-005 - After-Hours Drawer: user `return`, pass `slot`
+- lv-006 - Carrier Room: user `service`, pass `tone`
+- lv-007 - Routing Slip: user `paper`, pass `trail`
+- lv-008 - County Crawl: user `static`, pass `garden`
+- lv-009 - Duplicate Book: user `mirror`, pass `ledger`
+- lv-010 - Tower Block: user `second`, pass `window`
+- lv-011 - Utility Canteen: user `cipher`, pass `kitchen`
+- lv-012 - Sewing Tin: user `orange`, pass `thread`
+- lv-013 - Overlay Sheet: user `vellum`, pass `clock`
+- lv-014 - Parking Still: user `number`, pass `plate`
+- lv-015 - Directory Tear: user `hidden`, pass `street`
+- lv-016 - Harbor Worksheet: user `riddle`, pass `anchor`
+- lv-017 - Receiver Log: user `signal`, pass `noise`
+- lv-018 - Mail Bundle: user `absent`, pass `letter`
+- lv-019 - Miniature Contact: user `little`, pass `proof`
+- lv-020 - Closing Sheet: user `museum`, pass `after`
+- lv-021 - Camp Transcript: user `lantern`, pass `comma`
+- lv-022 - Old Bookmark: user `notpron`, pass `legacy`
+- lv-023 - Deck Slip: user `counter`, pass `tape`
+- lv-024 - Burned Track: user `burn`, pass `subtitle`
+- lv-025 - Basement Plan: user `door`, pass `map`
+- lv-026 - Release Copy: user `black`, pass `bar`
+- lv-027 - Tower Plate: user `station`, pass `id`
+- lv-028 - Silent Carrier: user `dead`, pass `air`
+- lv-029 - Envelope Proofs: user `contact`, pass `sheet`
+- lv-030 - Load Sheet: user `transfer`, pass `ledger`
+- lv-031 - Take Seven: user `room`, pass `tone`
+- lv-032 - Checkout Insert: user `library`, pass `card`
+- lv-033 - Menu Cassette: user `phone`, pass `tree`
+- lv-034 - Fifth Generation: user `shadow`, pass `copy`
+- lv-035 - Before Dawn: user `color`, pass `bars`
+- lv-036 - County Break: user `emergency`, pass `crawl`
+- lv-037 - Case Placard: user `museum`, pass `label`
+- lv-038 - July Page: user `desk`, pass `calendar`
+- lv-039 - Glass Kiosk: user `train`, pass `timetable`
+- lv-040 - Operator Wall: user `switch`, pass `board`
+- lv-041 - Morning Card: user `test`, pass `pattern`
+- lv-042 - Lower Margin: user `footnote`, pass `damage`
+- lv-043 - Thermal Drawer: user `receipt`, pass `stack`
+- lv-044 - Shelf Adhesive: user `inventory`, pass `tag`
+- lv-045 - Escape Fold: user `stairwell`, pass `plan`
+- lv-046 - Reader Tray: user `microfiche`, pass `row`
+- lv-047 - Countertop Tape: user `answering`, pass `machine`
+- lv-048 - Cork Board: user `map`, pass `pins`
+- lv-049 - Utility Carbon: user `blackout`, pass `report`
+- lv-050 - Last Accession: user `final`, pass `legacy`
