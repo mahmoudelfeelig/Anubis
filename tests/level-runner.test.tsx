@@ -57,7 +57,7 @@ async function renderRunner(overrides: LevelOverride = {}) {
   const level = {
     slug: 'lv-001',
     number: 1,
-    title: 'Terminal Whisper',
+    title: 'Margin Discipline',
     asset: 'assets/one.png',
     audio: undefined,
     hintsConsole: ['hint-one'],
@@ -77,7 +77,7 @@ describe('LevelRunner', () => {
 
     const audio = container.querySelector('audio') as HTMLAudioElement;
     expect(audio).not.toBeNull();
-    expect(audio.getAttribute('src')).toBe('/media/anubis_loop.mp3');
+    expect(audio.getAttribute('src')).toBe('/media/archive_loop.mp3');
     expect(mockPlay).toHaveBeenCalled();
   });
 
@@ -88,12 +88,12 @@ describe('LevelRunner', () => {
     const details = container.querySelector('details');
     if (details) details.open = true;
 
-    await userEvent.type(screen.getByPlaceholderText('level username'), 'User');
-    await userEvent.type(screen.getByPlaceholderText('level password'), 'Pass');
+    await userEvent.type(screen.getByPlaceholderText('first answer'), 'User');
+    await userEvent.type(screen.getByPlaceholderText('second answer'), 'Pass');
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(solveForm).toHaveBeenCalledWith('lv-001', 'User', 'Pass');
-    expect(await screen.findByText('ok')).toBeInTheDocument();
+    expect(await screen.findByText('Accepted.')).toBeInTheDocument();
     expect(window.location.href).toContain('/level/lv-002');
   });
 
@@ -104,11 +104,11 @@ describe('LevelRunner', () => {
     const details = container.querySelector('details');
     if (details) details.open = true;
 
-    await userEvent.type(screen.getByPlaceholderText('level username'), 'User');
-    await userEvent.type(screen.getByPlaceholderText('level password'), 'Pass');
+    await userEvent.type(screen.getByPlaceholderText('first answer'), 'User');
+    await userEvent.type(screen.getByPlaceholderText('second answer'), 'Pass');
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
-    expect(await screen.findByText('try again')).toBeInTheDocument();
+    expect(await screen.findByText('Not quite.')).toBeInTheDocument();
     expect(window.location.href).toBe('');
   });
 });

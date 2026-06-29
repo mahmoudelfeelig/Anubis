@@ -8,7 +8,7 @@ describe('loadLevelPrompt', () => {
 
     const element = await loadLevelPrompt('lv-001', 'prompt.mdx');
     expect(element).not.toBeNull();
-    expect(renderToStaticMarkup(element!)).toContain('Terminal Whisper');
+    expect(renderToStaticMarkup(element!)).toContain('WELF-6');
   });
 
   it('returns null when the prompt is missing', async () => {

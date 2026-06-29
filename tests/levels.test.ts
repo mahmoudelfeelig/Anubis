@@ -20,9 +20,19 @@ describe('getLevel', () => {
 });
 
 describe('getIndex', () => {
-  it('includes every level directory', async () => {
+  it('includes every authored level directory', async () => {
     const levelsPath = path.join(process.cwd(), 'levels');
-    const slugs = (await fs.readdir(levelsPath)).filter((name) => name.startsWith('lv-'));
+    const entries = await fs.readdir(levelsPath, { withFileTypes: true });
+    const slugs = [];
+    for (const entry of entries) {
+      if (!entry.isDirectory() || !entry.name.startsWith('lv-')) continue;
+      try {
+        await fs.access(path.join(levelsPath, entry.name, 'level.json'));
+        slugs.push(entry.name);
+      } catch {
+        // Matches lib/levels: directories without level.json are not levels.
+      }
+    }
 
     expect(slugs.length).toBeGreaterThan(0);
     slugs.forEach((slug) => {
