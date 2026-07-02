@@ -1,0 +1,4 @@
+anubis.elfeel.me {
+	reverse_proxy anubis-web:3000
+	encode zstd gzip
+}

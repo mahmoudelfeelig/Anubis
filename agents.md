@@ -16,20 +16,26 @@ This repository is designed to be agent-friendly. Use this guide whenever an aut
 
 ## Testing Strategy
 - Unit tests live under `tests/` and use [Vitest](https://vitest.dev/).
-- Tests rely on dependency mocking (`vi.mock`) for database, Cloudinary, and filesystem calls.
+- Tests rely on dependency mocking (`vi.mock`) for database and filesystem calls.
 - Snapshot tests are avoided; always assert explicit behaviour or payloads.
 - Keep fixtures small and colocated in `tests/fixtures`.
 
 ## Level Workflow
 1. Edit the target `levels/lv-xxx` folder directly (`level.json`, `prompt.mdx`, and `assets/manifest.md`).
 2. Keep manifests accurate - note whether a puzzle relies on external assets or is fully self-contained.
-3. Record solving notes in `solutions/lv-xxx.md`; the `solutions/` directory is git-ignored so detailed walkthroughs stay private.
+3. Record public solving notes in `walkthroughs/lv-xxx.md`; these files are committed so maintainers can audit the intended solve path.
 4. Update hashes or supporting files whenever binaries change.
 
 ## Credentials & Env
-- Required env vars: `MONGODB_URI`, `SESSION_SECRET`, Cloudinary credentials (`CLD_*`).
+- Required env vars: `MONGODB_URI`, `SESSION_SECRET`, `PWD_PEPPER`, and `UPLOAD_DIR`.
 - Never commit real secrets; use `.env.local` for local overrides.
 - Tests stub out env usage, so headless agents can run them without real services.
+
+## Deployment
+- Production runs at `anubis.elfeel.me` behind the shared Caddy service.
+- GitHub Actions deploys `main` only after lint, tests, and the production build pass.
+- Server-only files under `deploy/.env` and `uploads/` must survive source synchronization.
+- Runtime CPU, memory, and process limits belong in each service's Compose definition.
 
 ## PR Expectations
 - Linting and formatting follow Next.js defaults (ESLint + Prettier). Agents should run `npm run lint` before opening a PR if changes touch JS/TS files.
