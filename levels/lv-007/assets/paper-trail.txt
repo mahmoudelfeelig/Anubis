@@ -1,1 +1,0 @@
-start -> train -> radio -> attic -> inlet -> lobby
