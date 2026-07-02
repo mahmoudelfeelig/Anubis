@@ -7,15 +7,15 @@ import { getUserProgressSummary } from '@/lib/progress';
 
 const featureSignals = [
   {
-    title: 'Recovered media',
+    title: 'Signal fragments',
     body: 'Every level is a damaged page, label, manifest, transcript, or recording. The answer is in how the evidence behaves.',
   },
   {
-    title: 'Linear archive',
-    body: 'Progression is locked to the tape order. Clear the current file before the archive releases the next one.',
+    title: 'Locked sequence',
+    body: 'Progression follows the transmission order. Clear the current file before the next breach opens.',
   },
   {
-    title: 'Quiet records',
+    title: 'Quiet record',
     body: 'The scoreboard is only a record of clears. The site keeps the route out of view.',
   },
 ];
@@ -36,10 +36,10 @@ export default async function Page() {
     <div className="home-grid">
       <section className="panel hero-panel">
         <div className="hero-copy">
-          <h1 data-echo="Elfeel archive">Elfeel archive</h1>
+          <h1 data-echo="Anubis">Anubis</h1>
           <p>
-            A browser riddle built from recovered analog media. Read the page, question the file, and advance only when
-            the evidence gives you two plain words.
+            An analog horror ARG built from damaged signals, missing frames, bad captions, and evidence that refuses to
+            explain itself.
           </p>
           {!user ? (
             <div className="hero-actions">
@@ -81,13 +81,13 @@ export default async function Page() {
       </section>
 
       <section className="panel feed-panel">
-        <h2 data-echo="Archive status">Archive status</h2>
+        <h2 data-echo="Transmission status">Transmission status</h2>
         <div className="feed-grid">
           <div className="feed-callout">
             <h3>Clear log</h3>
             <p>
               The leaderboard tracks cleared files without exposing the route. Sort the record, then get back to the
-              tape.
+              signal.
             </p>
             <Link className="btn" href="/leaderboard" data-echo="Leaderboard">
               Check the leaderboard
@@ -96,10 +96,9 @@ export default async function Page() {
           <div className="feed-callout">
             <h3>File shelf</h3>
             <p>
-              Revisit unlocked files as evidence, not tutorials. The archive keeps the objects; the deductions stay
-              yours.
+              Revisit unlocked files as evidence, not tutorials. The objects stay visible; the deductions stay yours.
             </p>
-            <Link className="btn" href="/levels" data-echo="Recovered dossiers">
+            <Link className="btn" href="/levels" data-echo="Unlocked files">
               Revisit your clears
             </Link>
           </div>

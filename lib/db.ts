@@ -1,8 +1,5 @@
 import type { Db, MongoClient as MongoClientType } from 'mongodb';
 
-const uri = process.env.MONGODB_URI ?? '';
-if (!uri) throw new Error('MONGODB_URI missing');
-
 type G = typeof globalThis & {
   _mongoClientPromise?: Promise<MongoClientType>;
   _mongoIndexesEnsured?: boolean;
@@ -10,12 +7,19 @@ type G = typeof globalThis & {
 
 const g = globalThis as G;
 
+function mongoUri() {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error('MONGODB_URI missing');
+  return uri;
+}
+
 async function getClient(): Promise<MongoClientType> {
   if (!g._mongoClientPromise) {
     g._mongoClientPromise = (async () => {
       const { MongoClient, ServerApiVersion } = await import('mongodb');
-      const client = new MongoClient(uri, {
+      const client = new MongoClient(mongoUri(), {
         serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true },
+        serverSelectionTimeoutMS: 8000,
       });
       await client.connect();
       return client;

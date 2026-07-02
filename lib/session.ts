@@ -38,6 +38,16 @@ function randomHex(bytes: number): string {
   return toHex(array);
 }
 
+function cookieOptions(expires: Date) {
+  return {
+    httpOnly: true,
+    sameSite: 'lax' as const,
+    secure: process.env.NODE_ENV === 'production',
+    expires,
+    path: '/',
+  };
+}
+
 export async function createSession(userId: string) {
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
@@ -46,7 +56,7 @@ export async function createSession(userId: string) {
   const expiresAt = new Date(Date.now() + 1000*60*60*24*30);
   await sessions.insertOne({ tokenHash, userId, expiresAt });
   const cookieStore = await cookies();
-  cookieStore.set(COOKIE, token, { httpOnly: true, sameSite: 'lax', secure: true, expires: expiresAt, path: '/' });
+  cookieStore.set(COOKIE, token, cookieOptions(expiresAt));
 }
 
 export async function destroySession() {
@@ -57,7 +67,7 @@ export async function destroySession() {
   const sessions = db.collection<SessionDoc>('sessions');
   const tokenHash = await hashSessionToken(c);
   await sessions.deleteOne({ tokenHash });
-  cookieStore.set(COOKIE, '', { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(0), path: '/' });
+  cookieStore.set(COOKIE, '', cookieOptions(new Date(0)));
 }
 
 export async function getSessionUser() {

@@ -90,7 +90,7 @@ beforeEach(() => {
 });
 
 describe('createSession', () => {
-  it('stores a hashed session token and sets a secure cookie', async () => {
+  it('stores a hashed session token and sets an environment-aware cookie', async () => {
     const getRandomValuesSpy = vi
       .spyOn(crypto, 'getRandomValues')
       .mockImplementation((array: Uint8Array) => {
@@ -115,7 +115,7 @@ describe('createSession', () => {
     expect(cookie!.options).toMatchObject({
       httpOnly: true,
       sameSite: 'lax',
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       path: '/',
     });
     expect(cookie!.options?.expires).toBeInstanceOf(Date);

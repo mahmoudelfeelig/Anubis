@@ -1,5 +1,5 @@
 {
-  "name": "elfeel-archive",
+  "name": "anubis",
   "private": true,
   "scripts": {
     "dev": "next dev",

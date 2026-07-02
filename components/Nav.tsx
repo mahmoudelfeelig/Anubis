@@ -21,8 +21,7 @@ export default async function Nav() {
       <div className="nav-track">
         <div className="nav-brand">
           <Link href="/" className="brand" title="Home">
-            <Image src="/elephant-logo.png" alt="" width={32} height={32} priority />
-            <b data-echo="Elfeel Archive">Elfeel Archive</b>
+            <Image src="/elephant-logo.png" alt="Anubis" width={42} height={42} priority />
           </Link>
         </div>
 
@@ -61,8 +60,7 @@ export default async function Nav() {
         </summary>
         <div className="nav-mobile-body">
           <Link href="/" className="nav-mobile-brand" title="Home">
-            <Image src="/elephant-logo.png" alt="" width={28} height={28} priority />
-            <span data-echo="Elfeel Archive">Elfeel Archive</span>
+            <Image src="/elephant-logo.png" alt="Anubis" width={36} height={36} priority />
           </Link>
           {baseLinks.map((item) => (
             <Link key={item.href} href={item.href}>

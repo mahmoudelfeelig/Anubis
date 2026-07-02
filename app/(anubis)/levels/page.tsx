@@ -97,7 +97,7 @@ export default async function Page() {
               <span className="progress-step__index">{String(item.num).padStart(3, '0')}</span>
               <span className="progress-step__slug">{item.slug.toUpperCase()}</span>
               <span className="progress-step__status">
-                {item.status === 'cleared' ? 'Recovered' : item.status === 'next' ? 'Armed' : 'Sealed'}
+                {item.status === 'cleared' ? 'Solved' : item.status === 'next' ? 'Active' : 'Sealed'}
               </span>
             </li>
           ))}
@@ -105,7 +105,7 @@ export default async function Page() {
       </section>
 
       <section className="panel">
-        <h2 data-echo="Recovered dossiers">Recovered dossiers</h2>
+        <h2 data-echo="Unlocked signals">Unlocked signals</h2>
         {levels.length === 0 && <p><small>No clears yet.</small></p>}
         {levels.length > 0 && (
           <table className="table">
@@ -116,7 +116,7 @@ export default async function Page() {
                   <td>{l.num}</td>
                   <td>{l.title}</td>
                   <td><small>{l.when.toISOString()}</small></td>
-                  <td><Link className="btn" href={`/level/${l.slug}`} data-echo="Open dossier">Open</Link></td>
+                  <td><Link className="btn" href={`/level/${l.slug}`} data-echo="Open signal">Open</Link></td>
                 </tr>
               ))}
             </tbody>

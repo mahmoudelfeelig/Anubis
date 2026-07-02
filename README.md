@@ -1,6 +1,6 @@
-# Elfeel Archive
+# Anubis
 
-A Next.js browser-riddle platform for hand-authored analog-horror puzzle levels.
+An analog horror ARG built as a Next.js browser-riddle platform with hand-authored puzzle levels.
 
 Players sign in, solve the current file, and unlock the next one in sequence. Levels live under `levels/lv-XXX` as hand-written `level.json`, `prompt.mdx`, and optional `assets/` files.
 
