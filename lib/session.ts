@@ -3,9 +3,14 @@ import { getDb } from './db';
 import type { SessionDoc, UserDoc } from './types';
 
 const COOKIE = 'sid';
-if (!process.env.SESSION_SECRET) throw new Error('SESSION_SECRET missing');
 
 const encoder = new TextEncoder();
+
+function sessionSecret() {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) throw new Error('SESSION_SECRET missing');
+  return secret;
+}
 
 function toHex(bytes: Uint8Array) {
   return Array.from(bytes)
@@ -23,6 +28,10 @@ async function sha256(input: Uint8Array | string): Promise<string> {
   return toHex(new Uint8Array(digest));
 }
 
+async function hashSessionToken(token: string) {
+  return sha256(`${sessionSecret()}:${token}`);
+}
+
 function randomHex(bytes: number): string {
   const array = new Uint8Array(bytes);
   crypto.getRandomValues(array);
@@ -33,7 +42,7 @@ export async function createSession(userId: string) {
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
   const token = randomHex(32);
-  const tokenHash = await sha256(token);
+  const tokenHash = await hashSessionToken(token);
   const expiresAt = new Date(Date.now() + 1000*60*60*24*30);
   await sessions.insertOne({ tokenHash, userId, expiresAt });
   const cookieStore = await cookies();
@@ -46,7 +55,7 @@ export async function destroySession() {
   if (!c) return;
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
-  const tokenHash = await sha256(c);
+  const tokenHash = await hashSessionToken(c);
   await sessions.deleteOne({ tokenHash });
   cookieStore.set(COOKIE, '', { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(0), path: '/' });
 }
@@ -57,7 +66,7 @@ export async function getSessionUser() {
   if (!token) return null;
   const db = await getDb();
   const sessions = db.collection<SessionDoc>('sessions');
-  const tokenHash = await sha256(token);
+  const tokenHash = await hashSessionToken(token);
   const s = await sessions.findOne({ tokenHash, expiresAt: { $gt: new Date() } });
   if (!s) return null;
   const users = db.collection<UserDoc>('users');

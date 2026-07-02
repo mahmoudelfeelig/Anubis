@@ -73,6 +73,10 @@ async function sha256Hex(input: string) {
     .join('');
 }
 
+async function expectedTokenHash(token: string) {
+  return sha256Hex(`${process.env.SESSION_SECRET}:${token}`);
+}
+
 beforeAll(async () => {
   session = await import('@/lib/session');
 });
@@ -116,7 +120,7 @@ describe('createSession', () => {
     });
     expect(cookie!.options?.expires).toBeInstanceOf(Date);
 
-    const expectedHash = await sha256Hex(cookie!.value);
+    const expectedHash = await expectedTokenHash(cookie!.value);
     expect(doc.tokenHash).toBe(expectedHash);
   });
 });
@@ -127,7 +131,7 @@ describe('destroySession', () => {
     cookieStoreState.entries.set('sid', { value: token });
     await session.destroySession();
 
-    const expectedHash = await sha256Hex(token);
+    const expectedHash = await expectedTokenHash(token);
     expect(dbControls.sessions.deleteOne).toHaveBeenCalledWith({ tokenHash: expectedHash });
 
     const cleared = cookieStoreState.entries.get('sid');
@@ -157,7 +161,7 @@ describe('getSessionUser', () => {
   it('returns basic user info when session and user exist', async () => {
     const tokenValue = 'session';
     cookieStoreState.entries.set('sid', { value: tokenValue });
-    const tokenHash = await sha256Hex(tokenValue);
+    const tokenHash = await expectedTokenHash(tokenValue);
     dbControls.sessions.findOne.mockResolvedValue({
       tokenHash,
       userId: 'u-1',

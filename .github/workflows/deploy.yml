@@ -63,9 +63,17 @@ jobs:
       - name: Configure SSH
         shell: bash
         run: |
+          test -n "$HETZNER_HOST" || { echo "HETZNER_HOST is missing"; exit 1; }
+          test -n "$HETZNER_USER" || { echo "HETZNER_USER is missing"; exit 1; }
+          test -n "$HETZNER_SSH_KEY" || { echo "HETZNER_SSH_KEY is missing"; exit 1; }
+
           install -m 700 -d "$HOME/.ssh"
           printf '%s\n' "$HETZNER_SSH_KEY" > "$HOME/.ssh/id_ed25519"
-          printf '%s\n' "$HETZNER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          if [ -n "$HETZNER_KNOWN_HOSTS" ]; then
+            printf '%s\n' "$HETZNER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          else
+            ssh-keyscan -H "$HETZNER_HOST" > "$HOME/.ssh/known_hosts"
+          fi
           chmod 600 "$HOME/.ssh/id_ed25519" "$HOME/.ssh/known_hosts"
 
       - name: Sync application source

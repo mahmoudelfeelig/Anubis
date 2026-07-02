@@ -77,8 +77,9 @@ describe('LevelRunner', () => {
 
     const audio = container.querySelector('audio') as HTMLAudioElement;
     expect(audio).not.toBeNull();
-    expect(audio.getAttribute('src')).toBe('/media/archive_loop.mp3');
+    expect(audio.getAttribute('src')).toBe('/media/ambient-tape.mp3');
     expect(mockPlay).toHaveBeenCalled();
+    expect(screen.queryByRole('button', { name: /audio/i })).not.toBeInTheDocument();
   });
 
   it('submits credentials and surfaces success message', async () => {

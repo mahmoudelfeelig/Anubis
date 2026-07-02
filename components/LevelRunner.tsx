@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, FormEvent, startTransition } from "react";
+import { useCallback, useEffect, useRef, useState, FormEvent } from "react";
 import { solveForm } from "@/app/(anubis)/level/[slug]/actions";
 
-const AUDIO_PREF_KEY = "elfeel.archive.audio.state";
+const BACKGROUND_AUDIO = "/media/ambient-tape.mp3";
 
 type LevelSafe = {
   slug: string;
@@ -21,11 +21,7 @@ type LevelSafe = {
 
 export default function LevelRunner({ level }: { level: LevelSafe }) {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [needsGesture, setNeedsGesture] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [msg, setMsg] = useState("");
-  const wantsPauseRef = useRef(false);
-  const [preferredState, setPreferredState] = useState<"playing" | "paused" | null>(null);
 
   useEffect(() => {
     (level.hintsConsole || []).forEach((hint) => {
@@ -33,119 +29,29 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
     });
   }, [level]);
 
-  const persistPreference = useCallback((state: "playing" | "paused") => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(AUDIO_PREF_KEY, state);
-    }
-    startTransition(() => {
-      setPreferredState(state);
-      setIsPaused(state === "paused");
-    });
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const saved = window.localStorage.getItem(AUDIO_PREF_KEY);
-    if (saved === "paused" || saved === "playing") {
-      persistPreference(saved);
-    } else {
-      persistPreference("playing");
-    }
-  }, [persistPreference]);
-
-  const resumeAudio = useCallback(() => {
+  const startAudio = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    wantsPauseRef.current = false;
+    audio.volume = 0.12;
+    audio.loop = true;
     audio.muted = false;
-    audio
-      .play()
-      .then(() => {
-        startTransition(() => {
-          setNeedsGesture(false);
-          setIsPaused(false);
-        });
-        persistPreference("playing");
-      })
-      .catch(() => {
-        startTransition(() => {
-          setNeedsGesture(true);
-          setIsPaused(true);
-        });
-      });
-  }, [persistPreference]);
+    void audio.play().catch(() => {});
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || preferredState === null) return;
+    if (!audio) return;
 
     audio.loop = true;
     audio.autoplay = true;
     audio.preload = "auto";
     (audio as HTMLAudioElement & { playsInline?: boolean }).playsInline = true;
-    audio.volume = 0.6;
-
-    let cancelled = false;
-
-    if (preferredState === "paused") {
-      wantsPauseRef.current = true;
-      audio.pause();
-      audio.muted = true;
-      startTransition(() => {
-        setIsPaused(true);
-        setNeedsGesture(false);
-      });
-
-      const onGesture = () => {
-        window.removeEventListener("pointerdown", onGesture);
-        window.removeEventListener("keydown", onGesture);
-      };
-      window.addEventListener("pointerdown", onGesture);
-      window.addEventListener("keydown", onGesture);
-      return () => {
-        window.removeEventListener("pointerdown", onGesture);
-        window.removeEventListener("keydown", onGesture);
-      };
-    }
-
-    const startPlayback = async () => {
-      try {
-        audio.muted = false;
-        wantsPauseRef.current = false;
-        await audio.play();
-        if (!cancelled) {
-          startTransition(() => {
-            setNeedsGesture(false);
-            setIsPaused(false);
-          });
-        }
-      } catch {
-        try {
-          audio.muted = true;
-          wantsPauseRef.current = false;
-          await audio.play();
-          if (!cancelled) {
-            startTransition(() => {
-              setNeedsGesture(true);
-              setIsPaused(true);
-            });
-          }
-        } catch {
-          if (!cancelled) {
-            startTransition(() => {
-              setNeedsGesture(true);
-              setIsPaused(true);
-            });
-          }
-        }
-      }
-    };
-
-    void startPlayback();
+    audio.volume = 0.12;
+    void audio.play().catch(() => {});
 
     const onFirstGesture = () => {
-      resumeAudio();
+      startAudio();
       window.removeEventListener("pointerdown", onFirstGesture);
       window.removeEventListener("keydown", onFirstGesture);
     };
@@ -154,42 +60,23 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
     window.addEventListener("keydown", onFirstGesture);
 
     return () => {
-      cancelled = true;
       window.removeEventListener("pointerdown", onFirstGesture);
       window.removeEventListener("keydown", onFirstGesture);
     };
-  }, [level.slug, resumeAudio, preferredState]);
+  }, [level.slug, startAudio]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     const handleEnded = () => {
-      if (wantsPauseRef.current) return;
       audio.currentTime = 0;
-      resumeAudio();
+      startAudio();
     };
 
     audio.addEventListener("ended", handleEnded);
     return () => audio.removeEventListener("ended", handleEnded);
-  }, [resumeAudio]);
-
-  const toggleAudio = useCallback(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (audio.paused) {
-      resumeAudio();
-    } else {
-      wantsPauseRef.current = true;
-      audio.pause();
-      audio.muted = true;
-      startTransition(() => {
-        setIsPaused(true);
-      });
-      persistPreference("paused");
-    }
-  }, [persistPreference, resumeAudio]);
+  }, [startAudio]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -257,17 +144,11 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
 
       <audio
         ref={audioRef}
-        src={level.audio ? `/levels/${level.slug}/${level.audio}` : "/media/archive_loop.mp3"}
+        src={level.audio ? `/levels/${level.slug}/${level.audio}` : BACKGROUND_AUDIO}
         preload="auto"
         autoPlay
         aria-hidden="true"
       />
-
-      <div className="audio-controls">
-        <button type="button" className={`audio-btn${needsGesture ? " accent" : ""}`} onClick={toggleAudio}>
-          {needsGesture || isPaused ? "Resume audio" : "Pause audio"}
-        </button>
-      </div>
     </div>
   );
 }

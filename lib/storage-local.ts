@@ -4,9 +4,8 @@ import { randomUUID } from 'node:crypto';
 
 const DEFAULT_UPLOAD_DIR = process.env.NODE_ENV === 'production'
   ? '/app/uploads'
-  : path.join(process.cwd(), '.data', 'uploads');
+  : path.join(/*turbopackIgnore: true*/ process.cwd(), '.data', 'uploads');
 
-const UPLOAD_ROOT = path.resolve(process.env.UPLOAD_DIR || DEFAULT_UPLOAD_DIR);
 const MAX_AVATAR_BYTES = 4 * 1024 * 1024;
 
 const allowedTypes = new Map([
@@ -39,10 +38,15 @@ function ensureSafeKey(key: string) {
   return parts;
 }
 
+function uploadRoot() {
+  return path.resolve(process.env.UPLOAD_DIR || DEFAULT_UPLOAD_DIR);
+}
+
 export function uploadPathForKey(key: string) {
+  const root = uploadRoot();
   const parts = ensureSafeKey(key);
-  const full = path.resolve(UPLOAD_ROOT, ...parts);
-  const relative = path.relative(UPLOAD_ROOT, full);
+  const full = path.resolve(root, ...parts);
+  const relative = path.relative(root, full);
   if (relative.startsWith('..') || path.isAbsolute(relative)) {
     throw new Error('bad key');
   }

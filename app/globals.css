@@ -79,6 +79,7 @@ body {
 html {
   background: var(--canvas-base);
   transition: background 400ms ease;
+  overflow-x: hidden;
 }
 
 body {
@@ -495,46 +496,6 @@ body[data-theme="light"] .nav-theme:hover {
   color: #1c1f2b;
 }
 
-body[data-theme="light"] .audio-controls {
-  border: 1px solid rgba(197, 34, 55, 0.22);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 246, 252, 0.94));
-  box-shadow:
-    0 12px 32px rgba(148, 154, 178, 0.35),
-    inset 0 0 22px rgba(197, 34, 55, 0.12);
-}
-
-body[data-theme="light"] .audio-controls::after {
-  opacity: 0.12;
-}
-
-body[data-theme="light"] .audio-btn {
-  border: 1px solid rgba(197, 34, 55, 0.24);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(243, 245, 251, 0.95));
-  color: #1c1f2b;
-}
-
-body[data-theme="light"] .audio-btn::after {
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(32, 36, 48, 0.1) 0 1px,
-    transparent 1px 3px
-  );
-}
-
-body[data-theme="light"] .audio-btn:hover {
-  color: #1c1f2b;
-  box-shadow: 0 12px 26px rgba(148, 154, 178, 0.32);
-}
-
-body[data-theme="light"] .audio-btn::before {
-  background: linear-gradient(180deg, rgba(197, 34, 55, 0.2), transparent 70%);
-}
-
-body[data-theme="light"] .audio-btn.accent {
-  background: linear-gradient(180deg, rgba(255, 230, 234, 0.95), rgba(255, 214, 222, 0.9));
-  color: #3a1015;
-}
-
 body[data-theme="light"] .submission {
   border: 1px dashed rgba(197, 34, 55, 0.35);
   background:
@@ -862,9 +823,9 @@ header::after,
 footer::after {
   content: "";
   position: absolute;
-  left: -20%;
+  left: 0;
+  right: 0;
   top: 0;
-  width: 140%;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(197, 34, 55, 0.6), transparent);
   opacity: 0.25;
@@ -1045,118 +1006,6 @@ a:hover {
   box-shadow:
     0 0 0 2px rgba(197, 34, 55, 0.18),
     0 0 18px rgba(64, 182, 189, 0.35);
-}
-
-.audio-controls {
-  position: sticky;
-  bottom: 18px;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 28px;
-  padding: 10px 14px 16px;
-  max-width: min(240px, 70vw);
-  border-radius: 14px;
-  border: 1px solid rgba(197, 34, 55, 0.35);
-  background: linear-gradient(180deg, rgba(6, 8, 12, 0.94), rgba(2, 3, 6, 0.94));
-  box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.55),
-    inset 0 0 24px rgba(197, 34, 55, 0.18);
-  backdrop-filter: blur(6px) saturate(120%);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.audio-controls::after {
-  content: "";
-  position: absolute;
-  inset: -30%;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.08) 0 1px,
-    transparent 1px 3px
-  );
-  opacity: 0.16;
-  mix-blend-mode: screen;
-  animation: panel-static 7s steps(4, end) infinite;
-  z-index: -1;
-}
-
-.audio-btn {
-  width: 100%;
-  pointer-events: auto;
-  font: 11px/1.1 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  padding: 9px 12px;
-  border-radius: 9px;
-  border: 1px solid rgba(197, 34, 55, 0.35);
-  background: linear-gradient(180deg, rgba(10, 12, 18, 0.95), rgba(5, 6, 10, 0.95));
-  color: var(--fg);
-  cursor: var(--cursor-scan);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 8px 18px rgba(3, 5, 8, 0.45);
-  backdrop-filter: blur(6px);
-  animation: button-glitch 8s steps(3, end) infinite;
-}
-
-.audio-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.06) 0 1px,
-    transparent 1px 3px
-  );
-  opacity: 0;
-  mix-blend-mode: screen;
-  transition: opacity 0.2s ease;
-}
-
-.audio-btn::before {
-  content: "";
-  position: absolute;
-  inset: -140% -40%;
-  background: linear-gradient(180deg, rgba(197, 34, 55, 0.28), transparent 70%);
-  opacity: 0.3;
-  transform: rotate(12deg);
-  mix-blend-mode: screen;
-  animation: audio-sweep 10s linear infinite;
-}
-
-.audio-btn:hover {
-  transform: translateX(1px);
-  border-color: rgba(197, 34, 55, 0.6);
-  color: #fff;
-  box-shadow: 0 12px 28px rgba(3, 5, 8, 0.55);
-}
-
-.audio-btn:hover::after {
-  opacity: 0.45;
-}
-
-.audio-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-  border-color: rgba(197, 34, 55, 0.2);
-}
-
-.audio-btn.accent {
-  border-color: rgba(197, 34, 55, 0.6);
-  background: linear-gradient(180deg, rgba(35, 6, 10, 0.92), rgba(14, 2, 8, 0.92));
-  color: #ffdede;
-}
-
-.audio-btn.accent:hover {
-  color: #fff;
-  box-shadow: 0 10px 28px rgba(197, 34, 55, 0.45);
 }
 
 .btn.primary {
@@ -1786,6 +1635,10 @@ label {
   background: rgba(6, 8, 12, 0.92);
   backdrop-filter: blur(8px);
   align-items: stretch;
+}
+
+.nav-mobile:not([open]) .nav-mobile-body {
+  display: none;
 }
 
 .progress-page {
@@ -3065,18 +2918,6 @@ body::after {
   }
 }
 
-@keyframes audio-sweep {
-  0% {
-    transform: translateY(-10%) rotate(12deg);
-  }
-  50% {
-    transform: translateY(30%) rotate(8deg);
-  }
-  100% {
-    transform: translateY(110%) rotate(4deg);
-  }
-}
-
 @keyframes cursor-ripple {
   0% {
     opacity: 0.4;
@@ -3228,8 +3069,6 @@ footer::after,
 .nav::before,
 .nav-track::before,
 .nav-track::after,
-.audio-controls::after,
-.audio-btn::before,
 .submission::after,
 .table::before,
 blockquote::before,
@@ -3268,7 +3107,6 @@ main {
 .feed-callout,
 .intel-card,
 .submission,
-.audio-controls,
 .table,
 blockquote {
   border-radius: 6px;
@@ -3299,7 +3137,6 @@ blockquote {
 
 .nav a,
 .btn,
-.audio-btn,
 .nav-mobile > summary {
   border-radius: 4px;
   background: rgba(14, 14, 12, 0.92);
@@ -3310,8 +3147,7 @@ blockquote {
 }
 
 .nav a:hover,
-.btn:hover,
-.audio-btn:hover {
+.btn:hover {
   transform: none;
   color: #fff7e8;
   border-color: rgba(185, 31, 45, 0.54);
@@ -3473,13 +3309,6 @@ blockquote {
 .input::placeholder {
   letter-spacing: 0.04em;
   text-transform: none;
-}
-
-.audio-controls {
-  position: static;
-  max-width: 220px;
-  margin-top: 8px;
-  padding: 8px;
 }
 
 .horizon-tear {
