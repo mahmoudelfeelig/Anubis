@@ -25,10 +25,10 @@ jobs:
       UPLOAD_DIR: /tmp/anubis-uploads
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 24
           cache: npm
@@ -44,55 +44,3 @@ jobs:
 
       - name: Build
         run: npm run build
-
-  deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: verify
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    environment: production
-    env:
-      HETZNER_HOST: ${{ secrets.HETZNER_HOST }}
-      HETZNER_USER: ${{ secrets.HETZNER_USER }}
-      HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
-      HETZNER_KNOWN_HOSTS: ${{ secrets.HETZNER_KNOWN_HOSTS }}
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v6
-
-      - name: Configure SSH
-        shell: bash
-        run: |
-          test -n "$HETZNER_HOST" || { echo "HETZNER_HOST is missing"; exit 1; }
-          test -n "$HETZNER_USER" || { echo "HETZNER_USER is missing"; exit 1; }
-          test -n "$HETZNER_SSH_KEY" || { echo "HETZNER_SSH_KEY is missing"; exit 1; }
-
-          install -m 700 -d "$HOME/.ssh"
-          printf '%s\n' "$HETZNER_SSH_KEY" > "$HOME/.ssh/id_ed25519"
-          if [ -n "$HETZNER_KNOWN_HOSTS" ]; then
-            printf '%s\n' "$HETZNER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
-          else
-            ssh-keyscan -H "$HETZNER_HOST" > "$HOME/.ssh/known_hosts"
-          fi
-          chmod 600 "$HOME/.ssh/id_ed25519" "$HOME/.ssh/known_hosts"
-
-      - name: Sync application source
-        shell: bash
-        run: |
-          rsync -az --delete \
-            --exclude='.git/' \
-            --exclude='.next/' \
-            --exclude='node_modules/' \
-            --exclude='.data/' \
-            --exclude='uploads/' \
-            --exclude='deploy/.env' \
-            -e "ssh -i $HOME/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
-            ./ "$HETZNER_USER@$HETZNER_HOST:/opt/anubis/"
-
-      - name: Build and restart application
-        shell: bash
-        run: |
-          ssh -i "$HOME/.ssh/id_ed25519" \
-            -o StrictHostKeyChecking=yes \
-            "$HETZNER_USER@$HETZNER_HOST" \
-            'cd /opt/anubis && docker compose -f docker-compose.prod.yml config --quiet && docker compose -f docker-compose.prod.yml up -d --build --remove-orphans && docker compose -f docker-compose.prod.yml ps'
