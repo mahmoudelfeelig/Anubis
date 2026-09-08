@@ -27,6 +27,7 @@ function createCookieStore(): CookieStore {
 const dbControls = {
   sessions: {
     insertOne: vi.fn(),
+    deleteMany: vi.fn(),
     deleteOne: vi.fn(),
     findOne: vi.fn(),
   },
@@ -43,6 +44,7 @@ vi.mock('@/lib/db', () => ({
       if (name === 'sessions') {
         return {
           insertOne: (...args: unknown[]) => dbControls.sessions.insertOne(...args),
+          deleteMany: (...args: unknown[]) => dbControls.sessions.deleteMany(...args),
           deleteOne: (...args: unknown[]) => dbControls.sessions.deleteOne(...args),
           findOne: (...args: unknown[]) => dbControls.sessions.findOne(...args),
         };
@@ -84,6 +86,7 @@ beforeAll(async () => {
 beforeEach(() => {
   cookieStoreState = createCookieStore();
   dbControls.sessions.insertOne = vi.fn();
+  dbControls.sessions.deleteMany = vi.fn();
   dbControls.sessions.deleteOne = vi.fn();
   dbControls.sessions.findOne = vi.fn();
   dbControls.users.findOne = vi.fn();
@@ -93,8 +96,10 @@ describe('createSession', () => {
   it('stores a hashed session token and sets an environment-aware cookie', async () => {
     const getRandomValuesSpy = vi
       .spyOn(crypto, 'getRandomValues')
-      .mockImplementation((array: Uint8Array) => {
-        array.fill(1);
+      .mockImplementation(<T extends ArrayBufferView | null>(array: T): T => {
+        if (array) {
+          new Uint8Array(array.buffer, array.byteOffset, array.byteLength).fill(1);
+        }
         return array;
       });
 
@@ -143,6 +148,14 @@ describe('destroySession', () => {
   it('is a no-op when no session cookie exists', async () => {
     await session.destroySession();
     expect(dbControls.sessions.deleteOne).not.toHaveBeenCalled();
+  });
+});
+
+describe('destroySessionsForUser', () => {
+  it('revokes every persisted session for a user', async () => {
+    await session.destroySessionsForUser('user-42');
+
+    expect(dbControls.sessions.deleteMany).toHaveBeenCalledWith({ userId: 'user-42' });
   });
 });
 

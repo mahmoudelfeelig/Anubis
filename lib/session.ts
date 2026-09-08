@@ -70,6 +70,12 @@ export async function destroySession() {
   cookieStore.set(COOKIE, '', cookieOptions(new Date(0)));
 }
 
+export async function destroySessionsForUser(userId: string) {
+  const db = await getDb();
+  const sessions = db.collection<SessionDoc>('sessions');
+  await sessions.deleteMany({ userId });
+}
+
 export async function getSessionUser() {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE)?.value;

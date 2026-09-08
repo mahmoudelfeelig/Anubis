@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { getDb } from '@/lib/db';
 import { verifyPwd, hashPwd } from '@/lib/auth';
-import { getSessionUser, destroySession } from '@/lib/session';
+import { createSession, destroySession, destroySessionsForUser, getSessionUser } from '@/lib/session';
 import { destroyAsset, saveUserAvatar } from '@/lib/storage';
 import { toUserId } from '@/lib/mongo-ids';
 import type { UserDoc } from '@/lib/models';
@@ -71,6 +71,8 @@ export async function changePassword(form: FormData) {
 
   const hash = await hashPwd(nw);
   await users.updateOne({ _id: toUserId(userId) }, { $set: { pwdHash: hash } });
+  await destroySessionsForUser(userId);
+  await createSession(userId);
 
   redirect(`/u/${me.username}?ok=pw`);
 }

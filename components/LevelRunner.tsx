@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { solveForm } from "@/app/(anubis)/level/[slug]/actions";
 
 const BACKGROUND_AUDIO = "/media/ambient-tape.mp3";
@@ -20,6 +21,7 @@ type LevelSafe = {
 };
 
 export default function LevelRunner({ level }: { level: LevelSafe }) {
+  const router = useRouter();
   const audioRef = useRef<HTMLAudioElement>(null);
   const [msg, setMsg] = useState("");
 
@@ -86,7 +88,7 @@ export default function LevelRunner({ level }: { level: LevelSafe }) {
     const result = await solveForm(level.slug, username, password);
     setMsg(result.ok ? "ok" : "try again");
     if (result.ok && level.next) {
-      window.location.href = `/level/${level.next}`;
+      router.push(`/level/${level.next}`);
     }
   };
 

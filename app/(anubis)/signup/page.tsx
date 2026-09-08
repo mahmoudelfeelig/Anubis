@@ -1,6 +1,7 @@
 'use client';
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 async function readAuthError(response: Response) {
   try {
@@ -12,6 +13,7 @@ async function readAuthError(response: Response) {
 }
 
 export default function Page() {
+  const router = useRouter();
   const [err, setErr] = useState('');
   const [pending, setPending] = useState(false);
 
@@ -23,7 +25,8 @@ export default function Page() {
     try {
       const r = await fetch('/api/signup', { method: 'POST', body: fd });
       if (r.ok) {
-        window.location.assign('/');
+        router.replace('/');
+        router.refresh();
         return;
       }
       setErr(await readAuthError(r));

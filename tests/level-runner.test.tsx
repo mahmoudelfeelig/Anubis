@@ -1,38 +1,28 @@
 // @vitest-environment jsdom
 
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const solveForm = vi.fn();
+const routerPush = vi.fn();
 
 vi.mock('@/app/(anubis)/level/[slug]/actions', () => ({
   solveForm: (...args: unknown[]) => solveForm(...args),
 }));
 
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: routerPush }),
+}));
+
 const mockPlay = vi.fn(() => Promise.resolve());
-const originalLocation = window.location;
-
-beforeAll(() => {
-  Object.defineProperty(window, 'location', {
-    configurable: true,
-    value: { href: '' } as Location,
-  });
-});
-
-afterAll(() => {
-  Object.defineProperty(window, 'location', {
-    configurable: true,
-    value: originalLocation,
-  });
-});
 
 beforeEach(() => {
   solveForm.mockReset();
+  routerPush.mockReset();
   mockPlay.mockClear();
   vi.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(mockPlay as any);
   vi.spyOn(console, 'log').mockImplementation(() => {});
-  window.location.href = '';
 });
 
 afterEach(() => {
@@ -95,7 +85,7 @@ describe('LevelRunner', () => {
 
     expect(solveForm).toHaveBeenCalledWith('lv-001', 'User', 'Pass');
     expect(await screen.findByText('Accepted.')).toBeInTheDocument();
-    expect(window.location.href).toContain('/level/lv-002');
+    expect(routerPush).toHaveBeenCalledWith('/level/lv-002');
   });
 
   it('shows retry message when solveForm fails', async () => {
@@ -110,6 +100,6 @@ describe('LevelRunner', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(await screen.findByText('Not quite.')).toBeInTheDocument();
-    expect(window.location.href).toBe('');
+    expect(routerPush).not.toHaveBeenCalled();
   });
 });

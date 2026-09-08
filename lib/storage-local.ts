@@ -39,7 +39,7 @@ function ensureSafeKey(key: string) {
 }
 
 function uploadRoot() {
-  return path.resolve(process.env.UPLOAD_DIR || DEFAULT_UPLOAD_DIR);
+  return path.resolve(/*turbopackIgnore: true*/ process.env.UPLOAD_DIR || DEFAULT_UPLOAD_DIR);
 }
 
 export function uploadPathForKey(key: string) {
